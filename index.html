@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apreensões de Sintéticas 2026</title>
+<meta name="description" content="Painel de apreensões de drogas sintéticas e precursores químicos com participação da PF, PRF e Receita Federal em 2026, compilado de notícias oficiais e da imprensa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-anthropic-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-anthropic-serif: "Source Serif 4", Georgia, serif;
+  --cds-font-size-title: clamp(1.6rem, 4vw, 2.1rem); --cds-font-size-heading: 1.12rem; --cds-font-size-body: .92rem; --cds-font-size-caption: .8rem;
+  --cds-font-weight-medium: 600;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 14px; --cds-gap-lg: 20px; --cds-gap-xl: 32px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 18px;
+  --cds-radius: 8px; --cds-dur-fast: .15s; --cds-dur-slow: .4s;
+  --color-bg: #f6f5f1; --color-fg: #1f1e1b; --color-fg-muted: #67645c; --color-panel: #ffffff; --color-border-line: #e2dfd6;
+  --cds-border: #d6d2c7; --cds-surface-popover: #ffffff; --cds-shadow-popover: 0 6px 24px rgba(0,0,0,.12);
+  --cds-text-secondary: #67645c; --cds-chart-muted: #e4e1d8; --cds-chart-grid: #e8e5dd; --color-good: #2f8f5b; --color-bad: #c2412d;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --color-bg: #1b1a18; --color-fg: #ecebe6; --color-fg-muted: #a6a39a; --color-panel: #252421; --color-border-line: #3a3833;
+  --cds-border: #47443e; --cds-surface-popover: #2c2b28; --cds-shadow-popover: 0 6px 24px rgba(0,0,0,.5);
+  --cds-text-secondary: #a6a39a; --cds-chart-muted: #3a3833; --cds-chart-grid: #34322d; --color-good: #4bb37b; --color-bad: #e2604a; color-scheme: dark; } }
+:root[data-theme="dark"]{
+  --color-bg: #1b1a18; --color-fg: #ecebe6; --color-fg-muted: #a6a39a; --color-panel: #252421; --color-border-line: #3a3833;
+  --cds-border: #47443e; --cds-surface-popover: #2c2b28; --cds-shadow-popover: 0 6px 24px rgba(0,0,0,.5);
+  --cds-text-secondary: #a6a39a; --cds-chart-muted: #3a3833; --cds-chart-grid: #34322d; --color-good: #4bb37b; --color-bad: #e2604a; color-scheme: dark; }
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
+body{font-family:var(--font-anthropic-sans);line-height:1.45}
+main.wrap{max-width:1240px;margin:0 auto;padding:28px 16px 48px}
+.dash-skeleton:empty{background:linear-gradient(90deg,var(--cds-chart-muted),transparent,var(--cds-chart-muted));background-size:200% 100%;animation:sk 1.4s infinite;border-radius:var(--cds-radius)}
+@keyframes sk{to{background-position:-200% 0}}
+.site-foot{margin-top:28px;padding-top:14px;border-top:1px solid var(--color-border-line);font-size:var(--cds-font-size-caption);color:var(--color-fg-muted)}
+.site-foot a{color:inherit}
+</style>
+<script>
+/* Substitui o ambiente do Claude: carrega dados/apreensoes.json e guarda os filtros no endereço (#...) */
+window.dash = (() => {
+  let estado = { status: 'loading', data: null };
+  const ouvintes = [];
+  let params = {};
+  try { const h = decodeURIComponent(location.hash.slice(1)); if (h) params = JSON.parse(h) || {}; } catch (e) { params = {}; }
+  const avisar = () => ouvintes.forEach((f) => { try { f(); } catch (e) { console.error(e); } });
+  const api = {
+    colors: ['#3a6fd8', '#d9822b', '#2a9d8f', '#8b5cc7'],
+    params: () => ({ ...params }),
+    setParams: (o) => {
+      params = { ...params, ...o };
+      Object.keys(params).forEach((k) => { const v = params[k]; if (v === '' || v == null || (Array.isArray(v) && !v.length)) delete params[k]; });
+      try { history.replaceState(null, '', Object.keys(params).length ? '#' + encodeURIComponent(JSON.stringify(params)) : location.pathname + location.search); } catch (e) {}
+      avisar();
+    },
+    data: () => estado,
+    onData: (f) => { ouvintes.push(f); f(); },
+  };
+  fetch('dados/apreensoes.json?v=' + Date.now(), { cache: 'no-store' })
+    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then((rows) => { estado = { status: 'ok', data: Array.isArray(rows) ? rows : (rows.registros || []) }; avisar(); })
+    .catch((e) => { console.error('Falha ao carregar dados', e); estado = { status: 'error', data: [] }; avisar(); });
+  return api;
+})();
+</script>
+</head>
+<body>
+<main class="wrap">
+<style>
+.ap { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.ap-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-xs); }
+.ap-head p { margin: 0; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); max-width: 60rem; }
+.ap-sec h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-sm); }
+.ap-filters { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: flex-end; margin-bottom: var(--cds-gap-md); }
+.ap-filters label { display: flex; flex-direction: column; gap: 2px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ap-flab { display: flex; flex-direction: column; gap: 2px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ap-filters select, .ap-filters button { font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); min-width: 8rem; }
+.ap-filters button { min-width: 0; cursor: pointer; }
+.ap-ms { position: relative; }
+.ap-ms summary { list-style: none; cursor: pointer; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); min-width: 10rem; white-space: nowrap; }
+.ap-ms summary::-webkit-details-marker { display: none; }
+.ap-ms summary::after { content: " ▾"; color: var(--color-fg-muted); }
+.ap-ms-pop { position: absolute; z-index: 6; top: calc(100% + 4px); left: 0; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-sm); display: grid; grid-template-columns: repeat(2, minmax(7rem, 1fr)); gap: 2px var(--cds-gap-md); }
+.ap-filters .ap-ms-pop label { flex-direction: row; align-items: center; gap: 6px; color: var(--color-fg); font-size: var(--cds-font-size-body); cursor: pointer; }
+.ap-ms-pop .ap-ms-all { grid-column: 1 / -1; border-bottom: 1px solid var(--color-border-line); padding-bottom: 4px; margin-bottom: 4px; }
+.ap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); }
+.ap-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); position: relative; }
+.ap-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.ap-card .ap-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 2px 0 var(--cds-gap-md); }
+.ap-bars { min-height: 10rem; display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.ap-row { display: grid; grid-template-columns: minmax(6.5rem, 9rem) 1fr; gap: var(--cds-gap-sm); align-items: start; cursor: default; }
+.ap-row .ap-lab { font-size: var(--cds-font-size-body); line-height: 1.3; }
+.ap-track { display: flex; align-items: center; gap: var(--cds-gap-xs); }
+.ap-bar { height: 14px; border-radius: 4px; min-width: 2px; }
+.ap-count { font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ap-qty { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; margin-top: 2px; }
+.ap-row:hover .ap-bar { filter: brightness(1.12); }
+.ap-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); max-width: 16rem; z-index: 5; }
+.ap-tip .ap-tip-h { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.ap-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-md); }
+.ap-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.ap-legend i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.ap-qbox { min-height: 10rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-lg) var(--cds-gap-xl); }
+.ap-qgrp h4 { margin: 0 0 var(--cds-gap-xs); font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+.ap-qrow { display: grid; grid-template-columns: 4.5rem 1fr; gap: var(--cds-gap-sm); align-items: center; margin-bottom: 4px; cursor: default; }
+.ap-qrow .ap-lab { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ap-qrow:hover .ap-bar { filter: brightness(1.12); }
+.ap-sbox { min-height: 10rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: var(--cds-gap-md); }
+.ap-spanel { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md, 12px); }
+.ap-spanel h4 { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+.ap-spanel .ap-unit { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-sm); }
+.ap-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-sm); min-height: 4.5rem; }
+.ap-kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md, 12px); }
+.ap-kpi b { display: block; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); font-variant-numeric: tabular-nums; }
+.ap-kpi span { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.ap-line { width: 100%; height: auto; display: block; overflow: visible; }
+.ap-line text { fill: var(--color-fg-muted); font-size: 11px; font-family: var(--font-anthropic-sans); }
+.ap-mapwrap { display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 1fr); gap: var(--cds-gap-xl); align-items: start; }
+@media (max-width: 760px) { .ap-mapwrap { grid-template-columns: 1fr; } }
+.ap-mapa { position: relative; min-height: 22rem; }
+.ap-mapa svg { width: 100%; height: auto; display: block; max-height: 34rem; }
+.ap-mapa path { stroke: var(--color-panel); stroke-width: 1.2; vector-effect: non-scaling-stroke; cursor: default; transition: opacity var(--cds-dur-fast, .15s); }
+.ap-mapa path:hover { opacity: .8; stroke: var(--color-fg); stroke-width: 1.5; }
+.ap-mapa text { font-family: var(--font-anthropic-sans); font-size: 11px; font-weight: 600; fill: var(--color-fg); paint-order: stroke; stroke: var(--color-panel); stroke-width: 3px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.ap-escala { display: flex; align-items: center; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); flex-wrap: wrap; }
+.ap-escala i { display: inline-block; width: 9rem; height: 10px; border-radius: 3px; }
+.ap-credito { font-size: 11px; color: var(--color-fg-muted); margin-top: 4px; }
+.ap-tiles { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.ap-tile { aspect-ratio: 1; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); cursor: default; font-variant-numeric: tabular-nums; }
+.ap-tile b { font-weight: var(--cds-font-weight-medium); }
+.ap-rank { font-size: var(--cds-font-size-body); }
+.ap-rank div { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--cds-gap-sm); align-items: center; margin-bottom: 4px; }
+.ap-upd { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--cds-gap-sm); margin-top: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 4px 12px; min-height: 1.6rem; }
+.ap-upd b { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.ap-novo { display: inline-block; font-size: 11px; font-weight: var(--cds-font-weight-medium); padding: 1px 7px; border-radius: 999px; color: var(--color-panel); background: var(--color-good, #2f8f5b); white-space: nowrap; }
+.ap-tablebox { max-height: 34rem; overflow: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); }
+.ap-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.ap-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; border-bottom: 1px solid var(--color-border-line); padding: 0; z-index: 1; }
+.ap-table th button { all: unset; display: block; padding: var(--cds-pad-sm); cursor: pointer; font-weight: var(--cds-font-weight-medium); white-space: nowrap; }
+.ap-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+.ap-table td.ap-fontes a { display: block; white-space: nowrap; }
+.ap-table td.ap-fontes a + a { font-size: 11px; color: var(--color-fg-muted); }
+.ap-table td.ap-obs { color: var(--color-fg-muted); min-width: 16rem; }
+.ap-table a { color: inherit; }
+.ap-empty { padding: var(--cds-pad-lg); color: var(--color-fg-muted); font-size: var(--cds-font-size-body); }
+.ap-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.ap-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+.ap-foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); max-width: 60rem; line-height: 1.5; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+@media (max-width: 760px) { .ap-hide-narrow { display: none; } }
+</style>
+
+<div class="ap">
+  <header class="ap-head" id="topo">
+    <h1>Apreensões de drogas sintéticas no Brasil — 2026</h1>
+    <div class="ap-upd dash-skeleton" data-source="apreensoes"></div>
+    <p>Apreensões de drogas sintéticas (ecstasy/MDMA, metanfetamina, anfetamina, LSD, cetamina, GHB e selos de composição indefinida) e de precursores químicos (acetato de etila, helional, safrol e outros) com participação da Polícia Federal, da Polícia Rodoviária Federal e da Receita Federal, reunidas de notícias oficiais e da imprensa, com duplicatas removidas. Atualização semanal às segundas-feiras, 9h.</p>
+  </header>
+
+
+  <section class="ap-sec" id="graficos">
+    <h2>Total de apreensões por instituição</h2>
+    <div class="ap-filters">
+      <div class="ap-flab">Meses<details class="ap-ms" data-p="g_meses"><summary>Todos os meses</summary><div class="ap-ms-pop"></div></details></div>
+      <label>Classe<select class="ap-g-classe" aria-label="Classe dos gráficos"></select></label>
+      <label>Substância<select class="ap-g-subst" aria-label="Substância dos gráficos"></select></label>
+      <label>Tipo de ocorrência<select class="ap-x" data-p="g_tipo" aria-label="Tipo de ocorrência dos gráficos por instituição"></select></label>
+      <button type="button" class="ap-g-reset">Limpar</button>
+    </div>
+    <div class="ap-grid">
+      <div class="ap-card" id="grafico-pf" data-source="apreensoes">
+        <h3>Polícia Federal</h3>
+        <p class="ap-note">Nº de apreensões por substância; ao lado, quantidades somadas por unidade</p>
+        <div class="ap-bars dash-skeleton" data-inst="Polícia Federal" data-color="0"></div>
+      </div>
+      <div class="ap-card" id="grafico-prf" data-source="apreensoes">
+        <h3>Polícia Rodoviária Federal</h3>
+        <p class="ap-note">Nº de apreensões por substância; ao lado, quantidades somadas por unidade</p>
+        <div class="ap-bars dash-skeleton" data-inst="Polícia Rodoviária Federal" data-color="1"></div>
+      </div>
+      <div class="ap-card" id="grafico-rf" data-source="apreensoes">
+        <h3>Receita Federal</h3>
+        <p class="ap-note">Nº de apreensões por substância; ao lado, quantidades somadas por unidade</p>
+        <div class="ap-bars dash-skeleton" data-inst="Receita Federal" data-color="2"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ap-sec" id="por-substancia">
+    <h2>Quantidades por substância e instituição</h2>
+    <div class="ap-filters">
+      <div class="ap-flab">Meses<details class="ap-ms" data-p="s_meses"><summary>Todos os meses</summary><div class="ap-ms-pop"></div></details></div>
+      <label>Classe<select class="ap-s" data-p="s_classe" aria-label="Classe do gráfico por substância"></select></label>
+      <label>Substância<select class="ap-s" data-p="s_subst" aria-label="Substância do gráfico por substância"></select></label>
+      <label>Tipo de ocorrência<select class="ap-x" data-p="s_tipo" aria-label="Tipo de ocorrência do gráfico por substância"></select></label>
+      <button type="button" class="ap-s-reset">Limpar</button>
+    </div>
+    <div class="ap-card" id="grafico-substancias" data-source="apreensoes">
+      <h3>PF, PRF e Receita lado a lado em cada substância</h3>
+      <p class="ap-note">Um painel por substância e unidade de medida; a mesma substância com duas unidades (ex.: kg e comprimidos) aparece em painéis separados</p>
+      <div class="ap-legend ap-legend-s"></div>
+      <div class="ap-sbox dash-skeleton"></div>
+    </div>
+  </section>
+
+
+  <section class="ap-sec" id="mensal">
+    <h2>Evolução mensal das apreensões</h2>
+    <div class="ap-filters">
+      <label>Classe<select class="ap-x" data-p="m_classe" aria-label="Classe da série mensal"></select></label>
+      <label>Substância<select class="ap-x" data-p="m_subst" aria-label="Substância da série mensal"></select></label>
+      <label>Tipo de ocorrência<select class="ap-x" data-p="m_tipo" aria-label="Tipo de ocorrência da série mensal"></select></label>
+      <button type="button" class="ap-x-reset" data-pref="m_">Limpar</button>
+    </div>
+    <div class="ap-card" id="grafico-mensal" data-source="apreensoes">
+      <h3>Nº de apreensões por mês, por instituição</h3>
+      <p class="ap-note">Cada ocorrência conta uma vez, mesmo com várias substâncias</p>
+      <div class="ap-legend ap-legend-m"></div>
+      <div class="ap-mbox dash-skeleton" style="min-height:14rem"></div>
+    </div>
+  </section>
+
+  <section class="ap-sec" id="mapa">
+    <h2>Apreensões por estado</h2>
+    <div class="ap-filters">
+      <div class="ap-flab">Meses<details class="ap-ms" data-p="u_meses"><summary>Todos os meses</summary><div class="ap-ms-pop"></div></details></div>
+      <label>Instituição<select class="ap-x" data-p="u_inst" aria-label="Instituição do mapa"></select></label>
+      <label>Classe<select class="ap-x" data-p="u_classe" aria-label="Classe do mapa"></select></label>
+      <label>Substância<select class="ap-x" data-p="u_subst" aria-label="Substância do mapa"></select></label>
+      <label>Tipo de ocorrência<select class="ap-x" data-p="u_tipo" aria-label="Tipo de ocorrência do mapa"></select></label>
+      <button type="button" class="ap-x-reset" data-pref="u_">Limpar</button>
+    </div>
+    <div class="ap-card" id="grafico-mapa" data-source="apreensoes">
+      <h3>Nº de apreensões por UF</h3>
+      <p class="ap-note">Mapa de calor: quanto mais forte a cor do estado, mais apreensões no período e filtros escolhidos. Passe o mouse para ver o detalhe por instituição</p>
+      <div class="ap-mapwrap">
+        <div class="ap-mapa dash-skeleton"></div>
+        <div class="ap-rank"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ap-sec" id="tabela">
+    <h2>Todas as apreensões registradas</h2>
+    <div class="ap-filters">
+      <label>Instituição<select class="ap-t" data-p="t_inst" aria-label="Instituição"></select></label>
+      <label>Cidade<select class="ap-t" data-p="t_cidade" aria-label="Cidade"></select></label>
+      <div class="ap-flab">Meses<details class="ap-ms" data-p="t_meses"><summary>Todos os meses</summary><div class="ap-ms-pop"></div></details></div>
+      <label>Ano<select class="ap-t" data-p="t_ano" aria-label="Ano"></select></label>
+      <label>Classe<select class="ap-t" data-p="t_classe" aria-label="Classe"></select></label>
+      <label>Substância<select class="ap-t" data-p="t_subst" aria-label="Substância"></select></label>
+      <label>Tipo de ocorrência<select class="ap-t" data-p="t_tipo" aria-label="Tipo de ocorrência"></select></label>
+      <label>Casos<select class="ap-t" data-p="t_novo" aria-label="Casos novos"></select></label>
+      <label>Pessoas presas<select class="ap-t" data-p="t_presos" aria-label="Pessoas presas"></select></label>
+      <label>Arma apreendida<select class="ap-t" data-p="t_arma" aria-label="Arma apreendida"></select></label>
+      <label>Dinheiro apreendido<select class="ap-t" data-p="t_dinheiro" aria-label="Dinheiro apreendido"></select></label>
+      <button type="button" class="ap-t-reset">Limpar filtros</button>
+    </div>
+    <div class="ap-tablebox">
+      <table class="ap-table" data-source="apreensoes" data-row-key="id">
+        <thead><tr>
+          <th data-field="novo"><button type="button" data-sort="lote">Novo</button></th>
+          <th data-field="data_br"><button type="button" data-sort="data">Data</button></th>
+          <th data-field="instituicao"><button type="button" data-sort="instituicao">Instituição</button></th>
+          <th data-field="municipio"><button type="button" data-sort="municipio">Cidade</button></th>
+          <th data-field="uf"><button type="button" data-sort="uf">UF</button></th>
+          <th data-field="modal" class="ap-hide-narrow"><button type="button" data-sort="modal">Modal</button></th>
+          <th data-field="classe" class="ap-hide-narrow"><button type="button" data-sort="classe">Classe</button></th>
+          <th data-field="substancia"><button type="button" data-sort="substancia">Substância</button></th>
+          <th data-field="tipo_ocorrencia"><button type="button" data-sort="tipo_ocorrencia">Tipo de ocorrência</button></th>
+          <th data-field="quantidade"><button type="button" data-sort="qtd">Quantidade</button></th>
+          <th data-field="presos_qtd"><button type="button" data-sort="npres">Pessoas presas</button></th>
+          <th data-field="armas"><button type="button" data-sort="armas">Armas apreendidas</button></th>
+          <th data-field="dinheiro_txt"><button type="button" data-sort="din">Dinheiro apreendido</button></th>
+          <th data-field="fonte_nome"><button type="button" data-sort="nfontes">Fontes</button></th>
+          <th data-field="observacoes" class="ap-hide-narrow"><button type="button" data-sort="observacoes">Observações</button></th>
+        </tr></thead>
+        <tbody class="ap-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ap-sec" id="qualidade">
+    <h2>Qualidade dos dados</h2>
+    <div class="ap-kpis dash-skeleton" data-source="apreensoes"></div>
+  </section>
+
+  <p class="ap-foot">Como ler: cada linha é uma droga apreendida em uma ocorrência; uma ocorrência com várias drogas aparece em várias linhas. Massa (kg ou t) e unidades (comprimidos, ampolas, frascos) nunca são somadas entre si; quando uma apreensão de ecstasy/MDMA informa peso e número de comprimidos, os gráficos contam os comprimidos. Nos gráficos por instituição, só aparecem substâncias com ao menos uma apreensão no período filtrado. No gráfico por substância, cada painel tem escala própria: as barras só se comparam dentro do mesmo painel. Precursores químicos são insumos (por exemplo, acetato de etila para refino de cocaína; helional e safrol para MDMA), não drogas prontas. “Novo” marca os casos que entraram no painel na última atualização com casos novos. Tipo de ocorrência: “Porte para consumo” quando houve termo circunstanciado (TCO) sem prisão; “Tráfico” quando houve prisão, quantidade relevante, remessa, aeroporto, fronteira ou precursor; “Não informado” nos casos pequenos sem desfecho divulgado. Pessoas presas, armas e dinheiro se referem à ocorrência inteira e se repetem nas linhas de uma mesma ocorrência. “Não” nos filtros inclui os casos em que a fonte não informa; munições sem arma contam como “Não” e aparecem no detalhe. A instituição é a que detectou ou liderou a apreensão; as demais aparecem nas observações. Notícias não cobrem todas as apreensões: os totais são indicadores, não estatística oficial. Apreensões conduzidas só por polícias estaduais ficam de fora.</p>
+</div>
+
+<script>
+(() => {
+  const MESES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const INSTS = ['Polícia Federal', 'Polícia Rodoviária Federal', 'Receita Federal'];
+  const MONITORADAS = [
+    ['Ecstasy/MDMA', 'Droga sintética'], ['Metanfetamina', 'Droga sintética'], ['Anfetamina (rebite)', 'Droga sintética'],
+    ['LSD', 'Droga sintética'], ['Selos de composição indefinida', 'Droga sintética'], ['Cetamina', 'Droga sintética'], ['GHB', 'Droga sintética'],
+    ['Acetato de etila', 'Precursor químico'], ['Helional', 'Precursor químico'], ['Safrol', 'Precursor químico'], ['Outro precursor', 'Precursor químico'],
+  ];
+  const CLASSES = ['Droga sintética', 'Precursor químico'];
+  const num = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 3 });
+  const root = document.querySelector('.ap');
+  const P = () => dash.params();
+  const fill = (sel, opts, value) => {
+    if (sel === document.activeElement) return;
+    sel.replaceChildren(...opts.map(([v, t]) => new Option(t, v)));
+    sel.value = value ?? '';
+  };
+  const yesNo = [['', 'Todos'], ['Sim', 'Sim'], ['Não', 'Não / não informado']];
+  const matchYN = (val, want) => !want || (want === 'Sim' ? val === 'Sim' : val !== 'Sim');
+
+  // ---------- filtros dos gráficos ----------
+  const gSub = root.querySelector('.ap-g-subst');
+  const gCla = root.querySelector('.ap-g-classe');
+  gSub.addEventListener('change', () => dash.setParams({ g_subst: gSub.value }));
+  gCla.addEventListener('change', () => dash.setParams({ g_classe: gCla.value, g_subst: '' }));
+  root.querySelector('.ap-g-reset').addEventListener('click', () => dash.setParams({ g_meses: [], g_subst: '', g_classe: '', g_tipo: '' }));
+
+  // ---------- seletor de vários meses ----------
+  const asList = (v) => Array.isArray(v) ? v.map(String) : (v ? [String(v)] : []);
+  const msBoxes = [...root.querySelectorAll('.ap-ms')];
+  msBoxes.forEach((det) => {
+    const pop = det.querySelector('.ap-ms-pop');
+    const mk = (val, txt, cls) => {
+      const l = document.createElement('label'); if (cls) l.className = cls;
+      const cb = document.createElement('input'); cb.type = 'checkbox'; cb.value = val;
+      l.append(cb, document.createTextNode(txt)); pop.appendChild(l); return cb;
+    };
+    const all = mk('', 'Todos os meses', 'ap-ms-all');
+    MESES.forEach((m, i) => mk(String(i + 1), m));
+    pop.addEventListener('change', (ev) => {
+      const t = ev.target; if (!(t instanceof HTMLInputElement)) return;
+      if (t === all) { dash.setParams({ [det.dataset.p]: [] }); return; }
+      const sel = [...pop.querySelectorAll('input')].filter((c) => c !== all && c.checked).map((c) => c.value);
+      dash.setParams({ [det.dataset.p]: sel });
+    });
+  });
+  document.addEventListener('click', (ev) => msBoxes.forEach((d) => { if (d.open && !d.contains(ev.target)) d.open = false; }));
+  const drawMs = (p) => msBoxes.forEach((det) => {
+    const sel = asList(p[det.dataset.p]);
+    det.querySelectorAll('input').forEach((c) => { c.checked = c.value === '' ? sel.length === 0 : sel.includes(c.value); });
+    const sum = det.querySelector('summary');
+    sum.textContent = !sel.length ? 'Todos os meses' : sel.length === 1 ? MESES[Number(sel[0]) - 1] : sel.length + ' meses';
+  });
+
+  const TIPOS = ['Tráfico', 'Porte para consumo', 'Não informado'];
+  const xSels = [...root.querySelectorAll('select.ap-x')];
+  xSels.forEach((s) => s.addEventListener('change', () => {
+    const k = s.dataset.p;
+    dash.setParams(k.endsWith('_classe') ? { [k]: s.value, [k.replace('_classe', '_subst')]: '' } : { [k]: s.value });
+  }));
+  root.querySelectorAll('.ap-x-reset').forEach((b) => b.addEventListener('click', () => {
+    const pre = b.dataset.pref, o = {};
+    ['classe', 'subst', 'tipo', 'inst'].forEach((k) => { o[pre + k] = ''; });
+    o[pre + 'meses'] = [];
+    dash.setParams(o);
+  }));
+  const kBox = root.querySelector('.ap-kpis');
+  const mBox = root.querySelector('.ap-mbox'), mCard = root.querySelector('#grafico-mensal'), legendM = root.querySelector('.ap-legend-m');
+  const uBox = root.querySelector('.ap-mapa'), uRank = root.querySelector('.ap-rank'), uCard = root.querySelector('#grafico-mapa');
+  const TILES = { RR: [0, 2], AP: [0, 4], AM: [1, 1], PA: [1, 3], MA: [1, 4], CE: [1, 5], RN: [1, 6], AC: [2, 0], RO: [2, 1],
+    MT: [2, 2], TO: [2, 3], PI: [2, 4], PE: [2, 5], PB: [2, 6], MS: [3, 2], GO: [3, 3], DF: [3, 4], BA: [3, 5], AL: [3, 6],
+    SP: [4, 3], MG: [4, 4], ES: [4, 5], SE: [4, 6], PR: [5, 3], RJ: [5, 5], SC: [6, 3], RS: [7, 3] };
+  // Contorno dos estados: tenta bibliotecas públicas de mapas (jsDelivr); se nenhuma carregar, usa a grade de quadrados.
+  const NOME_UF = { 'acre': 'AC', 'alagoas': 'AL', 'amapa': 'AP', 'amazonas': 'AM', 'bahia': 'BA', 'ceara': 'CE', 'distrito federal': 'DF',
+    'espirito santo': 'ES', 'goias': 'GO', 'maranhao': 'MA', 'mato grosso': 'MT', 'mato grosso do sul': 'MS', 'minas gerais': 'MG', 'para': 'PA',
+    'paraiba': 'PB', 'parana': 'PR', 'pernambuco': 'PE', 'piaui': 'PI', 'rio de janeiro': 'RJ', 'rio grande do norte': 'RN', 'rio grande do sul': 'RS',
+    'rondonia': 'RO', 'roraima': 'RR', 'santa catarina': 'SC', 'sao paulo': 'SP', 'sergipe': 'SE', 'tocantins': 'TO' };
+  const semAc = (t) => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  const UFS = new Set(Object.values(NOME_UF));
+  const ufDe = (id, nome) => { const a = String(id || '').replace(/^br[-.]/i, '').toUpperCase(); return UFS.has(a) ? a : NOME_UF[semAc(nome)] || null; };
+  let MAPA = null, MAPA_ESTADO = 'carregando';
+  const scriptOnce = (src) => new Promise((ok, erro) => { const t = document.createElement('script'); t.src = src; t.onload = ok; t.onerror = erro; document.head.appendChild(t); });
+  const deGeojson = (g) => {                       // GeoJSON (coordenadas planas) -> caminhos SVG
+    const feats = (g.features || []).map((f) => ({ uf: ufDe(f.properties && (f.properties['hc-a2'] || f.properties['postal-code']), f.properties && f.properties.name), geo: f.geometry })).filter((f) => f.uf && f.geo);
+    const aneis = (geo) => (geo.type === 'Polygon' ? geo.coordinates : geo.type === 'MultiPolygon' ? geo.coordinates.flat() : []);
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    feats.forEach((f) => aneis(f.geo).forEach((a) => a.forEach(([x, y]) => { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); })));
+    const cy = (uf) => { const f = feats.find((q) => q.uf === uf); if (!f) return 0; const p = aneis(f.geo).flat(); return p.reduce((s, q) => s + q[1], 0) / (p.length || 1); };
+    const inverte = cy('RR') > cy('RS');           // norte precisa ficar em cima
+    const W = 1000, k = W / (x1 - x0), H = Math.round((y1 - y0) * k);
+    const pt = ([x, y]) => `${((x - x0) * k).toFixed(1)},${((inverte ? y1 - y : y - y0) * k).toFixed(1)}`;
+    return { viewBox: `0 0 ${W} ${H}`, locs: feats.map((f) => ({ uf: f.uf, path: aneis(f.geo).map((a) => 'M' + a.map(pt).join('L') + 'Z').join('') })) };
+  };
+  (async () => {
+    const tentativas = [
+      async () => { for (const v of ['1.0.1', '1.0.0']) { try {
+        const m = await import(`https://cdn.jsdelivr.net/npm/@svg-maps/brazil@${v}/+esm`); const d = m.default || m;
+        if (d && Array.isArray(d.locations) && d.locations.length >= 27)
+          return { viewBox: d.viewBox, locs: d.locations.map((l) => ({ uf: ufDe(l.id, l.name), path: l.path })).filter((l) => l.uf), credito: 'Contornos: SVG Maps (CC BY 4.0)' };
+      } catch (e) { /* próxima versão */ } } return null; },
+      async () => { window.Highcharts = window.Highcharts || {}; window.Highcharts.maps = window.Highcharts.maps || {};
+        for (const v of ['2.3.0', '2.1.0', '2.0.0']) { try {
+          await scriptOnce(`https://cdn.jsdelivr.net/npm/@highcharts/map-collection@${v}/countries/br/br-all.js`);
+          const g = window.Highcharts.maps['countries/br/br-all'];
+          if (g) { const r = deGeojson(g); if (r.locs.length >= 27) return { ...r, credito: 'Contornos: Highcharts Map Collection (dados Natural Earth)' }; }
+        } catch (e) { /* próxima versão */ } } return null; },
+    ];
+    for (const t of tentativas) { try { MAPA = await t(); } catch (e) { MAPA = null; } if (MAPA) break; }
+    MAPA_ESTADO = MAPA ? 'ok' : 'falhou';
+    draw();
+  })();
+  setTimeout(() => { if (MAPA_ESTADO === 'carregando') { MAPA_ESTADO = 'falhou'; draw(); } }, 12000);
+  const SIGLA = { 'Polícia Federal': 'PF', 'Polícia Rodoviária Federal': 'PRF', 'Receita Federal': 'Receita' };
+
+  // ---------- filtros do gráfico por substância ----------
+  const sSels = [...root.querySelectorAll('select.ap-s')];
+  sSels.forEach((s) => s.addEventListener('change', () => dash.setParams(s.dataset.p === 's_classe' ? { s_classe: s.value, s_subst: '' } : { [s.dataset.p]: s.value })));
+  root.querySelector('.ap-s-reset').addEventListener('click', () => dash.setParams({ s_meses: [], s_classe: '', s_subst: '', s_tipo: '' }));
+  const sBox = root.querySelector('.ap-sbox');
+  const sCard = root.querySelector('#grafico-substancias');
+  const legendS = root.querySelector('.ap-legend-s');
+
+  // ---------- filtros da tabela ----------
+  const tSels = [...root.querySelectorAll('select.ap-t')];
+  tSels.forEach((s) => s.addEventListener('change', () => dash.setParams({ [s.dataset.p]: s.value })));
+  root.querySelector('.ap-t-reset').addEventListener('click', () => {
+    dash.setParams({ t_cidade: '', t_inst: '', t_meses: [], t_ano: '', t_classe: '', t_subst: '', t_tipo: '', t_novo: '', t_presos: '', t_arma: '', t_dinheiro: '' });
+  });
+
+  // ---------- tooltip ----------
+  let tip = null;
+  const showTip = (card, ev, head, lines) => {
+    if (!tip) { tip = document.createElement('div'); tip.className = 'ap-tip'; }
+    if (tip.parentNode !== card) card.appendChild(tip);
+    tip.replaceChildren();
+    const h = document.createElement('div'); h.className = 'ap-tip-h'; h.textContent = head; tip.appendChild(h);
+    lines.forEach((l) => { const d = document.createElement('div'); d.textContent = l; tip.appendChild(d); });
+    const r = card.getBoundingClientRect();
+    let x = ev.clientX - r.left + 12, y = ev.clientY - r.top + 12;
+    tip.style.left = '0px'; tip.style.top = '0px'; tip.hidden = false;
+    const w = tip.offsetWidth, hgt = tip.offsetHeight;
+    if (x + w > r.width - 4) x = Math.max(4, ev.clientX - r.left - w - 12);
+    if (y + hgt > r.height - 4) y = Math.max(4, ev.clientY - r.top - hgt - 12);
+    tip.style.left = x + 'px'; tip.style.top = y + 'px';
+  };
+  const hideTip = () => { if (tip) tip.hidden = true; };
+
+  // Regra permanente: ecstasy/MDMA com peso e comprimidos informados conta pelos comprimidos.
+  const medida = (r) => {
+    let k = r.qtd_kg == null ? NaN : Number(r.qtd_kg);
+    const u = r.qtd_unidades == null ? NaN : Number(r.qtd_unidades);
+    if (!Number.isNaN(k) && !Number.isNaN(u) && r.substancia === 'Ecstasy/MDMA' && /^comprimido/.test(String(r.unidade || ''))) k = NaN;
+    return { k, u };
+  };
+
+  const qtyParts = (rows) => {
+    let kg = 0, hasKg = false, semQtd = 0; const un = new Map();
+    rows.forEach((r) => {
+      const { k, u } = medida(r);
+      if (!Number.isNaN(k)) { kg += k; hasKg = true; }
+      else if (!Number.isNaN(u)) un.set(r.unidade, (un.get(r.unidade) || 0) + u);
+      else semQtd += 1;
+    });
+    const parts = [];
+    if (hasKg) parts.push(kg >= 1000 ? '≈ ' + num.format(Math.round(kg / 100) / 10) + ' t' : num.format(kg) + ' kg');
+    [...un.entries()].sort((a, b) => b[1] - a[1]).forEach(([u, v]) => parts.push(num.format(v) + ' ' + u));
+    if (semQtd) parts.push(semQtd + (semQtd > 1 ? ' sem quantidade' : ' sem quantidade'));
+    return parts;
+  };
+
+  // ---------- ordenação ----------
+  let sortKey = 'data', sortDir = -1;
+  root.querySelectorAll('th button[data-sort]').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.sort;
+    if (sortKey === k) sortDir = -sortDir; else { sortKey = k; sortDir = k === 'data' ? -1 : 1; }
+    draw();
+  }));
+  const sortVal = (r, k) => {
+    if (k === 'qtd') { const m = medida(r); return !Number.isNaN(m.k) ? m.k * 1e6 : (!Number.isNaN(m.u) ? m.u : -1); }
+    if (k === 'lote') return Number(r.lote) || 0;
+    if (k === 'nfontes') return listaFontes(r).length;
+    if (k === 'npres') return r.n_presos != null ? Number(r.n_presos) : (r.presos === 'Sim' ? 0.5 : -1);
+    if (k === 'din') return r.dinheiro_valor != null ? Number(r.dinheiro_valor) : (r.dinheiro === 'Sim' ? 0.5 : -1);
+    return (r[k] ?? '').toString();
+  };
+
+  const nomeDe = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
+  const listaFontes = (r) => {
+    const out = [], vistos = new Set();
+    const add = (url, nome) => { if (typeof url === 'string' && /^https?:\/\//.test(url) && !vistos.has(url)) { vistos.add(url); out.push({ url, nome: nome || nomeDe(url) }); } };
+    add(r.fonte_url, r.fonte_nome);
+    (Array.isArray(r.fontes_extra) ? r.fontes_extra : []).forEach((f) => (typeof f === 'string' ? add(f) : f && add(f.url, f.nome)));
+    (Array.isArray(r.fontes_secundarias) ? r.fontes_secundarias : []).forEach((u) => add(u));
+    return out.slice(0, 4);
+  };
+  const tbody = root.querySelector('.ap-tbody');
+  const table = root.querySelector('.ap-table');
+  const barsBoxes = [...root.querySelectorAll('.ap-bars')];
+
+  function draw() {
+    const d = dash.data('apreensoes');
+    const p = P();
+    const rows = d.status === 'ok' && Array.isArray(d.data) ? d.data : [];
+
+    // opções que vêm dos dados
+    const known = MONITORADAS.map((m) => m[0]);
+    const extra = [...new Set(rows.map((r) => r.substancia))].filter((x) => !known.includes(x)).sort((a, b) => a.localeCompare(b, 'pt'));
+    const classeDe = (s) => (MONITORADAS.find((m) => m[0] === s) || [s, (rows.find((r) => r.substancia === s) || {}).classe || ''])[1];
+    const substs = [...known, ...extra];
+    const substsDa = (c) => substs.filter((x) => !c || classeDe(x) === c);
+    const anos = [...new Set(rows.map((r) => String(r.ano)))].sort();
+    drawMs(p);
+    fill(gCla, [['', 'Todas'], ...CLASSES.map((c) => [c, c === 'Droga sintética' ? 'Drogas sintéticas' : 'Precursores químicos'])], p.g_classe);
+    fill(gSub, [['', 'Todas'], ...substsDa(p.g_classe).map((s) => [s, s])], p.g_subst);
+    const optsFor = {
+      t_inst: [['', 'Todas'], ...INSTS.map((s) => [s, s])],
+      t_ano: [['', 'Todos'], ...anos.map((a) => [a, a])],
+      t_classe: [['', 'Todas'], ...CLASSES.map((c) => [c, c === 'Droga sintética' ? 'Drogas sintéticas' : 'Precursores químicos'])],
+      t_subst: [['', 'Todas'], ...substsDa(p.t_classe).map((s) => [s, s])],
+      t_presos: yesNo, t_arma: yesNo, t_dinheiro: yesNo,
+      t_tipo: [['', 'Todos'], ...TIPOS.map((t) => [t, t])],
+      t_novo: [['', 'Todos'], ['Novo', 'Só os novos da última atualização']],
+      t_cidade: [['', 'Todas'], ...[...new Set(rows.map((r) => r.local).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt')).map((c) => [c, c])],
+    };
+    const claOpts = [['', 'Todas'], ...CLASSES.map((c) => [c, c === 'Droga sintética' ? 'Drogas sintéticas' : 'Precursores químicos'])];
+    xSels.forEach((s) => {
+      const k = s.dataset.p, pre = k.split('_')[0];
+      const o = k.endsWith('_tipo') ? [['', 'Todos'], ...TIPOS.map((t) => [t, t])]
+        : k.endsWith('_classe') ? claOpts
+        : k.endsWith('_subst') ? [['', 'Todas'], ...substsDa(p[pre + '_classe']).map((x) => [x, x])]
+        : [['', 'Todas'], ...INSTS.map((x) => [x, x])];
+      fill(s, o, p[k]);
+    });
+    fill(sSels[0], [['', 'Todas'], ...CLASSES.map((c) => [c, c === 'Droga sintética' ? 'Drogas sintéticas' : 'Precursores químicos'])], p.s_classe);
+    fill(sSels[1], [['', 'Todas'], ...substsDa(p.s_classe).map((x) => [x, x])], p.s_subst);
+    tSels.forEach((s) => fill(s, optsFor[s.dataset.p], p[s.dataset.p]));
+
+    // ---------- gráficos ----------
+    const anoAtual = anos.length ? anos[anos.length - 1] : '';
+    const gMeses = asList(p.g_meses);
+    const tMeses = asList(p.t_meses);
+    const gRows = rows.filter((r) => String(r.ano) === anoAtual
+      && (!gMeses.length || gMeses.includes(String(r.mes)))
+      && (!p.g_classe || r.classe === p.g_classe)
+      && (!p.g_tipo || r.tipo_ocorrencia === p.g_tipo)
+      && (!p.g_subst || r.substancia === p.g_subst));
+    const gSubsts = p.g_subst ? [p.g_subst] : substsDa(p.g_classe);
+    const stats = INSTS.map((inst) => gSubsts.map((s) => {
+      const rr = gRows.filter((r) => r.instituicao === inst && r.substancia === s);
+      return { s, n: new Set(rr.map((r) => r.evento_id)).size, parts: qtyParts(rr) };
+    }));
+    const maxN = Math.max(1, ...stats.flat().map((x) => x.n));
+    barsBoxes.forEach((box) => {
+      const card = box.closest('.ap-card');
+      box.replaceChildren();
+      if (d.status === 'error' || d.status === 'connect') {
+        box.classList.remove('dash-skeleton');
+        const f = document.createElement('div'); f.className = 'ap-fail'; f.textContent = 'Não carregou'; box.appendChild(f); return;
+      }
+      if (d.status !== 'ok') { box.classList.add('dash-skeleton'); return; }
+      box.classList.remove('dash-skeleton');
+      const inst = box.dataset.inst;
+      const color = dash.colors[Number(box.dataset.color)];
+      const st = stats[INSTS.indexOf(inst)].filter((x) => x.n > 0);
+      if (!st.length) { const e = document.createElement('div'); e.className = 'ap-empty'; e.textContent = 'Nenhuma apreensão no período e filtros escolhidos.'; box.appendChild(e); return; }
+      const mesTxt = gMeses.length ? gMeses.map((m) => MESES[Number(m) - 1]).join(', ') + ' de ' + anoAtual : 'Ano ' + anoAtual;
+      st.forEach((x) => {
+        const row = document.createElement('div'); row.className = 'ap-row';
+        const lab = document.createElement('div'); lab.className = 'ap-lab'; lab.textContent = x.s;
+        const right = document.createElement('div');
+        const track = document.createElement('div'); track.className = 'ap-track';
+        const bar = document.createElement('div'); bar.className = 'ap-bar';
+        bar.style.width = x.n ? `calc((100% - 6.5rem) * ${x.n / maxN})` : '2px';
+        bar.style.background = x.n ? color : 'var(--cds-chart-muted)';
+        const cnt = document.createElement('span'); cnt.className = 'ap-count';
+        cnt.textContent = x.n === 1 ? '1 apreensão' : x.n + ' apreensões';
+        track.append(bar, cnt);
+        const qty = document.createElement('div'); qty.className = 'ap-qty';
+        qty.textContent = x.parts.length ? x.parts.join(' · ') : '—';
+        right.append(track, qty);
+        row.append(lab, right);
+        const lines = [inst, cnt.textContent, ...(x.parts.length ? x.parts : ['Sem registros'])];
+        row.addEventListener('mousemove', (ev) => showTip(card, ev, x.s + ' — ' + mesTxt, lines));
+        row.addEventListener('mouseleave', hideTip);
+        box.appendChild(row);
+      });
+    });
+
+    // ---------- gráfico por substância ----------
+    legendS.replaceChildren(...INSTS.map((inst, i) => {
+      const sp = document.createElement('span'); const sw = document.createElement('i');
+      sw.style.background = dash.colors[i]; sp.append(sw, document.createTextNode(inst)); return sp;
+    }));
+    sBox.replaceChildren();
+    if (d.status === 'error' || d.status === 'connect') {
+      sBox.classList.remove('dash-skeleton');
+      const f = document.createElement('div'); f.className = 'ap-fail'; f.textContent = 'Não carregou'; sBox.appendChild(f);
+    } else if (d.status !== 'ok') {
+      sBox.classList.add('dash-skeleton');
+    } else {
+      sBox.classList.remove('dash-skeleton');
+      const sMeses = asList(p.s_meses);
+      const sRows = rows.filter((r) => String(r.ano) === anoAtual
+        && (!sMeses.length || sMeses.includes(String(r.mes)))
+        && (!p.s_classe || r.classe === p.s_classe)
+        && (!p.s_tipo || r.tipo_ocorrencia === p.s_tipo)
+        && (!p.s_subst || r.substancia === p.s_subst));
+      const panels = new Map();
+      sRows.forEach((r) => {
+        const { k, u } = medida(r);
+        let unit, v;
+        if (!Number.isNaN(k)) { if (r.classe === 'Precursor químico') { unit = 't'; v = k / 1000; } else { unit = 'kg'; v = k; } }
+        else if (!Number.isNaN(u)) { unit = String(r.unidade || 'unidades').replace(/\s*\(.*\)$/, ''); v = u; }
+        else return;
+        const key = r.substancia + '|' + unit;
+        if (!panels.has(key)) panels.set(key, { sub: r.substancia, unit, vals: new Map(), ev: new Map() });
+        const pn = panels.get(key);
+        pn.vals.set(r.instituicao, (pn.vals.get(r.instituicao) || 0) + v);
+        const es = pn.ev.get(r.instituicao) || new Set(); es.add(r.evento_id); pn.ev.set(r.instituicao, es);
+      });
+      const unitName = { kg: 'quilogramas', t: 'toneladas' };
+      const subOrder = (x) => { const i = substs.indexOf(x); return i < 0 ? 999 : i; };
+      const unitOrder = (u) => u === 'kg' ? 0 : u === 't' ? 1 : u === 'comprimidos' ? 2 : 3;
+      const keys = [...panels.keys()].sort((a, b) => {
+        const A = panels.get(a), B = panels.get(b);
+        return subOrder(A.sub) - subOrder(B.sub) || unitOrder(A.unit) - unitOrder(B.unit) || A.unit.localeCompare(B.unit, 'pt');
+      });
+      const periodo = sMeses.length ? sMeses.map((m) => MESES[Number(m) - 1]).join(', ') + ' de ' + anoAtual : 'Ano ' + anoAtual;
+      const fmt = (v, unit) => unit === 't' ? '≈ ' + num.format(Math.round(v * 10) / 10) + ' t' : num.format(v) + ' ' + unit;
+      if (!keys.length) {
+        const e = document.createElement('div'); e.className = 'ap-empty'; e.textContent = 'Nenhuma quantidade registrada no período e filtros escolhidos.'; sBox.appendChild(e);
+      }
+      keys.forEach((key) => {
+        const pn = panels.get(key);
+        const panel = document.createElement('div'); panel.className = 'ap-spanel';
+        const h = document.createElement('h4'); h.textContent = pn.sub;
+        const un = document.createElement('p'); un.className = 'ap-unit'; un.textContent = 'em ' + (unitName[pn.unit] || pn.unit);
+        panel.append(h, un);
+        const maxV = Math.max(...INSTS.map((i) => pn.vals.get(i) || 0), 1e-9);
+        INSTS.forEach((inst, i) => {
+          const v = pn.vals.get(inst) || 0;
+          const nEv = (pn.ev.get(inst) || new Set()).size;
+          const row = document.createElement('div'); row.className = 'ap-qrow';
+          const lab = document.createElement('div'); lab.className = 'ap-lab'; lab.textContent = SIGLA[inst];
+          const track = document.createElement('div'); track.className = 'ap-track';
+          const bar = document.createElement('div'); bar.className = 'ap-bar';
+          bar.style.width = v ? `calc((100% - 7rem) * ${v / maxV})` : '2px';
+          bar.style.background = v ? dash.colors[i] : 'var(--cds-chart-muted)';
+          const val = document.createElement('span'); val.className = 'ap-count';
+          val.textContent = v ? fmt(v, pn.unit) : '—';
+          track.append(bar, val); row.append(lab, track);
+          row.addEventListener('mousemove', (ev) => showTip(sCard, ev, pn.sub + ' — ' + periodo,
+            [inst, v ? fmt(v, pn.unit) : 'Sem quantidade nesta unidade', nEv ? (nEv === 1 ? '1 apreensão' : nEv + ' apreensões') : '']
+              .filter(Boolean)));
+          row.addEventListener('mouseleave', hideTip);
+          panel.appendChild(row);
+        });
+        sBox.appendChild(panel);
+      });
+      const semQ = sRows.filter((r) => r.qtd_kg == null && r.qtd_unidades == null);
+      if (semQ.length) {
+        const n = document.createElement('p'); n.className = 'ap-qty'; n.style.gridColumn = '1 / -1';
+        n.textContent = 'Sem quantidade divulgada (fora dos painéis): ' + [...new Set(semQ.map((r) => r.substancia + ' (' + SIGLA[r.instituicao] + ', ' + r.municipio + ')'))].join('; ') + '.';
+        sBox.appendChild(n);
+      }
+    }
+
+    // ---------- última atualização ----------
+    const upd = root.querySelector('.ap-upd');
+    upd.replaceChildren();
+    if (d.status === 'ok') {
+      upd.classList.remove('dash-skeleton');
+      const quando = rows.map((r) => r.atualizado_em).filter(Boolean).sort().pop();
+      const dt = quando ? new Date(quando) : null;
+      const txt = dt && !isNaN(dt) ? new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(dt).replace(', ', ' às ') : 'não informada';
+      const nNovos = new Set(rows.filter((r) => r.novo).map((r) => r.evento_id)).size;
+      const a = document.createElement('span'); a.append('Última atualização: '); const b = document.createElement('b'); b.textContent = txt + ' (Brasília)'; a.appendChild(b);
+      const c = document.createElement('span'); c.textContent = '· ' + (nNovos === 1 ? '1 caso novo' : nNovos + ' casos novos') + ' nesta atualização';
+      upd.append(a, c);
+    } else if (d.status === 'error' || d.status === 'connect') {
+      upd.classList.remove('dash-skeleton'); upd.textContent = 'Última atualização: não carregou';
+    }
+
+    // ---------- indicador de qualidade ----------
+    kBox.replaceChildren();
+    if (d.status === 'ok') {
+      kBox.classList.remove('dash-skeleton');
+      const ev = new Map(rows.map((r) => [r.evento_id, r]));
+      const n = rows.length || 1;
+      const ofi = rows.filter((r) => r.tipo_fonte === 'Oficial').length;
+      const conf = rows.filter((r) => String(r.observacoes || '').startsWith('Conferir')).length;
+      const semq = rows.filter((r) => r.qtd_kg == null && r.qtd_unidades == null).length;
+      const porTipo = (t) => [...ev.values()].filter((r) => r.tipo_ocorrencia === t).length;
+      [[ev.size, 'apreensões registradas (' + rows.length + ' linhas)'],
+       [Math.round(100 * ofi / n) + '%', 'das linhas com fonte oficial'],
+       [porTipo('Tráfico'), 'apreensões classificadas como tráfico'],
+       [porTipo('Porte para consumo'), 'como porte para consumo (TCO)'],
+       [porTipo('Não informado'), 'sem tipo identificável'],
+       [[...ev.values()].filter((r) => listaFontes(r).length >= 2).length + ' de ' + ev.size, 'apreensões com 2 ou mais fontes com link'],
+       [conf, 'linhas a conferir (só pelo título)'],
+       [semq, 'linhas sem quantidade divulgada'],
+      ].forEach(([v, t]) => { const k = document.createElement('div'); k.className = 'ap-kpi'; const b = document.createElement('b'); b.textContent = v; const sp = document.createElement('span'); sp.textContent = t; k.append(b, sp); kBox.appendChild(k); });
+    } else if (d.status === 'error' || d.status === 'connect') {
+      kBox.classList.remove('dash-skeleton'); const f = document.createElement('div'); f.className = 'ap-fail'; f.textContent = 'Não carregou'; kBox.appendChild(f);
+    }
+
+    const legendaInst = (el) => el.replaceChildren(...INSTS.map((inst, i) => {
+      const sp = document.createElement('span'); const sw = document.createElement('i');
+      sw.style.background = dash.colors[i]; sp.append(sw, document.createTextNode(inst)); return sp;
+    }));
+    const falha = (box) => { box.classList.remove('dash-skeleton'); const f = document.createElement('div'); f.className = 'ap-fail'; f.textContent = 'Não carregou'; box.appendChild(f); };
+
+    // ---------- série mensal ----------
+    legendaInst(legendM);
+    mBox.replaceChildren();
+    if (d.status === 'error' || d.status === 'connect') falha(mBox);
+    else if (d.status !== 'ok') mBox.classList.add('dash-skeleton');
+    else {
+      mBox.classList.remove('dash-skeleton');
+      const mRows = rows.filter((r) => String(r.ano) === anoAtual
+        && (!p.m_classe || r.classe === p.m_classe) && (!p.m_subst || r.substancia === p.m_subst)
+        && (!p.m_tipo || r.tipo_ocorrencia === p.m_tipo));
+      const ultMes = Math.max(1, ...rows.filter((r) => String(r.ano) === anoAtual).map((r) => Number(r.mes)));
+      const meses = Array.from({ length: ultMes }, (_, i) => i + 1);
+      const serie = INSTS.map((inst) => meses.map((m) => new Set(mRows.filter((r) => r.instituicao === inst && Number(r.mes) === m).map((r) => r.evento_id)).size));
+      const maxY = Math.max(1, ...serie.flat());
+      const W = 720, H = 240, L = 30, R = 10, T = 10, B = 26;
+      const x = (i) => L + (meses.length === 1 ? (W - L - R) / 2 : i * (W - L - R) / (meses.length - 1));
+      const y = (v) => T + (H - T - B) * (1 - v / maxY);
+      const NS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('class', 'ap-line');
+      svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'Nº de apreensões por mês e instituição');
+      const el = (tag, at) => { const e = document.createElementNS(NS, tag); Object.entries(at).forEach(([k, v]) => e.setAttribute(k, v)); svg.appendChild(e); return e; };
+      const passo = Math.max(1, Math.ceil(maxY / 4));
+      for (let v = 0; v <= maxY; v += passo) {
+        el('line', { x1: L, x2: W - R, y1: y(v), y2: y(v), stroke: 'var(--cds-chart-grid)', 'stroke-width': 1 });
+        el('text', { x: L - 6, y: y(v) + 4, 'text-anchor': 'end' }).textContent = v;
+      }
+      meses.forEach((m, i) => { el('text', { x: x(i), y: H - 6, 'text-anchor': 'middle' }).textContent = MESES[m - 1].slice(0, 3); });
+      serie.forEach((vals, k) => {
+        el('polyline', { points: vals.map((v, i) => `${x(i)},${y(v)}`).join(' '), fill: 'none', stroke: dash.colors[k], 'stroke-width': 2.5, 'stroke-linejoin': 'round' });
+        vals.forEach((v, i) => el('circle', { cx: x(i), cy: y(v), r: 3.5, fill: dash.colors[k] }));
+      });
+      meses.forEach((m, i) => {
+        const w = meses.length === 1 ? W - L - R : (W - L - R) / (meses.length - 1);
+        const hit = el('rect', { x: x(i) - w / 2, y: T, width: w, height: H - T - B, fill: 'transparent' });
+        hit.addEventListener('mousemove', (ev) => showTip(mCard, ev, MESES[m - 1] + ' de ' + anoAtual,
+          INSTS.map((inst, k) => SIGLA[inst] + ': ' + serie[k][i] + (serie[k][i] === 1 ? ' apreensão' : ' apreensões'))));
+        hit.addEventListener('mouseleave', hideTip);
+      });
+      mBox.appendChild(svg);
+      if (!mRows.length) { const e = document.createElement('div'); e.className = 'ap-empty'; e.textContent = 'Nenhuma apreensão com esses filtros.'; mBox.appendChild(e); }
+    }
+
+    // ---------- mapa por UF ----------
+    uBox.replaceChildren(); uRank.replaceChildren();
+    if (d.status === 'error' || d.status === 'connect') falha(uBox);
+    else if (d.status !== 'ok') uBox.classList.add('dash-skeleton');
+    else {
+      uBox.classList.remove('dash-skeleton');
+      const uMeses = asList(p.u_meses);
+      const uRows = rows.filter((r) => String(r.ano) === anoAtual
+        && (!uMeses.length || uMeses.includes(String(r.mes))) && (!p.u_inst || r.instituicao === p.u_inst)
+        && (!p.u_classe || r.classe === p.u_classe) && (!p.u_subst || r.substancia === p.u_subst)
+        && (!p.u_tipo || r.tipo_ocorrencia === p.u_tipo));
+      const porUF = new Map();
+      uRows.forEach((r) => { if (!porUF.has(r.uf)) porUF.set(r.uf, new Map()); porUF.get(r.uf).set(r.evento_id, r.instituicao); });
+      const cont = (uf) => (porUF.get(uf) || new Map()).size;
+      const maxU = Math.max(1, ...[...porUF.keys()].map(cont));
+      const cor = dash.colors[3] || dash.colors[0];
+      const det = (uf) => INSTS.map((inst) => [SIGLA[inst], [...(porUF.get(uf) || new Map()).values()].filter((x) => x === inst).length]).filter((x) => x[1]).map((x) => x[0] + ': ' + x[1]);
+      const tom = (n) => n ? `color-mix(in srgb, ${cor} ${Math.round(18 + 82 * Math.sqrt(n / maxU))}%, var(--color-panel))` : 'var(--cds-chart-muted)';
+      if (MAPA_ESTADO === 'carregando') {
+        uBox.classList.add('dash-skeleton');
+      } else if (MAPA) {
+        const NS = 'http://www.w3.org/2000/svg';
+        const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', MAPA.viewBox);
+        svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'Mapa do Brasil com número de apreensões por estado');
+        uBox.appendChild(svg);
+        const rot = [];
+        MAPA.locs.forEach((l) => {
+          const n = cont(l.uf);
+          const e = document.createElementNS(NS, 'path'); e.setAttribute('d', l.path); e.setAttribute('fill', tom(n));
+          e.addEventListener('mousemove', (ev) => showTip(uCard, ev, l.uf, [n ? (n === 1 ? '1 apreensão' : n + ' apreensões') : 'Nenhuma apreensão', ...det(l.uf)]));
+          e.addEventListener('mouseleave', hideTip);
+          svg.appendChild(e);
+          if (n) rot.push([e, l.uf, n]);
+        });
+        const k = (() => { try { const vb = MAPA.viewBox.split(/\s+/).map(Number); return vb[2] / Math.max(1, svg.getBoundingClientRect().width || vb[2]); } catch (e) { return 1; } })();
+        rot.forEach(([e, uf, n]) => {
+          let b; try { b = e.getBBox(); } catch (x) { return; }
+          const t = document.createElementNS(NS, 'text'); t.setAttribute('x', b.x + b.width / 2); t.setAttribute('y', b.y + b.height / 2);
+          t.setAttribute('text-anchor', 'middle'); t.setAttribute('dominant-baseline', 'central'); t.setAttribute('font-size', String(11 * k));
+          t.setAttribute('stroke-width', String(3 * k)); t.textContent = `${uf} ${n}`; svg.appendChild(t);
+        });
+        const esc = document.createElement('div'); esc.className = 'ap-escala';
+        const g = document.createElement('i'); g.style.background = `linear-gradient(90deg, ${tom(1 / 1e9 * maxU) }, ${tom(maxU)})`;
+        esc.append('Menos', g, 'Mais', ` (máx.: ${maxU} ${maxU === 1 ? 'apreensão' : 'apreensões'} por UF)`);
+        const cr = document.createElement('div'); cr.className = 'ap-credito'; cr.textContent = MAPA.credito;
+        uBox.append(esc, cr);
+      } else {
+        const grade = document.createElement('div'); grade.className = 'ap-tiles';
+        Object.entries(TILES).forEach(([uf, [rr, cc]]) => {
+          const n = cont(uf);
+          const t = document.createElement('div'); t.className = 'ap-tile';
+          t.style.gridRow = String(rr + 1); t.style.gridColumn = String(cc + 1);
+          t.style.background = n ? tom(n) : 'transparent';
+          const b = document.createElement('b'); b.textContent = uf; const c = document.createElement('span'); c.textContent = n || '';
+          t.append(b, c);
+          t.addEventListener('mousemove', (ev) => showTip(uCard, ev, uf, [n + (n === 1 ? ' apreensão' : ' apreensões'), ...det(uf)]));
+          t.addEventListener('mouseleave', hideTip);
+          grade.appendChild(t);
+        });
+        const aviso = document.createElement('div'); aviso.className = 'ap-credito'; aviso.textContent = 'O contorno do mapa não carregou; exibindo os estados em grade.';
+        uBox.append(grade, aviso);
+      }
+      const top = [...porUF.keys()].sort((a, b) => cont(b) - cont(a) || a.localeCompare(b)).slice(0, 8);
+      if (!top.length) { const e = document.createElement('div'); e.className = 'ap-empty'; e.textContent = 'Nenhuma apreensão com esses filtros.'; uRank.appendChild(e); }
+      top.forEach((uf) => {
+        const row = document.createElement('div'); const lab = document.createElement('span'); lab.textContent = uf;
+        const track = document.createElement('div'); track.className = 'ap-track';
+        const bar = document.createElement('div'); bar.className = 'ap-bar'; bar.style.background = cor;
+        bar.style.width = `calc((100% - 6rem) * ${cont(uf) / maxU})`;
+        const v = document.createElement('span'); v.className = 'ap-count'; v.textContent = cont(uf) === 1 ? '1 apreensão' : cont(uf) + ' apreensões';
+        track.append(bar, v); row.append(lab, track); uRank.appendChild(row);
+      });
+    }
+
+    // ---------- tabela ----------
+    tbody.replaceChildren();
+    root.querySelectorAll('th').forEach((th) => {
+      const b = th.querySelector('button');
+      th.setAttribute('aria-sort', b && b.dataset.sort === sortKey ? (sortDir > 0 ? 'ascending' : 'descending') : 'none');
+    });
+    if (d.status !== 'ok') {
+      table.classList.toggle('dash-skeleton', d.status === 'loading' || d.status === 'missing');
+      if (d.status === 'error' || d.status === 'connect') {
+        const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 15;
+        const f = document.createElement('div'); f.className = 'ap-fail'; f.textContent = 'Não carregou'; td.appendChild(f); tr.appendChild(td); tbody.appendChild(tr);
+      }
+      return;
+    }
+    table.classList.remove('dash-skeleton');
+    const tRows = rows.filter((r) => (!p.t_inst || r.instituicao === p.t_inst)
+      && (!tMeses.length || tMeses.includes(String(r.mes)))
+      && (!p.t_ano || String(r.ano) === String(p.t_ano))
+      && (!p.t_classe || r.classe === p.t_classe)
+      && (!p.t_tipo || r.tipo_ocorrencia === p.t_tipo)
+      && (!p.t_novo || r.novo === p.t_novo)
+      && (!p.t_cidade || r.local === p.t_cidade)
+      && (!p.t_subst || r.substancia === p.t_subst)
+      && matchYN(r.presos, p.t_presos) && matchYN(r.arma, p.t_arma) && matchYN(r.dinheiro, p.t_dinheiro));
+    tRows.sort((a, b) => {
+      const va = sortVal(a, sortKey), vb = sortVal(b, sortKey);
+      const c = typeof va === 'number' ? va - vb : va.localeCompare(vb, 'pt');
+      return c * sortDir || a.id.localeCompare(b.id);
+    });
+    if (!tRows.length) {
+      const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 15; td.className = 'ap-empty';
+      td.textContent = 'Nenhuma apreensão com esses filtros.'; tr.appendChild(td); tbody.appendChild(tr); return;
+    }
+    const cols = ['novo', 'data_br', 'instituicao', 'municipio', 'uf', 'modal', 'classe', 'substancia', 'tipo_ocorrencia', 'quantidade', 'presos_qtd', 'armas', 'dinheiro_txt', 'fonte_nome', 'observacoes'];
+    const narrow = new Set(['modal', 'classe', 'observacoes']);
+    tRows.forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.id;
+      cols.forEach((c) => {
+        const td = document.createElement('td');
+        if (narrow.has(c)) td.classList.add('ap-hide-narrow');
+        if (c === 'observacoes') td.classList.add('ap-obs');
+        if (c === 'novo') {
+          if (r.novo) { const b = document.createElement('span'); b.className = 'ap-novo'; b.textContent = r.novo; td.appendChild(b); }
+        } else if (c === 'fonte_nome') {
+          td.classList.add('ap-fontes');
+          listaFontes(r).forEach((f, j) => {
+            const a = document.createElement('a'); a.href = f.url; a.target = '_blank'; a.rel = 'noopener noreferrer';
+            a.textContent = f.nome; if (j === 0) a.className = 'ap-f1';
+            td.appendChild(a);
+          });
+          if (!td.childNodes.length) td.textContent = r.fonte_nome ?? '';
+        } else {
+          td.textContent = r[c] ?? '';
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  dash.onData(draw);
+})();
+</script>
+
+<footer class="site-foot">
+  Dados compilados a partir das páginas de notícias da Polícia Federal, Polícia Rodoviária Federal, Receita Federal, Sindireceita e da imprensa nacional e local. Cada linha da tabela traz o link da fonte.
+  Baixe os dados: <a href="dados/apreensoes.json">apreensoes.json</a>.
+</footer>
+</main>
+</body>
+</html>
