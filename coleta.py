@@ -89,6 +89,9 @@ SUBSTANCIAS = {
                         r"precursor(es)? qu[íi]mico|insumos? qu[íi]micos?|carbonato de c[áa]lcio|permanganato|[ée]ter et[íi]lico"),
 }
 RE_SUBST = re.compile("|".join(f"(?:{p})" for _, p in SUBSTANCIAS.values()), re.I)
+# "ice" é ambíguo (haxixe/"ice hash" ou metanfetamina): sempre exige conferência manual
+RE_ICE = re.compile(r"\bice\b", re.I)
+AVISO_ICE = "Conferir: notícia cita \"ice\" (pode ser haxixe, fora do escopo, ou metanfetamina)."
 RE_ACAO = re.compile(r"apreen|apreend|ret[ée]m|retid|intercept|flagra|prend|pres[oa]s?\b|localiz|encontr|confisc", re.I)
 RE_DESCARTE = re.compile(r"incinera|balan[çc]o anual|palestra|capacita[çc][ãa]o|semin[áa]rio", re.I)
 RE_ORGAO = re.compile(r"\bPRF\b|rodovi[áa]ria federal|\bPF\b|pol[íi]cia federal|receita federal|\bFICCO\b|alf[âa]ndega|aduan", re.I)
@@ -381,6 +384,8 @@ Formato:
   "observacoes": str (curta: contexto, valores aproximados, dúvidas)
 }}]}}
 Regras: não invente números; "cerca de/quase/mais de" vira o número citado e "aproximado" em observacoes.
+"ice" é ambíguo (pode ser haxixe/"ice hash"): só classifique como Metanfetamina se o texto disser metanfetamina
+explicitamente; em todo caso comece "observacoes" com "Conferir: ice".
 "Encaminhado à delegacia" sem menção a prisão → presos="{NI}". Use null quando a notícia não informar."""
 
 
@@ -644,6 +649,11 @@ def executar(args):
             continue
         res = extrair(texto, c)
         c["revisar"] = res.get("revisar", False)
+        if RE_ICE.search(texto):                        # "ice": conferência manual obrigatória
+            c["revisar"] = True
+            for ev in res.get("eventos", []):
+                if not (ev.get("observacoes") or "").startswith("Conferir"):
+                    ev["observacoes"] = f"{AVISO_ICE} {ev.get('observacoes') or ''}".strip()
         if not res.get("relevante"):
             cont["irrelevantes"] += 1
             continue
@@ -778,16 +788,18 @@ def modo_links(http, fila, est, desde, cont, seco, base):
         subs = [k for k, (_, rx) in SUBSTANCIAS.items() if re.search(rx, base_txt, re.I)]
         dup = _ja_na_base(base_txt, dp, subs, base)
         trecho = ""
+        ice = bool(RE_ICE.search(base_txt))
         if not dup and "news.google.com" not in url:
             r = http.get(url)
             if r:
                 txt = extrair_texto(r.text)
                 trecho = txt[:600]
+                ice = ice or bool(RE_ICE.search(txt[:5000]))
                 subs = subs or [k for k, (_, rx) in SUBSTANCIAS.items() if re.search(rx, txt[:3000], re.I)]
                 dup = _ja_na_base(f"{base_txt} {txt[:3000]}", dp, subs, base)
         item = {"url": url, "url_original": c["url"], "titulo": c["titulo"],
                 "data_pub": dp.isoformat() if dp else "", "fonte": c["fonte"], "tipo": c["tipo"],
-                "substancias": subs, "trecho": trecho, "descoberto_em": date.today().isoformat()}
+                "substancias": subs, "trecho": trecho, "alerta_ice": ice, "descoberto_em": date.today().isoformat()}
         if dup:
             item["evento_base"] = dup
             repetidos.append(item)
@@ -873,6 +885,8 @@ def _pendentes_md(pend: list, extras: dict | None = None) -> str:
         dt = para_data(h["data_pub"])
         L.append(f"## {i}. {dt:%d/%m/%Y} · {h['titulo']}" if dt else f"## {i}. s/d · {h['titulo']}")
         L.append(f"Substâncias citadas: {', '.join(h['substancias']) or '—'} · {len(g)} fonte(s)")
+        if any(p.get("alerta_ice") for p in g):
+            L.append(f"**⚠️ {AVISO_ICE} Verificar manualmente antes de incluir.**")
         if h.get("trecho"):
             L.append(f"> {h['trecho']}")
         for p in g:
