@@ -131,7 +131,7 @@ window.dash = (() => {
 .ap-tile { aspect-ratio: 1; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: var(--cds-font-size-caption); border: 1px solid var(--color-border-line); cursor: default; font-variant-numeric: tabular-nums; }
 .ap-tile b { font-weight: var(--cds-font-weight-medium); }
 .ap-rank { font-size: var(--cds-font-size-body); }
-.ap-rank div { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--cds-gap-sm); align-items: center; margin-bottom: 4px; }
+.ap-rank > div { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--cds-gap-sm); align-items: center; margin-bottom: 4px; }
 .ap-upd { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--cds-gap-sm); margin-top: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: 999px; padding: 4px 12px; min-height: 1.6rem; }
 .ap-upd b { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
 .ap-novo { display: inline-block; font-size: 11px; font-weight: var(--cds-font-weight-medium); padding: 1px 7px; border-radius: 999px; color: var(--color-panel); background: var(--color-good, #2f8f5b); white-space: nowrap; }
@@ -148,6 +148,8 @@ window.dash = (() => {
 .ap-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
 .ap-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
 .ap-foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); max-width: 60rem; line-height: 1.5; }
+.ap-shared { margin: -4px 0 var(--cds-gap-sm); }
+#tabela .ap-shared { margin: 0 0 var(--cds-gap-sm); }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 @media (max-width: 760px) { .ap-hide-narrow { display: none; } }
 </style>
@@ -223,29 +225,11 @@ window.dash = (() => {
   </section>
 
   <section class="ap-sec" id="mapa">
-    <h2>Apreensões por estado</h2>
-    <div class="ap-filters">
-      <div class="ap-flab">Meses<details class="ap-ms" data-p="u_meses"><summary>Todos os meses</summary><div class="ap-ms-pop"></div></details></div>
-      <label>Instituição<select class="ap-x" data-p="u_inst" aria-label="Instituição do mapa"></select></label>
-      <label>Classe<select class="ap-x" data-p="u_classe" aria-label="Classe do mapa"></select></label>
-      <label>Substância<select class="ap-x" data-p="u_subst" aria-label="Substância do mapa"></select></label>
-      <label>Tipo de ocorrência<select class="ap-x" data-p="u_tipo" aria-label="Tipo de ocorrência do mapa"></select></label>
-      <button type="button" class="ap-x-reset" data-pref="u_">Limpar</button>
-    </div>
-    <div class="ap-card" id="grafico-mapa" data-source="apreensoes">
-      <h3>Nº de apreensões por UF</h3>
-      <p class="ap-note">Mapa de calor: quanto mais forte a cor do estado, mais apreensões no período e filtros escolhidos. Passe o mouse para ver o detalhe por instituição</p>
-      <div class="ap-mapwrap">
-        <div class="ap-mapa dash-skeleton"></div>
-        <div class="ap-rank"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ap-sec" id="tabela">
-    <h2>Todas as apreensões registradas</h2>
+    <h2>Apreensões por estado e casos registrados</h2>
+    <p class="ap-note ap-shared">Os filtros abaixo valem para o mapa e para a tabela de casos.</p>
     <div class="ap-filters">
       <label>Instituição<select class="ap-t" data-p="t_inst" aria-label="Instituição"></select></label>
+      <label>UF<select class="ap-t" data-p="t_uf" aria-label="UF"></select></label>
       <label>Cidade<select class="ap-t" data-p="t_cidade" aria-label="Cidade"></select></label>
       <div class="ap-flab">Meses<details class="ap-ms" data-p="t_meses"><summary>Todos os meses</summary><div class="ap-ms-pop"></div></details></div>
       <label>Ano<select class="ap-t" data-p="t_ano" aria-label="Ano"></select></label>
@@ -258,6 +242,19 @@ window.dash = (() => {
       <label>Dinheiro apreendido<select class="ap-t" data-p="t_dinheiro" aria-label="Dinheiro apreendido"></select></label>
       <button type="button" class="ap-t-reset">Limpar filtros</button>
     </div>
+    <div class="ap-card" id="grafico-mapa" data-source="apreensoes">
+      <h3>Nº de apreensões por UF</h3>
+      <p class="ap-note">Mapa de calor: quanto mais forte a cor do estado, mais apreensões com os filtros escolhidos (os mesmos da tabela). Passe o mouse para ver o detalhe por instituição</p>
+      <div class="ap-mapwrap">
+        <div class="ap-mapa dash-skeleton"></div>
+        <div class="ap-rank"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ap-sec" id="tabela">
+    <h2>Todas as apreensões registradas</h2>
+    <p class="ap-note ap-shared">Mostrando os casos dos filtros acima (mapa e tabela usam os mesmos filtros).</p>
     <div class="ap-tablebox">
       <table class="ap-table" data-source="apreensoes" data-row-key="id">
         <thead><tr>
@@ -415,9 +412,9 @@ window.dash = (() => {
 
   // ---------- filtros da tabela ----------
   const tSels = [...root.querySelectorAll('select.ap-t')];
-  tSels.forEach((s) => s.addEventListener('change', () => dash.setParams({ [s.dataset.p]: s.value })));
+  tSels.forEach((s) => s.addEventListener('change', () => dash.setParams(s.dataset.p === 't_uf' ? { t_uf: s.value, t_cidade: '' } : { [s.dataset.p]: s.value })));
   root.querySelector('.ap-t-reset').addEventListener('click', () => {
-    dash.setParams({ t_cidade: '', t_inst: '', t_meses: [], t_ano: '', t_classe: '', t_subst: '', t_tipo: '', t_novo: '', t_presos: '', t_arma: '', t_dinheiro: '' });
+    dash.setParams({ t_uf: '', t_cidade: '', t_inst: '', t_meses: [], t_ano: '', t_classe: '', t_subst: '', t_tipo: '', t_novo: '', t_presos: '', t_arma: '', t_dinheiro: '' });
   });
 
   // ---------- tooltip ----------
@@ -513,7 +510,8 @@ window.dash = (() => {
       t_presos: yesNo, t_arma: yesNo, t_dinheiro: yesNo,
       t_tipo: [['', 'Todos'], ...TIPOS.map((t) => [t, t])],
       t_novo: [['', 'Todos'], ['Novo', 'Só os novos da última atualização']],
-      t_cidade: [['', 'Todas'], ...[...new Set(rows.map((r) => r.local).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt')).map((c) => [c, c])],
+      t_uf: [['', 'Todas'], ...[...new Set(rows.map((r) => r.uf).filter(Boolean))].sort().map((u) => [u, u])],
+      t_cidade: [['', 'Todas'], ...[...new Set(rows.filter((r) => !p.t_uf || r.uf === p.t_uf).map((r) => r.local).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt')).map((c) => [c, c])],
     };
     const claOpts = [['', 'Todas'], ...CLASSES.map((c) => [c, c === 'Droga sintética' ? 'Drogas sintéticas' : 'Precursores químicos'])];
     xSels.forEach((s) => {
@@ -532,6 +530,16 @@ window.dash = (() => {
     const anoAtual = anos.length ? anos[anos.length - 1] : '';
     const gMeses = asList(p.g_meses);
     const tMeses = asList(p.t_meses);
+    const filtroT = (r) => (!p.t_inst || r.instituicao === p.t_inst)
+      && (!tMeses.length || tMeses.includes(String(r.mes)))
+      && (!p.t_ano || String(r.ano) === String(p.t_ano))
+      && (!p.t_classe || r.classe === p.t_classe)
+      && (!p.t_tipo || r.tipo_ocorrencia === p.t_tipo)
+      && (!p.t_novo || r.novo === p.t_novo)
+      && (!p.t_uf || r.uf === p.t_uf)
+      && (!p.t_cidade || r.local === p.t_cidade)
+      && (!p.t_subst || r.substancia === p.t_subst)
+      && matchYN(r.presos, p.t_presos) && matchYN(r.arma, p.t_arma) && matchYN(r.dinheiro, p.t_dinheiro);
     const gRows = rows.filter((r) => String(r.ano) === anoAtual
       && (!gMeses.length || gMeses.includes(String(r.mes)))
       && (!p.g_classe || r.classe === p.g_classe)
@@ -751,11 +759,7 @@ window.dash = (() => {
     else if (d.status !== 'ok') uBox.classList.add('dash-skeleton');
     else {
       uBox.classList.remove('dash-skeleton');
-      const uMeses = asList(p.u_meses);
-      const uRows = rows.filter((r) => String(r.ano) === anoAtual
-        && (!uMeses.length || uMeses.includes(String(r.mes))) && (!p.u_inst || r.instituicao === p.u_inst)
-        && (!p.u_classe || r.classe === p.u_classe) && (!p.u_subst || r.substancia === p.u_subst)
-        && (!p.u_tipo || r.tipo_ocorrencia === p.u_tipo));
+      const uRows = rows.filter(filtroT);
       const porUF = new Map();
       uRows.forEach((r) => { if (!porUF.has(r.uf)) porUF.set(r.uf, new Map()); porUF.get(r.uf).set(r.evento_id, r.instituicao); });
       const cont = (uf) => (porUF.get(uf) || new Map()).size;
@@ -834,15 +838,7 @@ window.dash = (() => {
       return;
     }
     table.classList.remove('dash-skeleton');
-    const tRows = rows.filter((r) => (!p.t_inst || r.instituicao === p.t_inst)
-      && (!tMeses.length || tMeses.includes(String(r.mes)))
-      && (!p.t_ano || String(r.ano) === String(p.t_ano))
-      && (!p.t_classe || r.classe === p.t_classe)
-      && (!p.t_tipo || r.tipo_ocorrencia === p.t_tipo)
-      && (!p.t_novo || r.novo === p.t_novo)
-      && (!p.t_cidade || r.local === p.t_cidade)
-      && (!p.t_subst || r.substancia === p.t_subst)
-      && matchYN(r.presos, p.t_presos) && matchYN(r.arma, p.t_arma) && matchYN(r.dinheiro, p.t_dinheiro));
+    const tRows = rows.filter(filtroT);
     tRows.sort((a, b) => {
       const va = sortVal(a, sortKey), vb = sortVal(b, sortKey);
       const c = typeof va === 'number' ? va - vb : va.localeCompare(vb, 'pt');
