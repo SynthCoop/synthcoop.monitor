@@ -103,5 +103,33 @@
   "trecho": "",
   "descoberto_em": "2026-11-16",
   "complementar": true
+ },
+ {
+  "url": "https://cnf.net.br/2026/11/16/prf-apreende-152-comprimidos-de-anfetamina-em-caminhao-no-sertao-de-pernambuco/",
+  "url_original": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPNGZpVmtNWElIMzJkS202T3gwU1J2LWw0WWFZLTdNTENrNU5aR1F0VkxUUlc2cXpVR0h1ZnhFTy1QWHFBUC1xeUs2TFRsb043c2piaGhCcVZfOVdaNkJfb25IVmRlV3VVeTFOd0NrQk1pclZFWWluQmcwWDItTkRHQXN4M25nN01iUTI0V3cweF9Wb2l4TWFRaEF1MkRGWnA4bkdUNVFtejJjTThNNWc?oc=5",
+  "titulo": "PRF apreende 152 comprimidos de anfetamina em caminhão no Sertão de Pernambuco",
+  "data_pub": "2026-11-16",
+  "fonte": "https://cnf.net.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "descoberto_em": "2026-11-18"
+ },
+ {
+  "url": "https://edenevaldoalves.com.br/prf-prende-motorista-com-152-comprimidos-de-anfetamina-em-caminhao-que-foi-furtado-em-santa-maria-da-boa-vista-pe/",
+  "url_original": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPR01ZUGVIR3ZMMTc2Z3hYdllxMHNaam1wT2dQLXF6aHZ5a0UyZWZmVUY4RVNWdFBMOHdleDl1RzB6bmpRV1pDYUZTRmhxdmQ3eF9JT3hsZmRfaW42MllwZnF2OXR2aUQ4NjlVWU0yU001dTI3NmY0T0hBdWtmVElOd2ZWMk9sY0dxZnM5eWd5WlhwUFhGVDMyNWh6ZHVSTm5YUllRd2lCMGg0aU1oUnNjQlFVdlczMGx2NkljSlBIb3AtMmxGcWNyZFd1TnRWSGExSm9XeUNKOW96WVUzOHc?oc=5",
+  "titulo": "PRF prende motorista com 152 comprimidos de anfetamina em caminhão que foi furtado em Santa Maria da Boa Vista (PE)",
+  "data_pub": "2026-11-17",
+  "fonte": "https://edenevaldoalves.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "descoberto_em": "2026-11-18"
  }
 ]
