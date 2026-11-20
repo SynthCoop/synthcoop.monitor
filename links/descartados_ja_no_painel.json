@@ -13,5 +13,20 @@
   "alerta_ice": false,
   "descoberto_em": "2026-11-18",
   "evento_base": "BR26-075"
+ },
+ {
+  "url": "https://portaldeprefeitura.com.br/policia/prf-apreende-152-comprimidos-de-anfetamina-durante-abordagem-a/636091/",
+  "url_original": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPQVh3b2N5TkZValdXZ0NON3VLb21mUVEySHlwNHc4TEVRdTRFWlRMQm0tRTJnVzUzYmQtVmFkYnYybVNfTFhZY2NmNHVTVmYxWEtTWG5DaWZzVEpzVEVNWGkxZzJsUWFrUl9FSF85dUJoQ29wOHdWOS0yalpxSTlJOHhINkhsS2p4dEd3aDZQal9wZTVkd25sQnpzMlJIMkp0UzI5X0N1ekpJZFlKYTZ6dlNR?oc=5",
+  "titulo": "PRF apreende 152 comprimidos de anfetamina durante abordagem a caminhão no Sertão de Pernambuco",
+  "data_pub": "2026-11-16",
+  "fonte": "https://portaldeprefeitura.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "Motorista foi detido após abordagem em Santa Maria da Boa Vista. Os dois adolescentes também estavam no veículo e foram encaminhados à delegacia. 16 de novembro de 2026 às 12:55 - Atualizado às 13:03 PRF apreende 152 comprimidos de anfetamina durante abordagem a caminhão no Sertão de Pernambuco. Foto: Divulgação/PRF Uma abordagem da Polícia Rodoviária Federal (PRF) terminou com a apreensão de 152 comprimidos de uma substância identificada como anfetamina, no último domingo, 15 de novembro, no Sertão de Pernambuco. O material foi encontrado em um caminhão localizado nas proximidades do municípi",
+  "alerta_ice": false,
+  "descoberto_em": "2026-11-20",
+  "evento_base": "BR26-076"
  }
 ]
