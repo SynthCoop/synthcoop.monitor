@@ -1,7 +1,32 @@
-# Notícias candidatas — 0 casos, 0 links (atualizado em 20/11/2026 18:07)
+# Notícias candidatas — 5 casos, 6 links (atualizado em 23/11/2026 22:20)
 
 Cole este conteúdo no chat do Claude e peça: “extraia as apreensões destes casos e atualize o painel”.
 Notícias sobre casos que já estão no painel foram descartadas automaticamente.
+
+## 1. 23/11/2026 · Motorista é preso pela PRF após tentar fugir de fiscalização com mais de 700 comprimidos de rebite em Salgueiro
+Substâncias citadas: Anfetamina (rebite) · 2 fonte(s)
+> Motorista é preso pela PRF após tentar fugir de fiscalização com comprimidos de rebite em Salgueiro — Foto: Divulgação/PRF Um motorista foi preso pela Polícia Rodoviária Federal (PRF) após tentar fugir de uma fiscalização na manhã desta segunda-feira (23), no km 507 da BR-232, em Salgueiro, no Sertão de Pernambuco. Durante a abordagem, os policiais apreenderam 798 comprimidos de uma substância semelhante à anfetamina, conhecida popularmente como rebite. De acordo com a PRF, a equipe realizava uma fiscalização de trânsito por volta das 10h40, quando avistou um carro vermelho trafegando pela rod
+- [Imprensa] https://g1.globo.com: https://g1.globo.com/pe/petrolina-regiao/noticia/2026/11/23/motorista-e-preso-pela-prf-apos-tentar-fugir-de-fiscalizacao-com-mais-de-700-comprimidos-de-rebite-em-salgueiro.ghtml
+- [Imprensa] https://pernambuconoticias.com.br: https://pernambuconoticias.com.br/motorista-tenta-fugir-da-prf-e-acaba-preso-com-798-comprimidos-de-rebite-na-br-232-em-salgueiro/
+
+## 2. 23/11/2026 · PRF apreende 798 comprimidos de rebite e prende motorista que tentou fugir de fiscalização no Sertão de Pernambuco
+Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
+> PRF apreende 798 comprimidos de rebite e prende motorista que tentou fugir de fiscalização no Sertão de Pernambuco A abordagem aconteceu por volta das 10h40 desta segunda (23), quando os policiais realizavam uma fiscalização na rodovia e perceberam um carro trafegando pelo trecho da BR-232, em Salgueiro. A Polícia Rodoviária Federal prendeu um motorista em flagrante por tráfico de drogas após perseguição na BR-232, em Salgueiro, Sertão de Pernambuco. O condutor tentou fugir de um bloqueio policial realizando uma manobra proibida, mas foi interceptado. Na busca veicular, os agentes apreenderam 
+- [Imprensa] https://www.terra.com.br: https://www.terra.com.br/noticias/brasil/cidades/prf-apreende-798-comprimidos-de-rebite-e-prende-motorista-que-tentou-fugir-de-fiscalizacao-no-sertao-de-pernambuco,bdd1b2bab7294e19e99548cb83b15dc2ahl1u1uz.html
+
+## 3. 23/11/2026 · PRF apreende 798 comprimidos de rebite após motorista tentar fugir de fiscalização em Salgueiro
+Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
+> Pernambuco PRF apreende 798 comprimidos de rebite após motorista tentar fugir de fiscalização em Salgueiro Condutor fez retorno proibido ao avistar viatura na BR-232 e desobedeceu à ordem de parada. Suspeita é de que a substância seria destinada à comercialização. A Polícia Rodoviária Federal (PRF) apreendeu 798 comprimidos de substância semelhante à anfetamina, conhecida popularmente como rebite, na manhã desta segunda-feira (23), durante uma fiscalização no km 507 da BR-232, em Salgueiro, no Sertão de Pernambuco. Um motorista foi preso após tentar fugir da abordagem policial. A ocorrência fo
+- [Imprensa] https://www.tvguararapes.com.br: https://www.tvguararapes.com.br/pernambuco/2026/11/23/prf-apreende-798-comprimidos-de-rebite-apos-motorista-tentar-fugir-de-fiscalizacao-em-salgueiro.html
+
+## 4. 23/11/2026 · PRF prende motorista e apreende quase 800 comprimidos de rebite na BR-232, em Salgueiro
+Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
+> A Polícia Rodoviária Federal (PRF) prendeu um motorista e apreendeu 798 comprimidos de uma substância semelhante à anfetamina, conhecida popularmente como “rebite”, na manhã desta segunda-feira (23), durante uma fiscalização realizada no km 507 da BR-232, em Salgueiro, no Sertão de Pernambuco. A ocorrência foi registrada por volta das 10h40, quando os policiais realizavam uma operação de fiscalização na rodovia e perceberam um veículo se aproximando. Ao notar a presença da equipe e da viatura, o motorista fez uma conversão à esquerda e um retorno irregular na pista, numa tentativa de escapar d
+- [Imprensa] https://www.cbnrecife.com: https://www.cbnrecife.com/2026/11/23/prf-prende-motorista-e-apreende-quase-800-comprimidos-de-rebite-na-br-232-em-salgueiro/
+
+## 5. 23/11/2026 · PRF apreende 798 comprimidos de rebite na BR-232
+Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
+- [Imprensa] https://faroldenoticias.com.br: https://faroldenoticias.com.br/prf-apreende-798-comprimidos-de-rebite-na-br-232/
 
 ---
 # Fontes extras para casos já no painel (1 links)
