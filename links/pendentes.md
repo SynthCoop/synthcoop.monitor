@@ -1,4 +1,4 @@
-# Notícias candidatas — 6 casos, 10 links (atualizado em 24/11/2026 16:14)
+# Notícias candidatas — 6 casos, 10 links (atualizado em 25/11/2026 18:30)
 
 Cole este conteúdo no chat do Claude e peça: “extraia as apreensões destes casos e atualize o painel”.
 Notícias sobre casos que já estão no painel foram descartadas automaticamente.
@@ -36,9 +36,23 @@ Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
 - [Imprensa] https://faroldenoticias.com.br: https://faroldenoticias.com.br/prf-apreende-798-comprimidos-de-rebite-na-br-232/
 
 ---
-# Fontes extras para casos já no painel (1 links)
+# Fontes extras para casos já no painel (7 links)
 
 Acrescentar como fontes adicionais (com link) dos casos indicados.
+
+## BR26-016
+- g1.globo.com: https://g1.globo.com/df/distrito-federal/noticia/2026/08/10/brasileiro-e-flagrado-com-24-kg-de-metanfetamina-em-mala-e-mochila-no-aeroporto-de-brasilia.ghtml  (Brasileiro é flagrado com 24 kg de metanfetamina em mala e mochila no Aeroporto de Brasília)
+- entorno.jornalopcao.com.br: https://entorno.jornalopcao.com.br/policia-federal/brasileiro-e-preso-com-245-kg-de-metanfetamina-em-bagagem-no-aeroporto-de-brasilia-34270/  (Brasileiro é preso com 24,5 kg de metanfetamina em bagagem no Aeroporto de Brasília)
+
+## BR26-051
+- clubenoticia.com.br: https://clubenoticia.com.br/trafico-de-drogas-e-associacao-ao-trafico-na-br-365-em-patos-de-minas/  (Tráfico de drogas e associação ao tráfico na BR-365, em Patos de Minas)
+
+## BR26-059
+- ecxonline.com.br: https://ecxonline.com.br/prf-flagra-caminhoneiro-com-comprimidos-de-rebite-na-br-470-em-ibirama/  (PRF flagra caminhoneiro com comprimidos de rebite na BR-470, em Ibirama)
+
+## BR26-069
+- diarionline.com.br: https://diarionline.com.br/?s=noticia&id=159704  (Fiscalização em centro de distribuição termina com quatro detidos e apreensão de ecstasy em Corumbá)
+- folhams.com.br: https://folhams.com.br/2026/10/23/tres-bolivianos-brasileira-presos-encomenda-ecstasy-corumba/  (Três bolivianos e uma brasileira são presos ao retirar encomenda com 1,1 kg de ecstasy em Corumbá)
 
 ## BR26-076
 - https://portaldeprefeitura.com.br: https://portaldeprefeitura.com.br/policia/prf-apreende-152-comprimidos-de-anfetamina-durante-abordagem-a/636091/  (PRF apreende 152 comprimidos de anfetamina durante abordagem a caminhão no Sertão de Pernambuco)
