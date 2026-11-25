@@ -3,11 +3,33 @@
 Alimenta o painel “Apreensões de Drogas Sintéticas no Brasil — 2026”. Gera `dados/apreensoes.json` no mesmo formato do painel, mais um CSV e um relatório por execução.
 
 ## Modo sem custo (padrão no GitHub)
-O agendamento roda `python coleta.py --so-links`: descobre e filtra as notícias **sem usar nenhuma API** e acumula as candidatas em `links/pendentes.md`. Na segunda-feira, cole esse arquivo no chat do Claude e peça “extraia as apreensões destes links e atualize o painel”. Depois, rode a ação “limpar pendentes” para começar uma nova lista. Links já entregues nunca voltam.
+O agendamento roda `python coleta.py --so-links`, **sem usar nenhuma API**:
+1. descobre as notícias e filtra por substância e verbo de apreensão;
+2. converte os links do Google Notícias no endereço real da matéria (conversor embutido no script; teste com `python coleta.py --testar-gnews`);
+3. **descarta notícias de casos que já estão no painel** (mesma substância, cidade citada e data a até 5 dias de um registro de `dados/apreensoes.json`); o que foi descartado fica em `links/descartados_ja_no_painel.json`;
+4. lê um **trecho** de cada matéria;
+5. **agrupa** notícias sobre o mesmo caso (um item com várias fontes, a oficial primeiro);
+6. para casos novos com uma só fonte, faz uma **busca complementar** por outras matérias sobre o mesmo caso;
+7. notícias de casos que já estão no painel viram **fontes extras** desses casos (seção no fim de `links/pendentes.md`);
+8. acumula tudo em `links/pendentes.md`.
+
+A ação **“completar fontes do painel”** (`python coleta.py --completar-fontes`) procura 2ª e 3ª fonte para os casos do painel que têm só um link (até 80 por execução) e as acrescenta à mesma lista.
+
+Na segunda-feira, cole `links/pendentes.md` no chat do Claude e peça “extraia as apreensões destes casos e atualize o painel”. Depois, rode a ação “limpar pendentes”. Links já entregues nunca voltam.
+
+### Manter a base sincronizada (importante)
+O descarte automático compara com `dados/apreensoes.json`. A cada atualização do painel, o Claude entrega o arquivo novo: substitua `dados/apreensoes.json` no repositório por ele (no GitHub: entre na pasta `dados`, use **Add file → Upload files** e envie o arquivo com o mesmo nome; ele substitui o anterior).
 
 ## Modo completo (opcional, usa a API paga)
 1. **Descobre** notícias novas: listagem e busca interna da PF, busca da Receita Federal, API de busca da PRF (a página da PRF é montada por JavaScript), Sindireceita (aduana) e imprensa nacional/local via Google Notícias.
 2. **Filtra barato**: só segue adiante o que cita uma substância monitorada e um verbo de apreensão (na imprensa, também PF/PRF/Receita). Incinerações e balanços são descartados.
+   - **Títulos genéricos** ("PRF apreende drogas em ônibus"): o texto completo é lido e a notícia só fica se citar substância monitorada (até 150 por execução).
+   - **Avisos de conferência** na lista de pendentes: "ice" (pode ser haxixe), data do fato incoerente com a publicação (dia da semana errado, data futura ou mais de 7 dias antes).
+   - **Fontes**: gov.br/pf, gov.br/prf, gov.br/receitafederal, gov.br/mj (FICCOs), Sindireceita, Agência Gov/EBC, secretarias estaduais de segurança e sindicatos (via Google Notícias com `site:`), imprensa pelo Google Notícias e pelo GDELT (banco aberto de notícias). Fora dos sites de PF/PRF/Receita, a notícia precisa citar um órgão federal.
+   - **Confiança** de cada linha: Alta (nota oficial ou 2+ fontes), Média (1 fonte de imprensa), Baixa (a conferir).
+   - **Municípios**: nome oficial e código do IBGE (`python coleta.py --padronizar-municipios` gera `dados/municipios_mapa.json`).
+   - **Carga retroativa**: aba Actions → “Manutenção da base” → carga-periodo (datas inicial e final).
+   - **Substâncias monitoradas**: Ecstasy/MDMA (inclui MD cristal), metanfetamina, anfetamina (rebite), LSD, selos, cetamina, GHB, 2C-B/tusi, catinonas sintéticas, canabinoides sintéticos (droga K/K2/K4/K9 — "equipe K9" de cães não conta), opioides sintéticos (fentanil, nitazenos, tramadol), DMT, benzodiazepínicos, outras sintéticas; precursores: acetato de etila, helional, safrol, efedrina/pseudoefedrina, P2P/BMK/PMK, piperonal, anidrido acético, permanganato de potássio, solventes (acetona/tolueno em volume de carga) e outros.
 3. **Lê** apenas as candidatas e **extrai** os campos com a API do Claude (data, cidade/UF, modal, instituição, substâncias, quantidades, presos, armas, dinheiro).
 4. **Deduplica**: mesma substância + mesma UF + cidade semelhante + data ±2 dias + quantidade compatível (±20%). A versão oficial prevalece; as demais viram fontes secundárias e completam campos vazios.
 5. **Grava** a base, o CSV (`;`, abre direto no Excel) e `relatorios/coleta_AAAA-MM-DD_HHMM.md` (novas, atualizadas, para revisar).

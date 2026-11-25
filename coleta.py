@@ -57,6 +57,11 @@ PEND_JSON = DIR_LINKS / "pendentes.json"
 PEND_MD = DIR_LINKS / "pendentes.md"
 EXTRA_JSON = DIR_LINKS / "fontes_extras.json"   # {evento_id: [{url, titulo, fonte}]} para casos já no painel
 MAX_COMPLEMENTAR = 25                           # buscas complementares por execução
+ARQ_IBGE = BASE / "dados" / "municipios_ibge.json"          # cache da tabela oficial de municípios (API do IBGE)
+ARQ_MAPA_MUN = BASE / "dados" / "municipios_mapa.json"      # nome na base -> nome oficial e código IBGE
+URL_IBGE = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?view=nivelado"
+DATA_FIM: date | None = None                                 # --ate: limite final da coleta (cargas retroativas)
+PAUSA_ESPECIAL = {"api.gdeltproject.org": 5.5}              # GDELT pede no máx. 1 consulta a cada 5 s
 
 MODELO = os.getenv("MODELO_CLAUDE", "claude-haiku-5-5")
 DATA_MINIMA = date(2026, 1, 1)          # escopo do painel
@@ -71,33 +76,64 @@ INSTITUICOES = (PF, PRF, RF)
 NI = "Não informado"
 MODAIS = ("Rodovia", "Aeroporto", "Porto", "Remessa postal", "Fronteira terrestre", "Outro")
 
-# categoria -> (classe, regex de detecção)
+# categoria -> (classe, regex de detecção). (?-i:...) = sigla só em maiúsculas.
 SUBSTANCIAS = {
-    "Ecstasy/MDMA": ("Droga sintética", r"ecstasy|[êe]xtase|\bmdma\b|\bmda\b"),
+    # --- drogas sintéticas
+    "Ecstasy/MDMA": ("Droga sintética",               # MD em cristal conta junto com MDMA/ecstasy
+                     r"ecstasy|[êe]xtase|\bmdma\b|metilenodioxi|(?-i:\bMDA?\b)(?=[^.]{0,80}(?:comprimid|droga|ecstasy|sint[ée]tic|cristal|\bgramas?\b|apreen))"
+                     r"|\bmd\b\s+(?:em\s+)?cristal|cristais?\s+de\s+md\b"),
     "Metanfetamina": ("Droga sintética", r"metanfetamina|crystal meth"),
     "Anfetamina (rebite)": ("Droga sintética", r"anfetamina|rebite|femproporex|anfepramona"),
     "LSD": ("Droga sintética", r"\blsd\b|[áa]cido lis[ée]rgico|micropontos?"),
-    "Selos de composição indefinida": ("Droga sintética", r"\bselos?\b|blotters?"),
+    "Selos de composição indefinida": ("Droga sintética",
+                                       r"selos?\s+(?:de\s+|com\s+)?(?:lsd|alucin[óo]gen|[áa]cido|droga|sint[ée]tic|psicod[ée]lic|entorpecent)"
+                                       r"|selos?\s+(?:impregnad|de\s+papel)|cartelas?\s+de\s+selos|blotters?"),
     "Cetamina": ("Droga sintética", r"cetamina|ketamina"),
     "GHB": ("Droga sintética", r"\bghb\b|\bgbl\b|gama-?hidroxibut"),
-    "Outras sintéticas": ("Droga sintética",
-                          r"drogas? sint[ée]ticas?|catinona|canabin[óo]ides? sint|fentanil|nitazeno|2c-?b|\btus[ie]\b|\bk9\b"),
+    "2C-B / tusi": ("Droga sintética", r"\b2c-?b\b|\btus[ie]\b|tusibi|coca[íi]na\s+rosa"),
+    "Catinonas sintéticas": ("Droga sintética", r"catinonas?|mefedrona|metilona|eutilona|alfa-?pvp|\bflakka\b|sais\s+de\s+banho"),
+    "Canabinoides sintéticos": ("Droga sintética",     # K9 só como droga: "equipe/cão K9" é a unidade de cães farejadores
+                                r"canabin[óo]ides?\s+sint[ée]tic|maconha\s+sint[ée]tica|\bspice\b|(?-i:\bK[24]\b)"
+                                r"|drogas?\s+(?:k9|k2|k4|k)\b|\bk9\s+(?:sint[ée]tic|drog)|pap[ée]is?\s+(?:impregnad|embebid|com\s+droga)"),
+    "Opioides sintéticos": ("Droga sintética", r"fentan[iy]l|carfentanil|nitazenos?|isotonitazen|metonitazen|tramadol"),
+    "DMT": ("Droga sintética", r"\bdmt\b|dimetiltriptamina"),
+    "Benzodiazepínicos": ("Droga sintética", r"benzodiazep[íi]nic|clonazepam|alprazolam|flunitrazepam|\bdiazepam|\brivotril\b"),
+    "Outras sintéticas": ("Droga sintética", r"drogas?\s+sint[ée]ticas?|novas?\s+subst[âa]ncias?\s+psicoativas|\bnbome\b|25[bic]-?nbome"),
+    # --- precursores químicos
     "Acetato de etila": ("Precursor químico", r"acetato de etila"),
     "Helional": ("Precursor químico", r"helional"),
     "Safrol": ("Precursor químico", r"safrol"),
+    "Efedrina/pseudoefedrina": ("Precursor químico", r"efedrina"),
+    "P2P/BMK/PMK": ("Precursor químico", r"fenilacetona|fenil-?2-?propanona|\bp2p\b|\bbmk\b|\bpmk\b|glicidato"),
+    "Piperonal": ("Precursor químico", r"piperonal"),
+    "Anidrido acético": ("Precursor químico", r"anidrido\s+ac[ée]tico"),
+    "Permanganato de potássio": ("Precursor químico", r"permanganato"),
+    "Solventes (acetona/tolueno)": ("Precursor químico",   # só em volume de carga, não em uso doméstico
+                                    r"(?:toneladas?|litros|tambores|bombonas|tanque)[^.]{0,60}\b(?:acetona|tolueno)\b"
+                                    r"|\b(?:acetona|tolueno)\b[^.]{0,60}(?:toneladas?|litros|tambores|bombonas)"),
     "Outro precursor": ("Precursor químico",
-                        r"precursor(es)? qu[íi]mico|insumos? qu[íi]micos?|carbonato de c[áa]lcio|permanganato|[ée]ter et[íi]lico"),
+                        r"precursor(es)? qu[íi]mico|insumos? qu[íi]micos?|carbonato de c[áa]lcio|[ée]ter et[íi]lico"),
 }
 RE_SUBST = re.compile("|".join(f"(?:{p})" for _, p in SUBSTANCIAS.values()), re.I)
 # "ice" é ambíguo (haxixe/"ice hash" ou metanfetamina): sempre exige conferência manual
 RE_ICE = re.compile(r"\bice\b", re.I)
 AVISO_ICE = "Conferir: notícia cita \"ice\" (pode ser haxixe, fora do escopo, ou metanfetamina)."
+# títulos genéricos ("PRF apreende drogas em ônibus"): só entram se o texto completo citar substância monitorada
+RE_GENERICO = re.compile(r"\bdrogas?\b|entorpecentes?|narc[óo]ticos?|subst[âa]ncias?\s+(?:il[íi]citas|entorpecentes|psicoativas)", re.I)
+MAX_GENERICAS = 150                     # notícias de título genérico lidas por execução
+DIAS_SEMANA = {"segunda": 0, "terca": 1, "quarta": 2, "quinta": 3, "sexta": 4, "sabado": 5, "domingo": 6}
+MESES_PT = {m: i for i, m in enumerate("janeiro fevereiro marco abril maio junho julho agosto setembro outubro "
+                                       "novembro dezembro".split(), 1)}
 RE_ACAO = re.compile(r"apreen|apreend|ret[ée]m|retid|intercept|flagra|prend|pres[oa]s?\b|localiz|encontr|confisc", re.I)
 RE_DESCARTE = re.compile(r"incinera|balan[çc]o anual|palestra|capacita[çc][ãa]o|semin[áa]rio", re.I)
 RE_ORGAO = re.compile(r"\bPRF\b|rodovi[áa]ria federal|\bPF\b|pol[íi]cia federal|receita federal|\bFICCO\b|alf[âa]ndega|aduan", re.I)
 
 TERMOS_BUSCA = ["ecstasy", "MDMA", "metanfetamina", "anfetamina", "LSD", "cetamina", "GHB",
-                "drogas sintéticas", "acetato de etila", "safrol", "helional", "precursores químicos"]
+                "drogas sintéticas", "acetato de etila", "safrol", "helional", "precursores químicos",
+                # escopo ampliado
+                "MD cristal", "tusi", "2C-B", "mefedrona", "catinona", "canabinoide sintético", "maconha sintética",
+                "droga K", "fentanil", "nitazeno", "tramadol", "DMT", "clonazepam", "benzodiazepínicos",
+                "efedrina", "BMK", "piperonal", "anidrido acético", "permanganato de potássio"]
 
 log = logging.getLogger("coleta")
 
@@ -142,6 +178,62 @@ def candidata(texto: str, exige_orgao: bool) -> bool:
     return bool(RE_ORGAO.search(texto)) if exige_orgao else True
 
 
+def candidata_generica(texto: str, exige_orgao: bool) -> bool:
+    """Título/resumo fala de "drogas" sem nomear a substância: vale ler o corpo antes de descartar."""
+    if not texto or RE_DESCARTE.search(texto) or RE_SUBST.search(texto):
+        return False
+    if not (RE_GENERICO.search(texto) and RE_ACAO.search(texto)):
+        return False
+    return bool(RE_ORGAO.search(texto)) if exige_orgao else True
+
+
+def data_do_fato(texto: str, data_pub) -> tuple[date | None, str | None]:
+    """Procura no texto a data da apreensão e compara com a de publicação.
+    Devolve (data encontrada ou None, alerta ou None). Alerta quando a data do texto é futura,
+    tem mais de 7 dias de diferença, ou o dia da semana não bate com o número ("domingo (16)")."""
+    dp = para_data(data_pub)
+    if not texto or not dp:
+        return None, None
+    t = sem_acento(texto[:5000])
+
+    def montar(dia, mes=None, ano=None):
+        try:
+            if mes is None:                                # só o dia: mês da publicação ou o anterior
+                mes, ano = dp.month, dp.year
+                if dia > dp.day:
+                    mes, ano = (12, dp.year - 1) if dp.month == 1 else (dp.month - 1, dp.year)
+            d = date(ano or dp.year, mes, dia)
+            if ano is None and d > dp + timedelta(days=1):
+                d = date(d.year - 1, mes, dia)
+            return d
+        except ValueError:
+            return None
+
+    fato, alerta = None, None
+    m = re.search(r"\b(segunda|terca|quarta|quinta|sexta|sabado|domingo)(?:-feira)?,?\s*\((\d{1,2})(?:/(\d{1,2}))?\)", t)
+    if m:
+        fato = montar(int(m.group(2)), int(m.group(3)) if m.group(3) else None)
+        if fato and fato.weekday() != DIAS_SEMANA[m.group(1)]:
+            alerta = f"texto diz '{m.group(0)}', mas {fato:%d/%m/%Y} não cai nesse dia da semana"
+    if not fato:
+        m = re.search(r"\b(\d{1,2}) de (" + "|".join(MESES_PT) + r")(?: de (20\d{2}))?\b", t)
+        if m:
+            fato = montar(int(m.group(1)), MESES_PT[m.group(2)], int(m.group(3)) if m.group(3) else None)
+    if not fato:
+        m = re.search(r"\((\d{1,2})/(\d{1,2})(?:/(20\d{2}))?\)|\bdia (\d{1,2})/(\d{1,2})(?:/(20\d{2}))?\b", t)
+        if m:
+            g = [x for x in m.groups() if x is not None]
+            fato = montar(int(g[0]), int(g[1]), int(g[2]) if len(g) > 2 else None)
+    if fato:
+        dif, extra = (dp - fato).days, None
+        if dif < -1:
+            extra = f"data no texto ({fato:%d/%m/%Y}) é posterior à publicação ({dp:%d/%m/%Y})"
+        elif dif > 7:
+            extra = f"data no texto ({fato:%d/%m/%Y}) está {dif} dias antes da publicação ({dp:%d/%m/%Y})"
+        alerta = "; ".join(x for x in (alerta, extra) if x) or None
+    return fato, (f"Conferir data: {alerta}." if alerta else None)
+
+
 class Http:
     """Sessão com retentativas, timeout e cortesia por host."""
 
@@ -156,7 +248,7 @@ class Http:
 
     def get(self, url: str, **kw) -> requests.Response | None:
         host = urlparse(url).netloc
-        espera = PAUSA_HOST - (time.monotonic() - self._ultimo.get(host, 0))
+        espera = PAUSA_ESPECIAL.get(host, PAUSA_HOST) - (time.monotonic() - self._ultimo.get(host, 0))
         if espera > 0:
             time.sleep(espera)
         try:
@@ -221,7 +313,7 @@ def fonte_receita(http: Http, desde: date):
                             r"/noticias/20\d{2}/", desde, "gov.br/receitafederal")
 
 
-def _busca_plone(http: Http, site: str, padrao: str, desde: date, nome: str):
+def _busca_plone(http: Http, site: str, padrao: str, desde: date, nome: str, tipo: str = "Oficial"):
     for termo in TERMOS_BUSCA:
         for inicio in range(0, 200, 20):
             url = (f"{site}/@@search?SearchableText={quote_plus(termo)}"
@@ -234,7 +326,7 @@ def _busca_plone(http: Http, site: str, padrao: str, desde: date, nome: str):
                 break
             for u, tit, txt, dt in itens:
                 if dt is None or dt >= desde - timedelta(days=31):
-                    yield candidato(u, tit, txt, dt, nome, "Oficial")
+                    yield candidato(u, tit, txt, dt, nome, tipo)
             datas = [d for *_, d in itens if d]
             if datas and max(datas) < desde:
                 break
@@ -315,7 +407,7 @@ def fonte_sindireceita(http: Http, desde: date):
 def fonte_imprensa(http: Http, desde: date):
     """Google Notícias (RSS): cobre portais nacionais e locais com uma consulta por janela de tempo."""
     orgaos = '(PRF OR "Polícia Federal" OR "Receita Federal" OR FICCO)'
-    hoje = date.today()
+    hoje = DATA_FIM or date.today()
     janelas, ini = [], desde
     while ini <= hoje:                       # janelas mensais: o RSS devolve no máx. ~100 itens
         fim = min(date(ini.year + (ini.month == 12), ini.month % 12 + 1, 1), hoje + timedelta(days=1))
@@ -340,8 +432,67 @@ def fonte_imprensa(http: Http, desde: date):
                                 (src.get("url") if src is not None else "") or "news.google.com", "Imprensa")
 
 
-FONTES = {"pf": fonte_pf, "prf": fonte_prf, "receita": fonte_receita,
-          "sindireceita": fonte_sindireceita, "imprensa": fonte_imprensa}
+def fonte_mj(http: Http, desde: date):
+    """Ministério da Justiça (gov.br/mj): notas das FICCOs e de operações integradas."""
+    yield from _busca_plone(http, "https://www.gov.br/mj", r"/assuntos/noticias/", desde, "gov.br/mj", tipo="Oficial-outro")
+
+
+# Sites oficiais e institucionais consultados pelo Google Notícias com o operador site:
+SITES_OFICIAIS = {
+    "agenciagov.ebc.com.br": "Oficial-outro",       # Agência Gov (EBC): reproduz notas de PF, PRF e Receita
+    "agenciabrasil.ebc.com.br": "Imprensa",
+    "ssp.ba.gov.br": "Oficial-outro", "ssp.sp.gov.br": "Oficial-outro", "sesp.mt.gov.br": "Oficial-outro",
+    "sejusp.ms.gov.br": "Oficial-outro", "segurancapublica.rs.gov.br": "Oficial-outro", "sesp.pr.gov.br": "Oficial-outro",
+    "ssp.se.gov.br": "Oficial-outro", "sds.pe.gov.br": "Oficial-outro", "sesed.rn.gov.br": "Oficial-outro",
+    "sindifisconacional.org.br": "Imprensa", "fenaprf.org.br": "Imprensa", "fenapef.org.br": "Imprensa",
+}
+
+
+def fonte_sites(http: Http, desde: date):
+    """Agência Gov, secretarias estaduais de segurança e sindicatos (só casos com órgão federal citado)."""
+    fim = DATA_FIM or date.today()
+    grupos = [list(SITES_OFICIAIS)[i:i + 5] for i in range(0, len(SITES_OFICIAIS), 5)]
+    for termo in TERMOS_BUSCA:
+        for g in grupos:
+            sites = " OR ".join(f"site:{d}" for d in g)
+            for it in _gn_busca(http, f'"{termo}" ({sites})', desde, fim + timedelta(days=1)):
+                dom = it["fonte"] or ""
+                tipo = next((t for d, t in SITES_OFICIAIS.items() if d in dom), "Imprensa")
+                yield candidato(it["link"], it["titulo"], "", it.get("data"), dom or "news.google.com", tipo)
+
+
+def fonte_gdelt(http: Http, desde: date):
+    """GDELT (banco aberto de notícias, projeto acadêmico): 2º buscador de imprensa, além do Google Notícias."""
+    orgaos = '(PRF OR "Polícia Federal" OR "Receita Federal" OR FICCO)'
+    fim = DATA_FIM or date.today()
+    ini = desde
+    while ini <= fim:
+        prox = min(ini + timedelta(days=31), fim + timedelta(days=1))
+        for termo in TERMOS_BUSCA:
+            if len(termo) < 4:                       # GDELT recusa palavras muito curtas fora de frases
+                termo = f"{termo} droga"
+            url = ("https://api.gdeltproject.org/api/v2/doc/doc?mode=artlist&format=json&maxrecords=250"
+                   "&sourcelang=portuguese&sourcecountry=BR"
+                   f"&startdatetime={ini:%Y%m%d}000000&enddatetime={prox:%Y%m%d}000000"
+                   f"&query={quote_plus(chr(34) + termo + chr(34) + ' ' + orgaos)}")
+            r = http.get(url, timeout=40)
+            if not r:
+                continue
+            try:
+                arts = r.json().get("articles", [])
+            except ValueError:
+                continue
+            for a in arts:
+                sd = a.get("seendate") or ""          # formato 20260115T120000Z
+                dt = para_data(f"{sd[:4]}-{sd[4:6]}-{sd[6:8]}") if len(sd) >= 8 else None
+                yield candidato(a.get("url"), a.get("title"), "", dt,
+                                (a.get("domain") or "").replace("www.", "") or "gdelt", "Imprensa")
+        ini = prox
+
+
+FONTES = {"pf": fonte_pf, "prf": fonte_prf, "receita": fonte_receita, "mj": fonte_mj,
+          "sindireceita": fonte_sindireceita, "sites": fonte_sites, "imprensa": fonte_imprensa, "gdelt": fonte_gdelt}
+FONTES_FEDERAIS = {"gov.br/pf", "gov.br/prf", "gov.br/receitafederal"}   # dispensam o órgão citado no título
 
 
 # ----------------------------------------------------------------------------- leitura da notícia
@@ -386,6 +537,12 @@ Formato:
 Regras: não invente números; "cerca de/quase/mais de" vira o número citado e "aproximado" em observacoes.
 "ice" é ambíguo (pode ser haxixe/"ice hash"): só classifique como Metanfetamina se o texto disser metanfetamina
 explicitamente; em todo caso comece "observacoes" com "Conferir: ice".
+MD/MD cristal é Ecstasy/MDMA. "Equipe K9"/"cão K9" é a unidade de cães farejadores, não droga; "droga K"/K2/K4/K9 como
+substância é Canabinoides sintéticos. Lança-perfume/loló/cloretila (inalantes) estão fora do escopo.
+Benzodiazepínicos e tramadol: só quando a apreensão é ilícita (contrabando, falsificação, sem registro, tráfico).
+Solventes (acetona/tolueno): só em volume de carga ligado a refino ou contrabando. "Selo" só conta se for droga.
+Data: use a data do fato citada no texto ("neste domingo (15)"); se o texto trouxer data incoerente, use a mais
+provável e comece "observacoes" com "Conferir data".
 "Encaminhado à delegacia" sem menção a prisão → presos="{NI}". Use null quando a notícia não informar."""
 
 
@@ -490,6 +647,7 @@ def linha_painel(ev: dict, item: dict, evento_id: int, seq: int, c: dict, url: s
     arma, adet = ev.get("arma") or NI, ev.get("arma_detalhe")
     din, dval = ev.get("dinheiro") or NI, _num(ev.get("dinheiro_valor"))
     mun, uf = (ev.get("municipio") or "").strip(), (ev.get("uf") or "").strip().upper()
+    mun, cod_ibge = municipio_oficial(mun, uf)
     obs = (ev.get("observacoes") or "").strip()
     if ev.get("data_aproximada"):
         obs = ("Data aproximada. " + obs).strip()
@@ -507,10 +665,82 @@ def linha_painel(ev: dict, item: dict, evento_id: int, seq: int, c: dict, url: s
         "armas": f"Sim — {adet}" if arma == "Sim" and adet else f"Não ({adet})" if arma == "Não" and adet else arma,
         "dinheiro": din, "dinheiro_valor": dval,
         "dinheiro_txt": f"R$ {fmt_num(dval, 0)}" if dval else "Sim (valor não informado)" if din == "Sim" else din,
-        "tipo_fonte": c["tipo"], "fonte_nome": c["fonte"] if "gov.br" in url else (urlparse(url).netloc.replace("www.", "") or c["fonte"]),
+        "tipo_fonte": "Oficial" if c["tipo"].startswith("Oficial") else "Imprensa", "fonte_nome": c["fonte"] if "gov.br" in url else (urlparse(url).netloc.replace("www.", "") or c["fonte"]),
         "fonte_url": url, "fontes_secundarias": [], "fontes_extra": [], "observacoes": obs[:400],
-        "revisar": bool(c.get("revisar")), "data_coleta": date.today().isoformat(),
-    }
+        "revisar": bool(c.get("revisar")), "data_coleta": date.today().isoformat(), "cod_ibge": cod_ibge,
+    } | {"confianca": None}
+
+
+# ----------------------------------------------------------------------------- confiança e municípios (IBGE)
+def confianca(r: dict) -> str:
+    """Alta: nota oficial ou 2+ fontes. Média: 1 fonte de imprensa lida. Baixa: marcada para conferência
+    (só título, "ice", data incoerente) ou link do Google Notícias não resolvido."""
+    obs = (r.get("observacoes") or "").lstrip()
+    if obs.startswith("Conferir") or r.get("revisar") or "news.google.com" in (r.get("fonte_url") or ""):
+        return "Baixa"
+    urls = {r.get("fonte_url")} | {f["url"] if isinstance(f, dict) else f
+                                   for f in (r.get("fontes_extra") or []) + (r.get("fontes_secundarias") or [])}
+    urls.discard(None)
+    return "Alta" if r.get("tipo_fonte") == "Oficial" or len(urls) >= 2 else "Média"
+
+
+_IBGE: dict | None = None
+ALIAS_MUN = {("assu", "RN"): "acu", ("brasilia", "DF"): "brasilia"}   # grafias populares x nome oficial
+
+
+def tabela_ibge(http: "Http | None" = None) -> dict:
+    """{(nome_sem_acento, UF): (nome_oficial, código)} a partir da API de localidades do IBGE (com cache local)."""
+    global _IBGE
+    if _IBGE is not None:
+        return _IBGE
+    dados = None
+    if ARQ_IBGE.exists():
+        dados = json.loads(ARQ_IBGE.read_text("utf-8"))
+    else:
+        r = (http or Http()).get(URL_IBGE, timeout=60)
+        if r:
+            try:
+                dados = [{"id": m["municipio-id"], "nome": m["municipio-nome"], "uf": m["UF-sigla"]} for m in r.json()]
+                ARQ_IBGE.parent.mkdir(parents=True, exist_ok=True)
+                ARQ_IBGE.write_text(json.dumps(dados, ensure_ascii=False), "utf-8")
+            except (ValueError, KeyError) as e:
+                log.warning("IBGE: resposta inesperada (%s)", e)
+    _IBGE = {(sem_acento(m["nome"]), m["uf"]): (m["nome"], m["id"]) for m in (dados or [])}
+    if not _IBGE:
+        log.warning("IBGE: tabela de municípios indisponível; nomes ficam como vieram.")
+    return _IBGE
+
+
+def municipio_oficial(nome: str, uf: str) -> tuple[str, int | None]:
+    """Nome oficial do IBGE e código; aceita grafia sem acento ou pequena variação (ex.: Corumba, Assu)."""
+    tab = tabela_ibge()
+    if not tab or not nome or not uf:
+        return nome, None
+    chave = (sem_acento(nome), uf.upper())
+    for k in (chave, (ALIAS_MUN.get(chave, chave[0]), chave[1])):
+        if k in tab:
+            return tab[k]
+    nomes_uf = [n for (n, u) in tab if u == uf.upper()]
+    perto = difflib.get_close_matches(chave[0], nomes_uf, n=1, cutoff=0.85)
+    return tab[(perto[0], uf.upper())] if perto else (nome, None)
+
+
+def padronizar_municipios():
+    """Gera dados/municipios_mapa.json: nome na base -> nome oficial e código IBGE (a base não é reescrita)."""
+    base, _ = carregar()
+    tabela_ibge(Http())
+    mapa = {}
+    for r in base:
+        k = f"{r.get('municipio')}/{r.get('uf')}"
+        if k in mapa:
+            continue
+        nome, cod = municipio_oficial(r.get("municipio", ""), r.get("uf", ""))
+        mapa[k] = {"nome_oficial": nome, "cod_ibge": cod, "alterado": nome != r.get("municipio"), "encontrado": cod is not None}
+    ARQ_MAPA_MUN.write_text(json.dumps(mapa, ensure_ascii=False, indent=1), "utf-8")
+    alt = [k for k, v in mapa.items() if v["alterado"]]
+    nao = [k for k, v in mapa.items() if not v["encontrado"]]
+    log.info("Municípios: %d na base; %d com grafia corrigida; %d não encontrados no IBGE: %s",
+             len(mapa), len(alt), len(nao), ", ".join(nao) or "—")
 
 
 # ----------------------------------------------------------------------------- deduplicação
@@ -555,6 +785,9 @@ def fundir(e: dict, n: dict) -> bool:
         if e.get(k) is None and n.get(k) is not None:
             e[k], e["quantidade"], e["unidade"] = n[k], n["quantidade"], n.get("unidade") or e.get("unidade")
             mudou = True
+    nova = confianca(e)                       # mais fontes podem elevar a confiança
+    if nova != e.get("confianca"):
+        e["confianca"], mudou = nova, True
     return mudou
 
 
@@ -616,14 +849,23 @@ def descobrir(http: Http, fontes: str, desde: date, vistas: set, cont: dict) -> 
                     continue
                 if c.get("data_pub") and c["data_pub"] < desde - timedelta(days=31):
                     continue
-                if candidata(f"{c['titulo']} {c['resumo']}", exige_orgao=c["tipo"] == "Imprensa"):
+                if DATA_FIM and c.get("data_pub") and c["data_pub"] > DATA_FIM + timedelta(days=3):
+                    continue
+                txt_c = f"{c['titulo']} {c['resumo']}"
+                exige = c["fonte"] not in FONTES_FEDERAIS          # fora dos sites de PF/PRF/Receita, o órgão precisa aparecer
+                if candidata(txt_c, exige_orgao=exige):
+                    na_fila.add(c["url"])
+                    fila.append(c)
+                elif cont.get("genericas", 0) < MAX_GENERICAS and candidata_generica(txt_c, exige_orgao=exige):
+                    cont["genericas"] = cont.get("genericas", 0) + 1
+                    c["ler_corpo"] = True          # só fica se o texto completo citar substância monitorada
                     na_fila.add(c["url"])
                     fila.append(c)
         except Exception as e:  # uma fonte com problema não derruba as demais
             log.warning("%s: interrompida (%s)", nome, e)
         log.info("%-12s %d candidatas", nome, len(fila) - n0)
     cont["candidatas"] = len(fila)
-    fila.sort(key=lambda c: c["tipo"] != "Oficial")
+    fila.sort(key=lambda c: {"Oficial": 0, "Oficial-outro": 1}.get(c["tipo"], 2))
     return fila
 
 
@@ -647,6 +889,9 @@ def executar(args):
         vistas.update({c["url"], url})
         if repetida:
             continue
+        if c.get("ler_corpo") and not RE_SUBST.search(texto):   # título genérico sem substância monitorada no texto
+            cont["irrelevantes"] += 1
+            continue
         res = extrair(texto, c)
         c["revisar"] = res.get("revisar", False)
         if RE_ICE.search(texto):                        # "ice": conferência manual obrigatória
@@ -657,10 +902,20 @@ def executar(args):
         if not res.get("relevante"):
             cont["irrelevantes"] += 1
             continue
+        fato, alerta_dt = data_do_fato(texto, c.get("data_pub"))
+        for ev in res.get("eventos", []):
+            d_ev, dp = para_data(ev.get("data")), para_data(c.get("data_pub"))
+            if not alerta_dt and d_ev and dp and ((dp - d_ev).days > 7 or (d_ev - dp).days > 1):
+                alerta_dt = f"Conferir data: extraída {d_ev:%d/%m/%Y}, publicação {dp:%d/%m/%Y}."
+            if alerta_dt:
+                c["revisar"] = True
+                ev["observacoes"] = f"{alerta_dt} {ev.get('observacoes') or ''}".strip()
         for ev in res.get("eventos", []):
             est["ultimo_evento"] += 1
             linhas = [l for i, it in enumerate(ev.get("itens", []), 1)
                       if (l := linha_painel(ev, it, est["ultimo_evento"], i, c, url))]
+            for l in linhas:
+                l["confianca"] = confianca(l)
             alvo_novo = False
             for l in linhas:
                 existente = next((e for e in base if mesmo_evento(l, e)), None)
@@ -787,19 +1042,33 @@ def modo_links(http, fila, est, desde, cont, seco, base):
         base_txt = f"{c['titulo']} {c['resumo']}"
         subs = [k for k, (_, rx) in SUBSTANCIAS.items() if re.search(rx, base_txt, re.I)]
         dup = _ja_na_base(base_txt, dp, subs, base)
-        trecho = ""
+        trecho, txt = "", ""
         ice = bool(RE_ICE.search(base_txt))
+        if c.get("ler_corpo") and "news.google.com" in url:
+            continue                                   # título genérico sem texto legível: descarta
         if not dup and "news.google.com" not in url:
             r = http.get(url)
             if r:
                 txt = extrair_texto(r.text)
-                trecho = txt[:600]
+                if c.get("ler_corpo"):
+                    if not RE_SUBST.search(txt[:8000]):   # título genérico: só fica se o texto citar substância monitorada
+                        continue
+                    m = RE_SUBST.search(txt[:8000])
+                    trecho = txt[max(0, m.start() - 250): m.start() + 350]
+                else:
+                    trecho = txt[:600]
                 ice = ice or bool(RE_ICE.search(txt[:5000]))
                 subs = subs or [k for k, (_, rx) in SUBSTANCIAS.items() if re.search(rx, txt[:3000], re.I)]
+                subs = subs or [k for k, (_, rx) in SUBSTANCIAS.items() if re.search(rx, txt[:8000], re.I)]
                 dup = _ja_na_base(f"{base_txt} {txt[:3000]}", dp, subs, base)
+            elif c.get("ler_corpo"):
+                continue
+        fato, alerta_dt = data_do_fato(f"{base_txt} {txt}", dp)
         item = {"url": url, "url_original": c["url"], "titulo": c["titulo"],
                 "data_pub": dp.isoformat() if dp else "", "fonte": c["fonte"], "tipo": c["tipo"],
-                "substancias": subs, "trecho": trecho, "alerta_ice": ice, "descoberto_em": date.today().isoformat()}
+                "substancias": subs, "trecho": trecho, "alerta_ice": ice,
+                "data_fato": fato.isoformat() if fato else "", "alerta_data": alerta_dt or "",
+                "titulo_generico": bool(c.get("ler_corpo")), "descoberto_em": date.today().isoformat()}
         if dup:
             item["evento_base"] = dup
             repetidos.append(item)
@@ -885,12 +1154,19 @@ def _pendentes_md(pend: list, extras: dict | None = None) -> str:
         dt = para_data(h["data_pub"])
         L.append(f"## {i}. {dt:%d/%m/%Y} · {h['titulo']}" if dt else f"## {i}. s/d · {h['titulo']}")
         L.append(f"Substâncias citadas: {', '.join(h['substancias']) or '—'} · {len(g)} fonte(s)")
+        fatos = sorted({p["data_fato"] for p in g if p.get("data_fato") and p["data_fato"] != p.get("data_pub")})
+        if fatos:
+            L.append("Data do fato segundo o texto: " + ", ".join(f"{para_data(f):%d/%m/%Y}" for f in fatos))
+        for a in sorted({p["alerta_data"] for p in g if p.get("alerta_data")}):
+            L.append(f"**⚠️ {a}**")
+        if any(p.get("titulo_generico") for p in g):
+            L.append("_Título genérico: a substância aparece só no corpo da notícia (trecho abaixo)._")
         if any(p.get("alerta_ice") for p in g):
             L.append(f"**⚠️ {AVISO_ICE} Verificar manualmente antes de incluir.**")
         if h.get("trecho"):
             L.append(f"> {h['trecho']}")
         for p in g:
-            L.append(f"- [{p['tipo']}{' · busca complementar' if p.get('complementar') else ''}] {p['fonte']}: {p['url']}")
+            L.append(f"- [{p['tipo'].replace('Oficial-outro', 'Oficial (outro órgão)')}{' · busca complementar' if p.get('complementar') else ''}] {p['fonte']}: {p['url']}")
         L.append("")
     if extras:
         L += ["---", f"# Fontes extras para casos já no painel ({sum(len(v) for v in extras.values())} links)", "",
@@ -906,7 +1182,12 @@ def _pendentes_md(pend: list, extras: dict | None = None) -> str:
 PALAVRA_SUB = {"Ecstasy/MDMA": "ecstasy", "Metanfetamina": "metanfetamina", "Anfetamina (rebite)": "rebite",
                "LSD": "LSD", "Selos de composição indefinida": "selos", "Cetamina": "cetamina", "GHB": "GHB",
                "Outras sintéticas": "drogas sintéticas", "Acetato de etila": "acetato de etila", "Helional": "helional",
-               "Safrol": "safrol", "Outro precursor": "insumo químico"}
+               "Safrol": "safrol", "Outro precursor": "insumo químico",
+               "2C-B / tusi": "tusi", "Catinonas sintéticas": "mefedrona", "Canabinoides sintéticos": "maconha sintética",
+               "Opioides sintéticos": "fentanil", "DMT": "DMT", "Benzodiazepínicos": "clonazepam",
+               "Efedrina/pseudoefedrina": "efedrina", "P2P/BMK/PMK": "BMK", "Piperonal": "piperonal",
+               "Anidrido acético": "anidrido acético", "Permanganato de potássio": "permanganato",
+               "Solventes (acetona/tolueno)": "acetona"}
 ORG_CURTO = {PF: '"Polícia Federal"', PRF: "PRF", RF: '"Receita Federal"'}
 
 
@@ -923,6 +1204,7 @@ def _gn_busca(http, consulta: str, ini: date, fim: date) -> list:
     for it in raiz.iter("item"):
         src = it.find("source")
         out.append({"link": it.findtext("link"), "titulo": re.sub(r"\s+-\s+[^-]+$", "", it.findtext("title") or ""),
+                    "data": para_data(it.findtext("pubDate")),
                     "fonte": urlparse(src.get("url")).netloc.replace("www.", "") if src is not None and src.get("url") else ""})
     return out
 
@@ -1028,6 +1310,9 @@ def relatorio(desde, cont, novas, fundidas, revisar, chamadas, truncado):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--desde", help="data inicial AAAA-MM-DD (padrão: última execução − 3 dias)")
+    ap.add_argument("--ate", help="data final AAAA-MM-DD (para cargas retroativas; padrão: hoje)")
+    ap.add_argument("--padronizar-municipios", action="store_true",
+                    help="confere os municípios da base na tabela do IBGE e grava dados/municipios_mapa.json")
     ap.add_argument("--fontes", default=",".join(FONTES), help=f"lista separada por vírgulas: {','.join(FONTES)}")
     ap.add_argument("--max", type=int, default=400, help="máximo de notícias lidas por execução")
     ap.add_argument("--sem-llm", action="store_true", help="não usar a API (extração heurística)")
@@ -1041,7 +1326,11 @@ def main():
     args = ap.parse_args()
     logging.basicConfig(level=logging.DEBUG if args.verboso else logging.INFO,
                         format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
-    if args.testar_gnews:
+    global DATA_FIM
+    DATA_FIM = para_data(args.ate) if args.ate else None
+    if args.padronizar_municipios:
+        padronizar_municipios()
+    elif args.testar_gnews:
         testar_gnews()
     elif args.completar_fontes:
         completar_fontes(args.seco)

@@ -149,6 +149,9 @@ window.dash = (() => {
 .ap-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
 .ap-foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); max-width: 60rem; line-height: 1.5; }
 .ap-shared { margin: -4px 0 var(--cds-gap-sm); }
+.ap-conf { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: var(--cds-font-size-caption); border: 1px solid var(--cds-border); white-space: nowrap; }
+.ap-conf-alta { border-color: var(--color-good); color: var(--color-good); }
+.ap-conf-baixa { border-color: var(--color-bad); color: var(--color-bad); }
 #tabela .ap-shared { margin: 0 0 var(--cds-gap-sm); }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 @media (max-width: 760px) { .ap-hide-narrow { display: none; } }
@@ -240,6 +243,7 @@ window.dash = (() => {
       <label>Pessoas presas<select class="ap-t" data-p="t_presos" aria-label="Pessoas presas"></select></label>
       <label>Arma apreendida<select class="ap-t" data-p="t_arma" aria-label="Arma apreendida"></select></label>
       <label>Dinheiro apreendido<select class="ap-t" data-p="t_dinheiro" aria-label="Dinheiro apreendido"></select></label>
+      <label>Confiança<select class="ap-t" data-p="t_conf" aria-label="Confiança da informação"></select></label>
       <button type="button" class="ap-t-reset">Limpar filtros</button>
     </div>
     <div class="ap-card" id="grafico-mapa" data-source="apreensoes">
@@ -272,6 +276,7 @@ window.dash = (() => {
           <th data-field="armas"><button type="button" data-sort="armas">Armas apreendidas</button></th>
           <th data-field="dinheiro_txt"><button type="button" data-sort="din">Dinheiro apreendido</button></th>
           <th data-field="fonte_nome"><button type="button" data-sort="nfontes">Fontes</button></th>
+          <th data-field="confianca"><button type="button" data-sort="conf">Confiança</button></th>
           <th data-field="observacoes" class="ap-hide-narrow"><button type="button" data-sort="observacoes">Observações</button></th>
         </tr></thead>
         <tbody class="ap-tbody"></tbody>
@@ -294,7 +299,12 @@ window.dash = (() => {
   const MONITORADAS = [
     ['Ecstasy/MDMA', 'Droga sintética'], ['Metanfetamina', 'Droga sintética'], ['Anfetamina (rebite)', 'Droga sintética'],
     ['LSD', 'Droga sintética'], ['Selos de composição indefinida', 'Droga sintética'], ['Cetamina', 'Droga sintética'], ['GHB', 'Droga sintética'],
-    ['Acetato de etila', 'Precursor químico'], ['Helional', 'Precursor químico'], ['Safrol', 'Precursor químico'], ['Outro precursor', 'Precursor químico'],
+    ['2C-B / tusi', 'Droga sintética'], ['Catinonas sintéticas', 'Droga sintética'], ['Canabinoides sintéticos', 'Droga sintética'],
+    ['Opioides sintéticos', 'Droga sintética'], ['DMT', 'Droga sintética'], ['Benzodiazepínicos', 'Droga sintética'], ['Outras sintéticas', 'Droga sintética'],
+    ['Acetato de etila', 'Precursor químico'], ['Helional', 'Precursor químico'], ['Safrol', 'Precursor químico'],
+    ['Efedrina/pseudoefedrina', 'Precursor químico'], ['P2P/BMK/PMK', 'Precursor químico'], ['Piperonal', 'Precursor químico'],
+    ['Anidrido acético', 'Precursor químico'], ['Permanganato de potássio', 'Precursor químico'], ['Solventes (acetona/tolueno)', 'Precursor químico'],
+    ['Outro precursor', 'Precursor químico'],
   ];
   const CLASSES = ['Droga sintética', 'Precursor químico'];
   const num = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 3 });
@@ -414,7 +424,7 @@ window.dash = (() => {
   const tSels = [...root.querySelectorAll('select.ap-t')];
   tSels.forEach((s) => s.addEventListener('change', () => dash.setParams(s.dataset.p === 't_uf' ? { t_uf: s.value, t_cidade: '' } : { [s.dataset.p]: s.value })));
   root.querySelector('.ap-t-reset').addEventListener('click', () => {
-    dash.setParams({ t_uf: '', t_cidade: '', t_inst: '', t_meses: [], t_ano: '', t_classe: '', t_subst: '', t_tipo: '', t_novo: '', t_presos: '', t_arma: '', t_dinheiro: '' });
+    dash.setParams({ t_uf: '', t_cidade: '', t_inst: '', t_meses: [], t_ano: '', t_classe: '', t_subst: '', t_tipo: '', t_novo: '', t_presos: '', t_arma: '', t_dinheiro: '', t_conf: '' });
   });
 
   // ---------- tooltip ----------
@@ -469,6 +479,7 @@ window.dash = (() => {
     if (k === 'qtd') { const m = medida(r); return !Number.isNaN(m.k) ? m.k * 1e6 : (!Number.isNaN(m.u) ? m.u : -1); }
     if (k === 'lote') return Number(r.lote) || 0;
     if (k === 'nfontes') return listaFontes(r).length;
+    if (k === 'conf') return ({ Alta: 3, 'Média': 2, Baixa: 1 })[r.confianca] || 0;
     if (k === 'npres') return r.n_presos != null ? Number(r.n_presos) : (r.presos === 'Sim' ? 0.5 : -1);
     if (k === 'din') return r.dinheiro_valor != null ? Number(r.dinheiro_valor) : (r.dinheiro === 'Sim' ? 0.5 : -1);
     return (r[k] ?? '').toString();
@@ -508,6 +519,7 @@ window.dash = (() => {
       t_classe: [['', 'Todas'], ...CLASSES.map((c) => [c, c === 'Droga sintética' ? 'Drogas sintéticas' : 'Precursores químicos'])],
       t_subst: [['', 'Todas'], ...substsDa(p.t_classe).map((s) => [s, s])],
       t_presos: yesNo, t_arma: yesNo, t_dinheiro: yesNo,
+      t_conf: [['', 'Todas'], ['Alta', 'Alta (nota oficial ou 2+ fontes)'], ['Média', 'Média (1 fonte de imprensa)'], ['Baixa', 'Baixa (a conferir)']],
       t_tipo: [['', 'Todos'], ...TIPOS.map((t) => [t, t])],
       t_novo: [['', 'Todos'], ['Novo', 'Só os novos da última atualização']],
       t_uf: [['', 'Todas'], ...[...new Set(rows.map((r) => r.uf).filter(Boolean))].sort().map((u) => [u, u])],
@@ -539,7 +551,8 @@ window.dash = (() => {
       && (!p.t_uf || r.uf === p.t_uf)
       && (!p.t_cidade || r.local === p.t_cidade)
       && (!p.t_subst || r.substancia === p.t_subst)
-      && matchYN(r.presos, p.t_presos) && matchYN(r.arma, p.t_arma) && matchYN(r.dinheiro, p.t_dinheiro);
+      && matchYN(r.presos, p.t_presos) && matchYN(r.arma, p.t_arma) && matchYN(r.dinheiro, p.t_dinheiro)
+      && (!p.t_conf || r.confianca === p.t_conf);
     const gRows = rows.filter((r) => String(r.ano) === anoAtual
       && (!gMeses.length || gMeses.includes(String(r.mes)))
       && (!p.g_classe || r.classe === p.g_classe)
@@ -699,6 +712,7 @@ window.dash = (() => {
        [porTipo('Não informado'), 'sem tipo identificável'],
        [[...ev.values()].filter((r) => listaFontes(r).length >= 2).length + ' de ' + ev.size, 'apreensões com 2 ou mais fontes com link'],
        [conf, 'linhas a conferir (só pelo título)'],
+       [[...ev.values()].filter((r) => r.confianca === 'Alta').length + ' de ' + ev.size, 'apreensões com confiança alta'],
        [semq, 'linhas sem quantidade divulgada'],
       ].forEach(([v, t]) => { const k = document.createElement('div'); k.className = 'ap-kpi'; const b = document.createElement('b'); b.textContent = v; const sp = document.createElement('span'); sp.textContent = t; k.append(b, sp); kBox.appendChild(k); });
     } else if (d.status === 'error' || d.status === 'connect') {
@@ -848,7 +862,7 @@ window.dash = (() => {
       const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 15; td.className = 'ap-empty';
       td.textContent = 'Nenhuma apreensão com esses filtros.'; tr.appendChild(td); tbody.appendChild(tr); return;
     }
-    const cols = ['novo', 'data_br', 'instituicao', 'municipio', 'uf', 'modal', 'classe', 'substancia', 'tipo_ocorrencia', 'quantidade', 'presos_qtd', 'armas', 'dinheiro_txt', 'fonte_nome', 'observacoes'];
+    const cols = ['novo', 'data_br', 'instituicao', 'municipio', 'uf', 'modal', 'classe', 'substancia', 'tipo_ocorrencia', 'quantidade', 'presos_qtd', 'armas', 'dinheiro_txt', 'fonte_nome', 'confianca', 'observacoes'];
     const narrow = new Set(['modal', 'classe', 'observacoes']);
     tRows.forEach((r) => {
       const tr = document.createElement('tr'); tr.dataset.key = r.id;
@@ -856,7 +870,10 @@ window.dash = (() => {
         const td = document.createElement('td');
         if (narrow.has(c)) td.classList.add('ap-hide-narrow');
         if (c === 'observacoes') td.classList.add('ap-obs');
-        if (c === 'novo') {
+        if (c === 'confianca') {
+          const b = document.createElement('span'); b.className = 'ap-conf ap-conf-' + String(r.confianca || '').normalize('NFD').replace(/[^A-Za-z]/g, '').toLowerCase();
+          b.textContent = r.confianca || '—'; td.appendChild(b);
+        } else if (c === 'novo') {
           if (r.novo) { const b = document.createElement('span'); b.className = 'ap-novo'; b.textContent = r.novo; td.appendChild(b); }
         } else if (c === 'fonte_nome') {
           td.classList.add('ap-fontes');
