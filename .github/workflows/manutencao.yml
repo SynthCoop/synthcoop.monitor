@@ -1,0 +1,57 @@
+name: Manutenção da base
+
+# Rodar manualmente: aba Actions → "Manutenção da base" → Run workflow
+on:
+  workflow_dispatch:
+    inputs:
+      acao:
+        description: "O que fazer"
+        type: choice
+        options:
+          - carga-periodo
+          - padronizar-municipios
+        default: carga-periodo
+      desde:
+        description: "Carga: data inicial (AAAA-MM-DD)"
+        default: "2026-01-01"
+      ate:
+        description: "Carga: data final (AAAA-MM-DD)"
+        default: "2026-06-30"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coleta            # não roda junto com a coleta agendada
+  cancel-in-progress: false
+
+jobs:
+  rodar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: pip install -r requirements-links.txt
+
+      - name: Carga retroativa (só links, sem custo)
+        if: ${{ inputs.acao == 'carga-periodo' }}
+        run: python coleta.py --so-links --desde "${{ inputs.desde }}" --ate "${{ inputs.ate }}"
+
+      - name: Padronizar municípios (tabela do IBGE)
+        if: ${{ inputs.acao == 'padronizar-municipios' }}
+        run: python coleta.py --padronizar-municipios
+
+      - name: Gravar resultado no repositório
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          for p in links dados relatorios; do if [ -e "$p" ]; then git add -A "$p"; fi; done
+          git diff --cached --quiet || git commit -m "Manutenção: ${{ inputs.acao }}"
+          git pull --rebase --autostash
+          git push
