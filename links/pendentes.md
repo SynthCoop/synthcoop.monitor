@@ -1,4 +1,4 @@
-# Notícias candidatas — 6 casos, 10 links (atualizado em 25/11/2026 18:33)
+# Notícias candidatas — 11 casos, 15 links (atualizado em 25/11/2026 22:49)
 
 Cole este conteúdo no chat do Claude e peça: “extraia as apreensões destes casos e atualize o painel”.
 Notícias sobre casos que já estão no painel foram descartadas automaticamente.
@@ -35,10 +35,49 @@ Substâncias citadas: Anfetamina (rebite) · 2 fonte(s)
 Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
 - [Imprensa] https://faroldenoticias.com.br: https://faroldenoticias.com.br/prf-apreende-798-comprimidos-de-rebite-na-br-232/
 
+## 7. 26/06/2026 · Operação conjunta do Denarc e Receita Federal prende dois e apreende vários tipos de drogas em distribuidora
+Substâncias citadas: Ecstasy/MDMA, Outras sintéticas · 1 fonte(s)
+_Título genérico: a substância aparece só no corpo da notícia (trecho abaixo)._
+> Polícia Operação conjunta do Denarc e Receita Federal prende dois e apreende vários tipos de drogas em distribuidora Sexta-feira, 26 Junho de 2026 - 11:36 | Redação Drogas sintéticas, maconha tipo skunk, dinheiro, cigarros e celulares foram apreendidos durante uma operação integrada do Departamento de Narcóticos (Denarc), da Polícia Civil de Rondônia, e da Receita Federal em Porto Velho. Dois suspeitos foram presos em flagrante. A entrega monitorada começou após a Receita Federal identificar uma remessa suspei
+- [Imprensa] https://www.rondoniagora.com: https://www.rondoniagora.com/policia/operacao-conjunta-do-denarc-e-receita-federal-prende-dois-e-apreende-varios-tipos-de-drogas-em-distribuidora
+
+## 8. 08/04/2026 · Polícia Federal deflagra operação contra tráfico de drogas em Campina Grande
+Substâncias citadas: Ecstasy/MDMA · 1 fonte(s)
+_Título genérico: a substância aparece só no corpo da notícia (trecho abaixo)._
+> COTIDIANO Polícia Federal deflagra operação contra tráfico de drogas em Campina Grande Investigações começaram após interceptação de encomenda com mil comprimidos de ecstasy Publicado em 08/04/2026 às 8:18 A Polícia Federal realizou, na manhã desta quarta-feira (8), uma operação voltada à apuração e repressão ao tráfico de drogas em Campina Grande. Durante a ação, foram cumpridos dois mandados de prisão preventiva e três de busca e apreensão, autorizados pela Justiça. De acordo com a PF, as apurações começaram 
+- [Imprensa] https://jornaldaparaiba.com.br: https://jornaldaparaiba.com.br/cotidiano/policia-federal-deflagra-operacao-contra-trafico-de-drogas-em-campina-grande
+
+## 9. 25/02/2026 · PRF apreende mais de 700 kg de drogas transportadas em cabine de caminhão na BR-153 no Tocantins
+Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
+Data do fato segundo o texto: 24/02/2026
+_Título genérico: a substância aparece só no corpo da notícia (trecho abaixo)._
+> nordeste do Brasil. Durante a vistoria no veículo, os policiais encontraram as drogas dentro de caixas de papelão e mochilas na cabine do caminhão. Foram apreendidos 610 kg de maconha, 88 kg de pasta para cocaína e 10 cartelas com 136 comprimidos de anfetamina. O motorista foi preso pela PRF e autuado por tráfico de drogas. O g1 solicitou mais informações à Polícia Rodoviária Federal, mas não teve resposta até a última atualização da reportagem. PRF apreende drogas durante vistoria em caminhão na BR-153 em Araguaína — Foto: PRF-TO/Reprodução TV Anhanguera Veja mais notícias da região no g1 Toc
+- [Imprensa] https://g1.globo.com: https://g1.globo.com/to/tocantins/noticia/2026/02/25/prf-apreende-mais-de-700-kg-de-drogas-transportadas-em-cabine-de-caminhao-na-br-153-no-tocantins.ghtml
+
+## 10. 25/02/2026 · PRF apreende quase 700 kg de drogas escondidas em cabine de caminhão na BR-153
+Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
+Data do fato segundo o texto: 24/02/2026
+_Título genérico: a substância aparece só no corpo da notícia (trecho abaixo)._
+> r de maconha e nervosismo Durante a fiscalização, os policiais perceberam forte odor de maconha vindo da cabine do caminhão. O motorista apresentava nervosismo e agitação. Questionado, ele entregou espontaneamente uma cartela com dois comprimidos de anfetamina, conhecidos como “rebite”. Diante da suspeita, a equipe realizou busca minuciosa na boleia, momento em que o próprio condutor declarou que transportava grande quantidade de drogas. Na cabine do veículo foram encontrados: - 610,2 kg de substância análoga à maconha - 88 kg de substância análoga à pasta base de cocaína - 10 cartelas de anfe
+- [Imprensa] https://jornalprimeirapaginato.com: https://jornalprimeirapaginato.com/prf-apreende-quase-700-kg-de-drogas-escondidas-em-cabine-de-caminhao-na-br-153/
+
+## 11. 25/02/2026 · PRF apreende quase 700 kg de drogas escondidas em caminhão e prende em Araguaína motorista na BR-153
+Substâncias citadas: Anfetamina (rebite) · 1 fonte(s)
+Data do fato segundo o texto: 24/02/2026
+_Título genérico: a substância aparece só no corpo da notícia (trecho abaixo)._
+> Carga incluía 610,2 kg de maconha, 88 kg de pasta base de cocaína e 136 comprimidos de anfetamina; motorista saiu de Goiânia com destino ao Norte do país Por Redação Na terça-feira (24), a Polícia Rodoviária Federal (PRF) apreendeu grande quantidade de drogas e prendeu um homem por tráfico no município de Araguaína/TO. Por volta das 21 horas e 30 minutos, a equipe PRF realizava comando de fiscalização no km 160 da BR-153, quando deu 
+- [Imprensa] https://atitudeto.com.br: https://atitudeto.com.br/noticias/policia/prf-apreende-quase-700-kg-de-drogas-escondidas-em-caminhao-e-prende-em-araguaina-motorista-na-br-153/
+
 ---
-# Fontes extras para casos já no painel (7 links)
+# Fontes extras para casos já no painel (9 links)
 
 Acrescentar como fontes adicionais (com link) dos casos indicados.
+
+## BR26-006
+- https://www.tupi.fm: https://www.tupi.fm/rio/receita-federal-apreende-r-125-milhao-em-drogas-e-itens-ilegais-nos-correios/  (Receita Federal apreende R$ 1,25 milhão em drogas e itens ilegais nos Correios)
+
+## BR26-009
+- https://sgc.com.br: https://sgc.com.br/noticia/5/440698  (Vídeo: Denarc e Receita Federal apreendem 1.046 comprimidos de ecstasy em transportadora de Porto Velho)
 
 ## BR26-016
 - g1.globo.com: https://g1.globo.com/df/distrito-federal/noticia/2026/08/10/brasileiro-e-flagrado-com-24-kg-de-metanfetamina-em-mala-e-mochila-no-aeroporto-de-brasilia.ghtml  (Brasileiro é flagrado com 24 kg de metanfetamina em mala e mochila no Aeroporto de Brasília)

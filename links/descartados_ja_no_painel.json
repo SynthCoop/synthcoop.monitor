@@ -28,5 +28,60 @@
   "alerta_ice": false,
   "descoberto_em": "2026-11-20",
   "evento_base": "BR26-076"
+ },
+ {
+  "url": "https://www.tupi.fm/rio/receita-federal-apreende-r-125-milhao-em-drogas-e-itens-ilegais-nos-correios/",
+  "url_original": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQWlozTExuVms5Si01b3I5bkx1aEFiQzY5SzBLUkdaZTUyZ3hZYURGclVtbVR1ZG0xRTRERS03U2NhRE55NTE5X3pTZ1RvbElHRHFJNUdpOVNndDVSaEp5Y1o0OGtFUGVPZzRvaE9RcDFzM3Z2eXliSjZQZ3RKOF9BcFhPdTJKUDU1U1UwR0o2NktEM3c1NU9zX1dEOTNJUHFKV3NZ?oc=5",
+  "titulo": "Receita Federal apreende R$ 1,25 milhão em drogas e itens ilegais nos Correios",
+  "data_pub": "2026-05-15",
+  "fonte": "https://www.tupi.fm",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Ecstasy/MDMA",
+   "Outro precursor"
+  ],
+  "trecho": "na de gestão de risco para identificar pacotes suspeitos que circulariam pela malha postal brasileira. Atuação dos cães farejadores na triagem postal Entre os itens confiscados, ganharam destaque as substâncias sintéticas, como mais de 2,5 quilos de ecstasy e 250 gramas de MDMA. Os agentes também encontraram 10,5 quilos de skunk e porções de haxixe tipo ICE, além de insumos químicos voltados para o refino de cocaína e cerca de 20 aparelhos celulares sem procedência legal. A fiscalização barrou ainda o envio de 60 ampolas de emagrecedores e medicamentos de uso abortivo, que foram remetidos do R",
+  "alerta_ice": true,
+  "data_fato": "2026-05-14",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-25",
+  "evento_base": "BR26-006"
+ },
+ {
+  "url": "https://sgc.com.br/noticia/5/440698",
+  "url_original": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBpVUthZWVrZjJxdWlKTEhfMGFDREVqd2RTY3ZkN284WW1PTG5ESnZMX0wzaF8yVGZjVmF0WkJCTzhDYy1aVG55cDhjdw?oc=5",
+  "titulo": "Vídeo: Denarc e Receita Federal apreendem 1.046 comprimidos de ecstasy em transportadora de Porto Velho",
+  "data_pub": "2026-06-02",
+  "fonte": "https://sgc.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Ecstasy/MDMA"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-25",
+  "evento_base": "BR26-009"
+ },
+ {
+  "url": "https://ecxonline.com.br/prf-flagra-caminhoneiro-com-comprimidos-de-rebite-na-br-470-em-ibirama/",
+  "url_original": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQUlh0d1VORjBfTEhfN2JZVXZwNGY3ZVF4TDVoWFRZRzd4ZVhVY3pZS00zc3RXVlBnYVYxaEVrc1BCTkJuUTVKOXVmOVh6ekhWd1VnUng1TTc2UEpubnN1SUdGZWlPT1ExU3ItcDVLOHdMUlRlQ3FIbzd2WkVEbDdzYUhWQUIzNEprV0N4TTZreFZ6eEt6eFNocDZ4VFY?oc=5",
+  "titulo": "PRF flagra caminhoneiro com comprimidos de rebite na BR-470, em Ibirama",
+  "data_pub": "2026-01-09",
+  "fonte": "https://ecxonline.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-25",
+  "evento_base": "BR26-059"
  }
 ]
