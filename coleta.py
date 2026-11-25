@@ -61,6 +61,7 @@ ARQ_IBGE = BASE / "dados" / "municipios_ibge.json"          # cache da tabela of
 ARQ_MAPA_MUN = BASE / "dados" / "municipios_mapa.json"      # nome na base -> nome oficial e código IBGE
 URL_IBGE = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios?view=nivelado"
 DATA_FIM: date | None = None                                 # --ate: limite final da coleta (cargas retroativas)
+MAX_FALHAS_HOST = 3                                          # após 3 conexões recusadas seguidas, o site é pulado
 PAUSA_ESPECIAL = {"api.gdeltproject.org": 5.5}              # GDELT pede no máx. 1 consulta a cada 5 s
 
 MODELO = os.getenv("MODELO_CLAUDE", "claude-haiku-5-5")
@@ -239,24 +240,37 @@ class Http:
 
     def __init__(self):
         self.s = requests.Session()
-        retry = Retry(total=3, backoff_factor=1.5, status_forcelist=(429, 500, 502, 503, 504),
+        retry = Retry(total=2, backoff_factor=1.5, status_forcelist=(429, 500, 502, 503, 504),
                       allowed_methods=("GET",))
         self.s.mount("https://", HTTPAdapter(max_retries=retry))
         self.s.mount("http://", HTTPAdapter(max_retries=retry))
         self.s.headers.update({"User-Agent": UA, "Accept-Language": "pt-BR,pt;q=0.9"})
         self._ultimo: dict[str, float] = {}
+        self._falhas: dict[str, int] = {}          # falhas de conexão seguidas por site
+        self.bloqueados: set[str] = set()          # sites que recusam a conexão: ignorados até o fim da execução
 
     def get(self, url: str, **kw) -> requests.Response | None:
         host = urlparse(url).netloc
+        if host in self.bloqueados:
+            return None
         espera = PAUSA_ESPECIAL.get(host, PAUSA_HOST) - (time.monotonic() - self._ultimo.get(host, 0))
         if espera > 0:
             time.sleep(espera)
         try:
             r = self.s.get(url, timeout=kw.pop("timeout", 25), **kw)
             self._ultimo[host] = time.monotonic()
+            self._falhas[host] = 0
             if r.status_code == 200:
                 return r
             log.debug("HTTP %s em %s", r.status_code, url)
+        except (requests.ConnectionError, requests.Timeout) as e:
+            self._ultimo[host] = time.monotonic()
+            self._falhas[host] = self._falhas.get(host, 0) + 1
+            log.debug("falha em %s: %s", url, e)
+            if self._falhas[host] >= MAX_FALHAS_HOST:
+                self.bloqueados.add(host)
+                log.warning("%s recusou %d conexões seguidas: ignorado nesta execução "
+                            "(as notícias desse site ainda chegam pelo Google Notícias/GDELT).", host, MAX_FALHAS_HOST)
         except requests.RequestException as e:
             log.debug("falha em %s: %s", url, e)
         return None
@@ -445,6 +459,8 @@ SITES_OFICIAIS = {
     "sejusp.ms.gov.br": "Oficial-outro", "segurancapublica.rs.gov.br": "Oficial-outro", "sesp.pr.gov.br": "Oficial-outro",
     "ssp.se.gov.br": "Oficial-outro", "sds.pe.gov.br": "Oficial-outro", "sesed.rn.gov.br": "Oficial-outro",
     "sindifisconacional.org.br": "Imprensa", "fenaprf.org.br": "Imprensa", "fenapef.org.br": "Imprensa",
+    # por último: qualquer página gov.br (cobre PF, PRF, Receita e MJ quando os sites recusam o acesso direto)
+    "gov.br": "Oficial",
 }
 
 
