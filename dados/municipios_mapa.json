@@ -1,0 +1,284 @@
+{
+ "Rondonópolis/MT": {
+  "nome_oficial": "Rondonópolis",
+  "cod_ibge": 5107602,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Ibirama/SC": {
+  "nome_oficial": "Ibirama",
+  "cod_ibge": 4206900,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Tianguá/CE": {
+  "nome_oficial": "Tianguá",
+  "cod_ibge": 2313401,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Campina Grande/PB": {
+  "nome_oficial": "Campina Grande",
+  "cod_ibge": 2504009,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Sorriso/MT": {
+  "nome_oficial": "Sorriso",
+  "cod_ibge": 5107925,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Guarulhos/SP": {
+  "nome_oficial": "Guarulhos",
+  "cod_ibge": 3518800,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Natal/RN": {
+  "nome_oficial": "Natal",
+  "cod_ibge": 2408102,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Brasília/DF": {
+  "nome_oficial": "Brasília",
+  "cod_ibge": 5300108,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Sarandi/RS": {
+  "nome_oficial": "Sarandi",
+  "cod_ibge": 4320107,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Bagé/RS": {
+  "nome_oficial": "Bagé",
+  "cod_ibge": 4301602,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Corumbá/MS": {
+  "nome_oficial": "Corumbá",
+  "cod_ibge": 5003207,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Jataí/GO": {
+  "nome_oficial": "Jataí",
+  "cod_ibge": 5211909,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Barra do Turvo/SP": {
+  "nome_oficial": "Barra do Turvo",
+  "cod_ibge": 3505401,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Diversos municípios/TO": {
+  "nome_oficial": "Diversos municípios",
+  "cod_ibge": null,
+  "alterado": false,
+  "encontrado": false
+ },
+ "Torres/RS": {
+  "nome_oficial": "Torres",
+  "cod_ibge": 4321501,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Imperatriz/MA": {
+  "nome_oficial": "Imperatriz",
+  "cod_ibge": 2105302,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Rio de Janeiro/RJ": {
+  "nome_oficial": "Rio de Janeiro",
+  "cod_ibge": 3304557,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Caxias do Sul/RS": {
+  "nome_oficial": "Caxias do Sul",
+  "cod_ibge": 4305108,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Santa Helena/PR": {
+  "nome_oficial": "Santa Helena",
+  "cod_ibge": 4123501,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Macapá/AP": {
+  "nome_oficial": "Macapá",
+  "cod_ibge": 1600303,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Porangatu/GO": {
+  "nome_oficial": "Porangatu",
+  "cod_ibge": 5218003,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Porto Velho/RO": {
+  "nome_oficial": "Porto Velho",
+  "cod_ibge": 1100205,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Itajá/RN": {
+  "nome_oficial": "Itajá",
+  "cod_ibge": 2404853,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Natividade/TO": {
+  "nome_oficial": "Natividade",
+  "cod_ibge": 1714203,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Porto Franco/MA": {
+  "nome_oficial": "Porto Franco",
+  "cod_ibge": 2109007,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Porto Real/RJ": {
+  "nome_oficial": "Porto Real",
+  "cod_ibge": 3304110,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Salinas/MG": {
+  "nome_oficial": "Salinas",
+  "cod_ibge": 3157005,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Patos de Minas/MG": {
+  "nome_oficial": "Patos de Minas",
+  "cod_ibge": 3148004,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Cariri do Tocantins/TO": {
+  "nome_oficial": "Cariri do Tocantins",
+  "cod_ibge": 1703867,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Maceió/AL": {
+  "nome_oficial": "Maceió",
+  "cod_ibge": 2704302,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Papanduva/SC": {
+  "nome_oficial": "Papanduva",
+  "cod_ibge": 4212205,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Assú/RN": {
+  "nome_oficial": "Assú",
+  "cod_ibge": 2400208,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Montes Claros/MG": {
+  "nome_oficial": "Montes Claros",
+  "cod_ibge": 3143302,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Barra Mansa/RJ": {
+  "nome_oficial": "Barra Mansa",
+  "cod_ibge": 3300407,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Salvador/BA": {
+  "nome_oficial": "Salvador",
+  "cod_ibge": 2927408,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Barra do Garças/MT": {
+  "nome_oficial": "Barra do Garças",
+  "cod_ibge": 5101803,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Betim/MG": {
+  "nome_oficial": "Betim",
+  "cod_ibge": 3106705,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Barbacena/MG": {
+  "nome_oficial": "Barbacena",
+  "cod_ibge": 3105608,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Seabra/BA": {
+  "nome_oficial": "Seabra",
+  "cod_ibge": 2929909,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Três Lagoas/MS": {
+  "nome_oficial": "Três Lagoas",
+  "cod_ibge": 5008305,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Foz do Iguaçu/PR": {
+  "nome_oficial": "Foz do Iguaçu",
+  "cod_ibge": 4108304,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Casimiro de Abreu/RJ": {
+  "nome_oficial": "Casimiro de Abreu",
+  "cod_ibge": 3301306,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Fortaleza/CE": {
+  "nome_oficial": "Fortaleza",
+  "cod_ibge": 2304400,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Chapecó/SC": {
+  "nome_oficial": "Chapecó",
+  "cod_ibge": 4204202,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Cristinápolis/SE": {
+  "nome_oficial": "Cristinápolis",
+  "cod_ibge": 2801702,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Duque de Caxias/RJ": {
+  "nome_oficial": "Duque de Caxias",
+  "cod_ibge": 3301702,
+  "alterado": false,
+  "encontrado": true
+ },
+ "Santa Maria da Boa Vista/PE": {
+  "nome_oficial": "Santa Maria da Boa Vista",
+  "cod_ibge": 2612604,
+  "alterado": false,
+  "encontrado": true
+ }
+}
