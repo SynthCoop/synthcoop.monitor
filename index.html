@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Apreensões de Sintéticas 2026</title>
-<meta name="description" content="Painel de apreensões de drogas sintéticas e precursores químicos com participação da PF, PRF e Receita Federal em 2026, compilado de notícias oficiais e da imprensa.">
+<title>Sintéticas e Laboratórios 2026</title>
+<meta name="description" content="Painel de apreensões de drogas sintéticas e precursores (PF, PRF e Receita Federal) e de laboratórios clandestinos no Brasil em 2026, compilado de notícias oficiais e da imprensa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz@8..60&display=swap" rel="stylesheet">
 <style>
@@ -41,7 +41,9 @@ main.wrap{max-width:1240px;margin:0 auto;padding:28px 16px 48px}
 <script>
 /* Substitui o ambiente do Claude: carrega dados/apreensoes.json e guarda os filtros no endereço (#...) */
 window.dash = (() => {
-  let estado = { status: 'loading', data: null };
+  const ARQS = { apreensoes: 'dados/apreensoes.json', laboratorios: 'dados/laboratorios.json' };
+  const estado = {};
+  Object.keys(ARQS).forEach((k) => { estado[k] = { status: 'loading', data: null }; });
   const ouvintes = [];
   let params = {};
   try { const h = decodeURIComponent(location.hash.slice(1)); if (h) params = JSON.parse(h) || {}; } catch (e) { params = {}; }
@@ -55,13 +57,15 @@ window.dash = (() => {
       try { history.replaceState(null, '', Object.keys(params).length ? '#' + encodeURIComponent(JSON.stringify(params)) : location.pathname + location.search); } catch (e) {}
       avisar();
     },
-    data: () => estado,
+    data: (nome) => estado[nome || 'apreensoes'] || { status: 'missing', data: null },
     onData: (f) => { ouvintes.push(f); f(); },
   };
-  fetch('dados/apreensoes.json?v=' + Date.now(), { cache: 'no-store' })
-    .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then((rows) => { estado = { status: 'ok', data: Array.isArray(rows) ? rows : (rows.registros || []) }; avisar(); })
-    .catch((e) => { console.error('Falha ao carregar dados', e); estado = { status: 'error', data: [] }; avisar(); });
+  Object.entries(ARQS).forEach(([nome, arq]) => {
+    fetch(arq + '?v=' + Date.now(), { cache: 'no-store' })
+      .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then((rows) => { estado[nome] = { status: 'ok', data: Array.isArray(rows) ? rows : (rows.registros || []) }; avisar(); })
+      .catch((e) => { console.error('Falha ao carregar ' + arq, e); estado[nome] = { status: 'error', data: [] }; avisar(); });
+  });
   return api;
 })();
 </script>
@@ -111,7 +115,7 @@ window.dash = (() => {
 .ap-spanel { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md, 12px); }
 .ap-spanel h4 { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
 .ap-spanel .ap-unit { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-sm); }
-.ap-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-sm); min-height: 4.5rem; }
+.ap-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(46%, 11rem), 1fr)); gap: var(--cds-gap-sm); min-height: 4.5rem; }
 .ap-kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-sm) var(--cds-pad-md, 12px); }
 .ap-kpi b { display: block; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); font-variant-numeric: tabular-nums; }
 .ap-kpi span { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
@@ -153,16 +157,30 @@ window.dash = (() => {
 .ap-conf-alta { border-color: var(--color-good); color: var(--color-good); }
 .ap-conf-baixa { border-color: var(--color-bad); color: var(--color-bad); }
 #tabela .ap-shared { margin: 0 0 var(--cds-gap-sm); }
+.ap-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--color-border-line); margin: var(--cds-gap-lg) 0 var(--cds-gap-lg); overflow-x: auto; }
+.ap-tabs [role=tab] { font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg-muted); background: none; border: 0; border-bottom: 2px solid transparent; padding: var(--cds-pad-sm) var(--cds-pad-md); cursor: pointer; white-space: nowrap; margin-bottom: -1px; }
+.ap-tabs [role=tab][aria-selected=true] { color: var(--color-fg); border-bottom-color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.ap-tabs [role=tab]:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+.ap-pane[hidden] { display: none; }
+.lab-bars, .lab-meses { min-height: 8rem; display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.lab-stack { display: flex; height: 14px; border-radius: 4px; overflow: hidden; min-width: 2px; }
+.lab-stack i { display: block; height: 100%; }
+.lab-rank > div { grid-template-columns: 2.5rem 1fr; }
 [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
 @media (max-width: 760px) { .ap-hide-narrow { display: none; } }
 </style>
 
 <div class="ap">
   <header class="ap-head" id="topo">
-    <h1>Apreensões de drogas sintéticas no Brasil — 2026</h1>
+    <h1>Drogas sintéticas no Brasil — 2026: apreensões e laboratórios</h1>
     <div class="ap-upd dash-skeleton" data-source="apreensoes"></div>
-    <p>Apreensões de drogas sintéticas (ecstasy/MDMA, metanfetamina, anfetamina, LSD, cetamina, GHB e selos de composição indefinida) e de precursores químicos (acetato de etila, helional, safrol e outros) com participação da Polícia Federal, da Polícia Rodoviária Federal e da Receita Federal, reunidas de notícias oficiais e da imprensa, com duplicatas removidas. Atualização semanal às segundas-feiras, 9h.</p>
+    <p><b>Aba Apreensões:</b> apreensões de drogas sintéticas (ecstasy/MDMA, metanfetamina, anfetamina, LSD, cetamina, GHB e selos de composição indefinida) e de precursores químicos (acetato de etila, helional, safrol e outros) com participação da Polícia Federal, da Polícia Rodoviária Federal e da Receita Federal, reunidas de notícias oficiais e da imprensa, com duplicatas removidas. Atualização semanal às segundas-feiras, 9h. <b>Aba Laboratórios:</b> laboratórios clandestinos, locais de descarte e equipamentos de produção apreendidos por qualquer força policial ou órgão de justiça.</p>
   </header>
+  <nav class="ap-tabs" role="tablist" aria-label="Seções do painel">
+    <button type="button" role="tab" data-tab="apreensoes" aria-selected="true">Apreensões</button>
+    <button type="button" role="tab" data-tab="labs" aria-selected="false" tabindex="-1">Laboratórios clandestinos</button>
+  </nav>
+  <div class="ap-pane" data-pane="apreensoes">
 
 
   <section class="ap-sec" id="graficos">
@@ -290,6 +308,80 @@ window.dash = (() => {
   </section>
 
   <p class="ap-foot">Como ler: cada linha é uma droga apreendida em uma ocorrência; uma ocorrência com várias drogas aparece em várias linhas. Massa (kg ou t) e unidades (comprimidos, ampolas, frascos) nunca são somadas entre si; quando uma apreensão de ecstasy/MDMA informa peso e número de comprimidos, os gráficos contam os comprimidos. Nos gráficos por instituição, só aparecem substâncias com ao menos uma apreensão no período filtrado. No gráfico por substância, cada painel tem escala própria: as barras só se comparam dentro do mesmo painel. Precursores químicos são insumos (por exemplo, acetato de etila para refino de cocaína; helional e safrol para MDMA), não drogas prontas. “Novo” marca os casos que entraram no painel na última atualização com casos novos. Tipo de ocorrência: “Porte para consumo” quando houve termo circunstanciado (TCO) sem prisão; “Tráfico” quando houve prisão, quantidade relevante, remessa, aeroporto, fronteira ou precursor; “Não informado” nos casos pequenos sem desfecho divulgado. Pessoas presas, armas e dinheiro se referem à ocorrência inteira e se repetem nas linhas de uma mesma ocorrência. “Não” nos filtros inclui os casos em que a fonte não informa; munições sem arma contam como “Não” e aparecem no detalhe. A instituição é a que detectou ou liderou a apreensão; as demais aparecem nas observações. Notícias não cobrem todas as apreensões: os totais são indicadores, não estatística oficial. Apreensões conduzidas só por polícias estaduais ficam de fora.</p>
+  </div>
+  <div class="ap-pane" data-pane="labs" hidden>
+  <section class="ap-sec" id="labs-resumo">
+    <h2>Laboratórios clandestinos</h2>
+    <p class="ap-note">Laboratórios de síntese, precursores, processamento/corte/embalagem e comprimidos (tipologia do UNODC, <i>Guidelines for the Dismantling of Clandestine Laboratories</i>, 2024), mais refino de cocaína, inalantes (lança-perfume, loló), locais de descarte de resíduos químicos e equipamentos de produção apreendidos. Diferente das apreensões, aqui entram ações de qualquer força policial ou órgão de justiça — federal, estadual ou municipal — e casos sem quantidade divulgada.</p>
+    <div class="ap-filters">
+      <label>Tipo<select class="ap-l" data-p="l_tipo" aria-label="Tipo de laboratório"></select></label>
+      <label>Escala<select class="ap-l" data-p="l_escala" aria-label="Escala"></select></label>
+      <label>Droga-alvo<select class="ap-l" data-p="l_grupo" aria-label="Grupo da droga-alvo"></select></label>
+      <label>Esfera<select class="ap-l" data-p="l_esfera" aria-label="Esfera dos órgãos"></select></label>
+      <label>UF<select class="ap-l" data-p="l_uf" aria-label="UF"></select></label>
+      <label>Mês<select class="ap-l" data-p="l_mes" aria-label="Mês"></select></label>
+      <label>Confiança<select class="ap-l" data-p="l_conf" aria-label="Confiança"></select></label>
+      <button type="button" class="ap-l-reset">Limpar filtros</button>
+    </div>
+    <div class="ap-kpis lab-kpis dash-skeleton" data-source="laboratorios"></div>
+  </section>
+
+  <section class="ap-sec">
+    <div class="ap-grid">
+      <div class="ap-card" id="lab-tipos" data-source="laboratorios">
+        <h3>Laboratórios por tipo</h3>
+        <p class="ap-note">Contagem de laboratórios com os filtros escolhidos.</p>
+        <div class="lab-bars dash-skeleton"></div>
+      </div>
+      <div class="ap-card" id="lab-mensal" data-source="laboratorios">
+        <h3>Laboratórios por mês</h3>
+        <p class="ap-note">Cada barra é dividida pelo grupo da droga-alvo. Passe o mouse para ver os tipos.</p>
+        <div class="lab-legenda ap-legend"></div>
+        <div class="lab-meses dash-skeleton"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ap-sec">
+    <div class="ap-card" id="lab-mapa" data-source="laboratorios">
+      <h3>Laboratórios por UF</h3>
+      <p class="ap-note">Quanto mais forte a cor do estado, mais laboratórios com os filtros escolhidos.</p>
+      <div class="ap-mapwrap">
+        <div class="ap-mapa lab-mapa dash-skeleton"></div>
+        <div class="ap-rank lab-rank"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ap-sec">
+    <h2>Todos os laboratórios registrados</h2>
+    <div class="ap-tablebox">
+      <table class="ap-table lab-table" data-source="laboratorios" data-row-key="id">
+        <thead><tr>
+          <th><button type="button" data-lsort="lote">Novo</button></th>
+          <th><button type="button" data-lsort="data">Data</button></th>
+          <th><button type="button" data-lsort="municipio">Cidade</button></th>
+          <th><button type="button" data-lsort="uf">UF</button></th>
+          <th><button type="button" data-lsort="tipo_lab">Tipo</button></th>
+          <th><button type="button" data-lsort="escala">Escala</button></th>
+          <th><button type="button" data-lsort="grupo">Droga-alvo</button></th>
+          <th class="ap-hide-narrow"><button type="button" data-lsort="tipo_local">Local</button></th>
+          <th><button type="button" data-lsort="nequip">Equipamentos</button></th>
+          <th><button type="button" data-lsort="produto">Insumos e produto apreendido</button></th>
+          <th><button type="button" data-lsort="npres">Presos</button></th>
+          <th class="ap-hide-narrow"><button type="button" data-lsort="arma">Armas / dinheiro</button></th>
+          <th><button type="button" data-lsort="orgaos">Órgãos (esfera)</button></th>
+          <th><button type="button" data-lsort="nfontes">Fontes</button></th>
+          <th><button type="button" data-lsort="conf">Confiança</button></th>
+          <th class="ap-hide-narrow"><button type="button" data-lsort="observacoes">Observações</button></th>
+        </tr></thead>
+        <tbody class="lab-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="ap-foot">Como ler: cada linha é um laboratório, local de descarte ou apreensão de equipamento. Tipos — <b>Síntese</b>: produção da droga por reação química; <b>Precursores</b>: fabricação de precursores ou extração de efedrina/pseudoefedrina; <b>Processamento, corte e embalagem</b>: cristalização, mistura com agentes de corte, fracionamento e embalagem; <b>Comprimidos</b>: prensagem ou encapsulamento; <b>Misto</b>: mais de uma etapa no mesmo local; <b>Refino de cocaína</b>; <b>Inalantes</b>; <b>Descarte de resíduos</b>; <b>Equipamento apreendido</b> (prensa, punções etc. sem laboratório montado). Escala — pequeno (“cozinha”, residência), médio (galpão, sítio, várias etapas) e industrial (reatores industriais ou centenas de quilos). Drogas apreendidas no local constam do campo “produto”; se houver participação federal e droga sintética, a apreensão também aparece na aba Apreensões. Notícias não cobrem todos os casos: os totais são indicadores, não estatística oficial.</p>
+  </div>
 </div>
 
 <script>
@@ -407,9 +499,9 @@ window.dash = (() => {
     ];
     for (const t of tentativas) { try { MAPA = await t(); } catch (e) { MAPA = null; } if (MAPA) break; }
     MAPA_ESTADO = MAPA ? 'ok' : 'falhou';
-    draw();
+    draw(); window.dispatchEvent(new Event('ap-mapa'));
   })();
-  setTimeout(() => { if (MAPA_ESTADO === 'carregando') { MAPA_ESTADO = 'falhou'; draw(); } }, 12000);
+  setTimeout(() => { if (MAPA_ESTADO === 'carregando') { MAPA_ESTADO = 'falhou'; draw(); window.dispatchEvent(new Event('ap-mapa')); } }, 12000);
   const SIGLA = { 'Polícia Federal': 'PF', 'Polícia Rodoviária Federal': 'PRF', 'Receita Federal': 'Receita' };
 
   // ---------- filtros do gráfico por substância ----------
@@ -444,6 +536,7 @@ window.dash = (() => {
     tip.style.left = x + 'px'; tip.style.top = y + 'px';
   };
   const hideTip = () => { if (tip) tip.hidden = true; };
+  window.__AP = { showTip, hideTip, TILES, get MAPA() { return MAPA; }, get ESTADO() { return MAPA_ESTADO; } };   // usado pela aba Laboratórios
 
   // Regra permanente: ecstasy/MDMA com peso e comprimidos informados conta pelos comprimidos.
   const medida = (r) => {
@@ -895,10 +988,240 @@ window.dash = (() => {
   dash.onData(draw);
 })();
 </script>
+<script>
+/* Abas e aba "Laboratórios clandestinos" */
+(() => {
+  const root = document.querySelector('.ap');
+  const P = () => dash.params();
+  const MESES = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const TIPOS = ['Síntese', 'Precursores', 'Processamento, corte e embalagem', 'Comprimidos', 'Misto', 'Refino de cocaína',
+                 'Inalantes', 'Descarte de resíduos', 'Equipamento apreendido', 'Não classificado'];
+  const ESCALAS = ['Pequeno', 'Médio', 'Industrial', 'Não informado'];
+  const GRUPOS = ['Sintética', 'Cocaína/crack', 'Inalantes', 'Outra (THC)', 'Não identificada'];
+  const ESFERAS = [['Federal', 'Com participação federal'], ['Estadual', 'Com participação estadual'], ['so-estadual', 'Só estadual/municipal'], ['Judiciário/MP', 'Com Judiciário/MP']];
+  const lista = (v) => Array.isArray(v) ? v : (v ? [v] : []);
+  const cores = () => ({ 'Sintética': dash.colors[0], 'Cocaína/crack': dash.colors[1], 'Inalantes': dash.colors[2], 'Outra (THC)': dash.colors[3], 'Não identificada': 'var(--cds-chart-muted)' });
+
+  // ---------- abas ----------
+  const tabs = [...root.querySelectorAll('.ap-tabs [role=tab]')];
+  const panes = [...root.querySelectorAll('.ap-pane')];
+  tabs.forEach((t) => t.addEventListener('click', () => dash.setParams({ aba: t.dataset.tab === 'apreensoes' ? '' : t.dataset.tab })));
+  tabs.forEach((t, i) => t.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); n.click();
+  }));
+  const aplicaAba = () => {
+    const aba = P().aba || 'apreensoes';
+    tabs.forEach((t) => { const on = t.dataset.tab === aba; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+    panes.forEach((p) => { p.hidden = p.dataset.pane !== aba; });
+  };
+
+  // ---------- filtros ----------
+  const lSels = [...root.querySelectorAll('select.ap-l')];
+  lSels.forEach((s) => s.addEventListener('change', () => dash.setParams({ [s.dataset.p]: s.value })));
+  root.querySelector('.ap-l-reset').addEventListener('click', () => dash.setParams({ l_tipo: '', l_escala: '', l_grupo: '', l_esfera: '', l_uf: '', l_mes: '', l_conf: '' }));
+  const fill = (sel, opts, value) => {
+    if (sel === document.activeElement) return;
+    sel.replaceChildren(...opts.map(([v, t]) => new Option(t, v)));
+    sel.value = value ?? '';
+  };
+  const filtroL = (p) => (r) => (!p.l_tipo || r.tipo_lab === p.l_tipo)
+    && (!p.l_escala || r.escala === p.l_escala)
+    && (!p.l_grupo || lista(r.grupo_droga).includes(p.l_grupo))
+    && (!p.l_esfera || (p.l_esfera === 'so-estadual' ? !/Federal/.test(r.esfera || '') : (r.esfera || '').includes(p.l_esfera)))
+    && (!p.l_uf || r.uf === p.l_uf)
+    && (!p.l_mes || String(r.mes) === String(p.l_mes))
+    && (!p.l_conf || r.confianca === p.l_conf);
+
+  const kBox = root.querySelector('.lab-kpis'), tBox = root.querySelector('.lab-bars'), mBox = root.querySelector('.lab-meses');
+  const legBox = root.querySelector('.lab-legenda'), uBox = root.querySelector('.lab-mapa'), uRank = root.querySelector('.lab-rank');
+  const table = root.querySelector('.lab-table'), tbody = root.querySelector('.lab-tbody');
+  const card = (id) => root.querySelector('#' + id);
+  const falha = (box) => { box.classList.remove('dash-skeleton'); const f = document.createElement('div'); f.className = 'ap-fail'; f.textContent = 'Não carregou'; box.appendChild(f); };
+  const vazio = (box, txt) => { const e = document.createElement('div'); e.className = 'ap-empty'; e.textContent = txt; box.appendChild(e); };
+  const AP = () => window.__AP || {};
+  const tip = (c, ev, h, l) => AP().showTip && AP().showTip(c, ev, h, l);
+  const untip = () => AP().hideTip && AP().hideTip();
+
+  let sortKey = 'data', sortDir = -1;
+  root.querySelectorAll('th button[data-lsort]').forEach((b) => b.addEventListener('click', () => {
+    if (sortKey === b.dataset.lsort) sortDir = -sortDir; else { sortKey = b.dataset.lsort; sortDir = ['data', 'lote', 'npres', 'nequip', 'nfontes', 'conf'].includes(sortKey) ? -1 : 1; }
+    draw();
+  }));
+  const fontes = (r) => [{ nome: r.fonte_nome, url: r.fonte_url }, ...(r.fontes_extra || [])].filter((f) => f && f.url);
+  const valor = (r, k) => ({
+    lote: r.lote || 0, data: r.data || '', npres: r.n_presos || 0, nequip: lista(r.equipamentos).length, nfontes: fontes(r).length,
+    conf: ({ Alta: 3, 'Média': 2, Baixa: 1 })[r.confianca] || 0, grupo: lista(r.grupo_droga).join(', '),
+    produto: [lista(r.insumos).join('; '), r.produto_apreendido].join(' '), orgaos: r.orgaos_envolvidos || '', arma: r.arma || '',
+  })[k] ?? (r[k] ?? '');
+
+  function barras(box, itens, max, cor, rotulo) {
+    itens.forEach(([lab, n, extra]) => {
+      const row = document.createElement('div'); row.className = 'ap-row';
+      const l = document.createElement('div'); l.className = 'ap-lab'; l.textContent = lab;
+      const tr = document.createElement('div'); tr.className = 'ap-track';
+      const b = document.createElement('div'); b.className = 'ap-bar'; b.style.background = cor; b.style.width = `calc((100% - 6rem) * ${n / max})`;
+      const v = document.createElement('span'); v.className = 'ap-count'; v.textContent = rotulo(n);
+      tr.append(b, v); row.append(l, tr); box.appendChild(row);
+      if (extra) row.addEventListener('mousemove', (ev) => tip(box.closest('.ap-card'), ev, lab, extra));
+      row.addEventListener('mouseleave', untip);
+    });
+  }
+  const nLab = (n) => n === 1 ? '1 laboratório' : `${n} laboratórios`;
+
+  function draw() {
+    aplicaAba();
+    const d = dash.data('laboratorios');
+    const p = P();
+    const rows = d.status === 'ok' && Array.isArray(d.data) ? d.data : [];
+    const ufs = [...new Set(rows.map((r) => r.uf).filter(Boolean))].sort();
+    const meses = [...new Set(rows.map((r) => r.mes).filter(Boolean))].sort((a, b) => a - b);
+    const tiposPres = TIPOS.filter((t) => rows.some((r) => r.tipo_lab === t));
+    const opts = {
+      l_tipo: [['', 'Todos'], ...tiposPres.map((t) => [t, t])], l_escala: [['', 'Todas'], ...ESCALAS.map((e) => [e, e])],
+      l_grupo: [['', 'Todos'], ...GRUPOS.filter((g) => rows.some((r) => lista(r.grupo_droga).includes(g))).map((g) => [g, g])],
+      l_esfera: [['', 'Todas'], ...ESFERAS], l_uf: [['', 'Todas'], ...ufs.map((u) => [u, u])],
+      l_mes: [['', 'Todos'], ...meses.map((m) => [String(m), MESES[m - 1]])],
+      l_conf: [['', 'Todas'], ['Alta', 'Alta'], ['Média', 'Média'], ['Baixa', 'Baixa (a conferir)']],
+    };
+    lSels.forEach((s) => fill(s, opts[s.dataset.p], p[s.dataset.p]));
+    [kBox, tBox, mBox, uBox, uRank, legBox].forEach((b) => b.replaceChildren());
+    root.querySelectorAll('th button[data-lsort]').forEach((b) => b.closest('th').setAttribute('aria-sort', b.dataset.lsort === sortKey ? (sortDir > 0 ? 'ascending' : 'descending') : 'none'));
+    tbody.replaceChildren();
+    if (d.status !== 'ok') {
+      const err = d.status === 'error' || d.status === 'connect';
+      [kBox, tBox, mBox, uBox].forEach((b) => (err ? falha(b) : b.classList.add('dash-skeleton')));
+      table.classList.toggle('dash-skeleton', !err);
+      return;
+    }
+    [kBox, tBox, mBox, uBox].forEach((b) => b.classList.remove('dash-skeleton')); table.classList.remove('dash-skeleton');
+    const L = rows.filter(filtroL(p));
+
+    // indicadores
+    const fed = L.filter((r) => /Federal/.test(r.esfera || '')).length;
+    const presos = L.reduce((s, r) => s + (Number(r.n_presos) || 0), 0);
+    const nov = L.filter((r) => r.novo === 'Novo').length;
+    [[L.length, 'laboratórios e casos registrados'],
+     [L.filter((r) => lista(r.grupo_droga).includes('Sintética')).length, 'com droga sintética'],
+     [L.filter((r) => r.tipo_lab === 'Refino de cocaína').length, 'de refino de cocaína'],
+     [L.filter((r) => r.tipo_lab === 'Inalantes' || lista(r.grupo_droga).includes('Inalantes')).length, 'com inalantes'],
+     [L.filter((r) => r.escala === 'Industrial').length, 'de escala industrial'],
+     [L.filter((r) => lista(r.equipamentos).length).length, 'com equipamentos apreendidos'],
+     [fed, 'com participação federal'], [presos, 'pessoas presas (informadas)'], [nov, 'novos na última atualização']].forEach(([v, t]) => {
+      const k = document.createElement('div'); k.className = 'ap-kpi'; const b = document.createElement('b'); b.textContent = v.toLocaleString('pt-BR');
+      const s = document.createElement('span'); s.textContent = t; k.append(b, s); kBox.appendChild(k);
+    });
+    if (!L.length) { vazio(tBox, 'Nenhum laboratório com esses filtros.'); vazio(mBox, 'Nenhum laboratório com esses filtros.'); }
+
+    // por tipo
+    const porTipo = TIPOS.map((t) => [t, L.filter((r) => r.tipo_lab === t)]).filter(([, a]) => a.length);
+    const maxT = Math.max(1, ...porTipo.map(([, a]) => a.length));
+    barras(tBox, porTipo.map(([t, a]) => [t, a.length, ESCALAS.map((e) => [e, a.filter((r) => r.escala === e).length]).filter((x) => x[1]).map((x) => `${x[0]}: ${x[1]}`)]),
+      maxT, dash.colors[0], nLab);
+
+    // por mês (empilhado por grupo)
+    const C = cores();
+    const gruposUsados = GRUPOS.filter((g) => L.some((r) => (lista(r.grupo_droga)[0] || 'Não identificada') === g));
+    gruposUsados.forEach((g) => { const s = document.createElement('span'); const i = document.createElement('i'); i.style.background = C[g]; s.append(i, g); legBox.appendChild(s); });
+    const mesesL = [...new Set(L.map((r) => r.mes))].sort((a, b) => a - b);
+    const maxM = Math.max(1, ...mesesL.map((m) => L.filter((r) => r.mes === m).length));
+    mesesL.forEach((m) => {
+      const doMes = L.filter((r) => r.mes === m);
+      const row = document.createElement('div'); row.className = 'ap-row';
+      const l = document.createElement('div'); l.className = 'ap-lab'; l.textContent = MESES[m - 1];
+      const tr = document.createElement('div'); tr.className = 'ap-track';
+      const stack = document.createElement('div'); stack.className = 'lab-stack'; stack.style.width = `calc((100% - 6rem) * ${doMes.length / maxM})`;
+      gruposUsados.forEach((g) => {
+        const n = doMes.filter((r) => (lista(r.grupo_droga)[0] || 'Não identificada') === g).length;
+        if (!n) return; const seg = document.createElement('i'); seg.style.background = C[g]; seg.style.flex = String(n); stack.appendChild(seg);
+      });
+      const v = document.createElement('span'); v.className = 'ap-count'; v.textContent = String(doMes.length);
+      tr.append(stack, v); row.append(l, tr); mBox.appendChild(row);
+      const det = TIPOS.map((t) => [t, doMes.filter((r) => r.tipo_lab === t).length]).filter((x) => x[1]).map((x) => `${x[0]}: ${x[1]}`);
+      row.addEventListener('mousemove', (ev) => tip(card('lab-mensal'), ev, `${MESES[m - 1]} — ${nLab(doMes.length)}`, det));
+      row.addEventListener('mouseleave', untip);
+    });
+
+    // mapa por UF
+    const porUF = new Map(); L.forEach((r) => { if (r.uf) porUF.set(r.uf, [...(porUF.get(r.uf) || []), r]); });
+    const cont = (uf) => (porUF.get(uf) || []).length;
+    const maxU = Math.max(1, ...[...porUF.keys()].map(cont));
+    const cor = dash.colors[1] || dash.colors[0];
+    const tom = (n) => n ? `color-mix(in srgb, ${cor} ${Math.round(18 + 82 * Math.sqrt(n / maxU))}%, var(--color-panel))` : 'var(--cds-chart-muted)';
+    const det = (uf) => TIPOS.map((t) => [t, (porUF.get(uf) || []).filter((r) => r.tipo_lab === t).length]).filter((x) => x[1]).map((x) => `${x[0]}: ${x[1]}`);
+    const { MAPA, ESTADO, TILES } = AP();
+    if (ESTADO === 'carregando' || !AP().ESTADO) uBox.classList.add('dash-skeleton');
+    else if (MAPA) {
+      const NS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('viewBox', MAPA.viewBox); svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', 'Mapa do Brasil com número de laboratórios por estado'); uBox.appendChild(svg);
+      const rot = [];
+      MAPA.locs.forEach((l) => {
+        const n = cont(l.uf); const e = document.createElementNS(NS, 'path'); e.setAttribute('d', l.path); e.setAttribute('fill', tom(n));
+        e.addEventListener('mousemove', (ev) => tip(card('lab-mapa'), ev, l.uf, [n ? nLab(n) : 'Nenhum laboratório', ...det(l.uf)]));
+        e.addEventListener('mouseleave', untip); svg.appendChild(e); if (n) rot.push([e, l.uf, n]);
+      });
+      if (!uBox.closest('[hidden]')) {
+        const vb = MAPA.viewBox.split(/\s+/).map(Number); const k = vb[2] / Math.max(1, svg.getBoundingClientRect().width || vb[2]);
+        rot.forEach(([e, uf, n]) => {
+          let b; try { b = e.getBBox(); } catch (x) { return; }
+          const t = document.createElementNS(NS, 'text'); t.setAttribute('x', b.x + b.width / 2); t.setAttribute('y', b.y + b.height / 2);
+          t.setAttribute('text-anchor', 'middle'); t.setAttribute('dominant-baseline', 'central'); t.setAttribute('font-size', String(11 * k));
+          t.setAttribute('stroke-width', String(3 * k)); t.textContent = `${uf} ${n}`; svg.appendChild(t);
+        });
+      }
+      const cr = document.createElement('div'); cr.className = 'ap-credito'; cr.textContent = MAPA.credito; uBox.appendChild(cr);
+    } else if (TILES) {
+      const grade = document.createElement('div'); grade.className = 'ap-tiles';
+      Object.entries(TILES).forEach(([uf, [rr, cc]]) => {
+        const n = cont(uf); const t = document.createElement('div'); t.className = 'ap-tile';
+        t.style.gridRow = String(rr + 1); t.style.gridColumn = String(cc + 1); t.style.background = n ? tom(n) : 'transparent';
+        const b = document.createElement('b'); b.textContent = uf; const c = document.createElement('span'); c.textContent = n || '';
+        t.append(b, c); t.addEventListener('mousemove', (ev) => tip(card('lab-mapa'), ev, uf, [nLab(n), ...det(uf)])); t.addEventListener('mouseleave', untip);
+        grade.appendChild(t);
+      });
+      uBox.appendChild(grade);
+    }
+    const top = [...porUF.keys()].sort((a, b) => cont(b) - cont(a) || a.localeCompare(b)).slice(0, 8);
+    if (!top.length) vazio(uRank, 'Nenhum laboratório com esses filtros.');
+    top.forEach((uf) => {
+      const row = document.createElement('div'); const lab = document.createElement('span'); lab.textContent = uf;
+      const track = document.createElement('div'); track.className = 'ap-track';
+      const bar = document.createElement('div'); bar.className = 'ap-bar'; bar.style.background = cor; bar.style.width = `calc((100% - 7rem) * ${cont(uf) / maxU})`;
+      const v = document.createElement('span'); v.className = 'ap-count'; v.textContent = nLab(cont(uf));
+      track.append(bar, v); row.append(lab, track); uRank.appendChild(row);
+    });
+
+    // tabela
+    const T = [...L].sort((a, b) => { const x = valor(a, sortKey), y = valor(b, sortKey); return (x > y ? 1 : x < y ? -1 : 0) * sortDir || String(b.data).localeCompare(String(a.data)); });
+    if (!T.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = 16; vazio(td, 'Nenhum laboratório com esses filtros.'); tr.appendChild(td); tbody.appendChild(tr); }
+    T.forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.rowKey = r.id;
+      const td = (txt, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; if (txt instanceof Node) c.appendChild(txt); else c.textContent = txt ?? ''; tr.appendChild(c); return c; };
+      const novo = document.createElement('span'); if (r.novo === 'Novo') { novo.className = 'ap-novo'; novo.textContent = 'Novo'; } td(novo);
+      td(r.data_br); td(r.municipio); td(r.uf); td(r.tipo_lab); td(r.escala);
+      td([lista(r.grupo_droga).join(', '), lista(r.drogas_alvo).length ? `(${lista(r.drogas_alvo).join(', ')})` : ''].join(' ').trim());
+      td(r.tipo_local, 'ap-hide-narrow');
+      td(lista(r.equipamentos).join('; ') || '—');
+      td([lista(r.insumos).join('; '), r.produto_apreendido && r.produto_apreendido !== 'Não informado' ? r.produto_apreendido : ''].filter(Boolean).join(' · ') || 'Não informado', 'ap-obs');
+      td(r.presos === 'Sim' ? `${r.n_presos ?? 'Sim (nº não informado)'}${r.adolescentes ? ` (+${r.adolescentes} adolescente${r.adolescentes > 1 ? 's' : ''})` : ''}` : (r.presos === 'Não' ? '0' : 'Não informado'));
+      td([r.arma === 'Sim' ? r.armas_txt || 'Sim' : '', r.dinheiro === 'Sim' ? 'Dinheiro: ' + (r.dinheiro_txt || 'sim') : ''].filter(Boolean).join(' · ') || '—', 'ap-hide-narrow');
+      td(`${r.orgaos_envolvidos || ''} (${r.esfera || 'n/i'})${r.operacao ? ' · ' + r.operacao : ''}`);
+      const f = document.createElement('div'); fontes(r).forEach((x) => { const a = document.createElement('a'); a.href = x.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = x.nome || 'fonte'; f.appendChild(a); }); td(f, 'ap-fontes');
+      const cf = document.createElement('span'); cf.className = 'ap-conf ap-conf-' + String(r.confianca || '').normalize('NFD').replace(/[^A-Za-z]/g, '').toLowerCase(); cf.textContent = r.confianca || '—'; td(cf);
+      td(r.observacoes, 'ap-obs ap-hide-narrow');
+      tbody.appendChild(tr);
+    });
+  }
+  window.addEventListener('ap-mapa', draw);
+  dash.onData(draw);
+})();
+</script>
+
 
 <footer class="site-foot">
   Dados compilados a partir das páginas de notícias da Polícia Federal, Polícia Rodoviária Federal, Receita Federal, Sindireceita e da imprensa nacional e local. Cada linha da tabela traz o link da fonte.
-  Baixe os dados: <a href="dados/apreensoes.json">apreensoes.json</a>.
+  Baixe os dados: <a href="dados/apreensoes.json">apreensoes.json</a> · <a href="dados/laboratorios.json">laboratorios.json</a>.
 </footer>
 </main>
 </body>

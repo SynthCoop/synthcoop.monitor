@@ -55,7 +55,10 @@ DIR_REL = BASE / "relatorios"
 DIR_LINKS = BASE / "links"
 PEND_JSON = DIR_LINKS / "pendentes.json"
 PEND_MD = DIR_LINKS / "pendentes.md"
-EXTRA_JSON = DIR_LINKS / "fontes_extras.json"   # {evento_id: [{url, titulo, fonte}]} para casos já no painel
+EXTRA_JSON = DIR_LINKS / "fontes_extras.json"
+ARQ_LABS = BASE / "dados" / "laboratorios.json"               # base de laboratórios (espaço à parte)
+PEND_LABS_JSON = DIR_LINKS / "laboratorios_pendentes.json"
+PEND_LABS_MD = DIR_LINKS / "laboratorios_pendentes.md"   # {evento_id: [{url, titulo, fonte}]} para casos já no painel
 MAX_COMPLEMENTAR = 25                           # buscas complementares por execução
 ARQ_IBGE = BASE / "dados" / "municipios_ibge.json"          # cache da tabela oficial de municípios (API do IBGE)
 ARQ_MAPA_MUN = BASE / "dados" / "municipios_mapa.json"      # nome na base -> nome oficial e código IBGE
@@ -507,7 +510,8 @@ def fonte_gdelt(http: Http, desde: date):
 
 
 FONTES = {"pf": fonte_pf, "prf": fonte_prf, "receita": fonte_receita, "mj": fonte_mj,
-          "sindireceita": fonte_sindireceita, "sites": fonte_sites, "imprensa": fonte_imprensa, "gdelt": fonte_gdelt}
+          "sindireceita": fonte_sindireceita, "sites": fonte_sites, "imprensa": fonte_imprensa, "gdelt": fonte_gdelt,
+          "labs": lambda http, desde: fonte_labs(http, desde)}
 FONTES_FEDERAIS = {"gov.br/pf", "gov.br/prf", "gov.br/receitafederal"}   # dispensam o órgão citado no título
 
 
@@ -746,7 +750,7 @@ def padronizar_municipios():
     base, _ = carregar()
     tabela_ibge(Http())
     mapa = {}
-    for r in base:
+    for r in base + carregar_labs():          # apreensões e laboratórios
         k = f"{r.get('municipio')}/{r.get('uf')}"
         if k in mapa:
             continue
@@ -757,6 +761,224 @@ def padronizar_municipios():
     nao = [k for k, v in mapa.items() if not v["encontrado"]]
     log.info("Municípios: %d na base; %d com grafia corrigida; %d não encontrados no IBGE: %s",
              len(mapa), len(alt), len(nao), ", ".join(nao) or "—")
+
+
+# ----------------------------------------------------------------------------- laboratórios clandestinos
+# Tipos segundo UNODC, "Guidelines for the Dismantling of Clandestine Laboratories" (2024), cap. 3 e 4,
+# mais as categorias do projeto (refino de cocaína, inalantes, descarte de resíduos, equipamento apreendido).
+# Para laboratórios vale qualquer força policial ou órgão de justiça (federal, estadual ou municipal).
+LAB_TERMOS = ["laboratório clandestino", "laboratório de drogas", "laboratório de drogas sintéticas",
+              "laboratório de ecstasy", "laboratório de metanfetamina", "laboratório de droga K",
+              "laboratório de cocaína", "refino de cocaína", "refinaria de cocaína", "laboratório de crack",
+              "laboratório de lança-perfume", "fábrica de lança-perfume", "fábrica de loló",
+              "prensa de comprimidos", "máquina de fazer comprimidos", "fábrica de comprimidos",
+              "laboratório de drogas desmontado", "descarte de resíduos químicos drogas"]
+RE_LAB = re.compile(
+    r"laborat[óo]rios?|refinarias?|refino de (?:coca|pasta)|f[áa]bricas? (?:de|clandestina)[^.]{0,30}?(?:comprimid|lan[çc]a|lol[óo]|drogas?|coca|crack|cloreto)"
+    r"|cozinha d[ae] (?:droga|crack|coca)|prensas? (?:de|para|hidr[áa]ulica)[^.]{0,20}(?:comprimid|pastilh|droga|coca|maconha)"
+    r"|m[áa]quinas? (?:de |para )?(?:fazer |prensar |produzir )?comprimidos|pastilhadeiras?|encapsuladoras?"
+    r"|pun[çc][õo]es|descarte (?:irregular )?de (?:res[íi]duos|produtos) qu[íi]micos", re.I)
+RE_LAB_NAO = re.compile(
+    r"laborat[óo]rios? (?:de an[áa]lises|cl[íi]nic|de inform[áa]tica|de per[íi]cia|de qu[íi]mica forense|de criminal[íi]stica"
+    r"|de tecnologia contra|de lavagem|farmac[êe]utic|de ensino|escolar|maker|de ideias|de inova)|laudo|instituto de criminal"
+    r"|laborat[óo]rio (?:central|oficial|da pol[íi]cia|da pf|do inc)", re.I)
+RE_LAB_DROGA = re.compile(r"drogas?|entorpecente|narc[óo]tic|coca[íi]na|crack|pasta[- ]base|maconha|haxixe|lan[çc]a[- ]perfume|lol[óo]"
+                          r"|cloreto de etila|ecstasy|mdma|metanfetamina|anfetamina|\blsd\b|sint[ée]tic|comprimidos? (?:de|com) droga", re.I)
+RE_POLICIA = re.compile(r"pol[íi]cia|policiais|(?-i:\b(?:PM|PC|PF|PRF|MP|GCM|BPM)\b)|receita federal|ficco|denarc|draco|gaeco|deic|denar"
+                        r"|minist[ée]rio p[úu]blico|justi[çc]a|guarda municipal|bope|for[çc]a t[áa]tica|rotam|batalh[ãa]o|delegacia|delegado"
+                        r"|ex[ée]rcito|gefron|dof\b|garras|choque", re.I)
+RE_LAB_ACAO = re.compile(r"desmont|desarticul|estour|fech|interdit|descobr|localiz|encontr|flagr|apreend|apreens|prend|pris|deflagr|fecha", re.I)
+
+TIPOS_LAB = [   # ordem = prioridade quando só um tipo aparece
+    ("Descarte de resíduos", r"descart|despej|res[íi]duos? (?:qu[íi]mic|t[óo]xic)|lixo qu[íi]mico|tambores abandonados"),
+    ("Inalantes", r"lan[çc]a[- ]perfume|lol[óo]|cloreto de etila|cloretila|inalante"),
+    ("Refino de cocaína", r"refin(?:o|aria|ar)|pasta[- ]base|cloridrato de coca|(?:laborat[óo]rio|cozinha|f[áa]brica) de (?:coca|crack)|preparo de crack"),
+    ("Comprimidos", r"prensas?|pastilhadeira|encapsul|pun[çc][õo]es|matrizes? com logo|m[áa]quinas? (?:de |para )?(?:fazer |prensar )?comprimidos|comprimidos? (?:eram|sendo) (?:fabricad|produzid|prensad)"),
+    ("Precursores", r"(?:produ|fabric|sintetiz|extra)\w*[^.]{0,50}(?:precursor|\bp-?2-?p\b|\bbmk\b|\bpmk\b|mdp-?2-?p|efedrina|pseudoefedrina|nitropropeno|safrol)"),
+    ("Síntese", r"reatore?s?|bal[õo]es? (?:de|volum)|condensador|manta aquecedora|s[íi]ntese|sintetiz|evaporador rotativo"
+                r"|produ[çz][ãa]o de (?:metanfetamina|ecstasy|mdma|drogas? sint|ketamina|cetamina|droga k|fentanil)"),
+    ("Processamento, corte e embalagem", r"mistur|dilu[íi]|batiz|\bcorte\b|cafe[íi]na|lidoca[íi]na|manitol|fracion|embal|seladora|balan[çc]as? de precis"),
+]
+NUCLEO_LAB = {"Síntese", "Precursores", "Comprimidos"}
+EQUIP_LAB = {"prensa": r"prensas?", "punções/matrizes": r"pun[çc][õo]es|matrizes?", "encapsuladora": r"encapsuladora",
+             "máquina de comprimidos": r"m[áa]quinas? (?:de |para )?(?:fazer |prensar )?comprimidos|pastilhadeira",
+             "reator": r"reatore?s?", "vidraria (balões, condensador)": r"bal[õo]es|condensador|vidraria|b[ée]queres?|kitassato",
+             "manta aquecedora": r"manta aquecedora", "evaporador rotativo": r"evaporador rotativo|rotaevaporador",
+             "estufa/secadora": r"estufas?|secadora", "micro-ondas": r"micro-?ondas", "liquidificador": r"liquidificador",
+             "balança de precisão": r"balan[çc]as?(?: de precis[ãa]o)?", "seladora": r"seladora",
+             "tambores/bombonas": r"tambores?|bombonas?", "cilindros de gás": r"cilindros?", "máscaras/EPI": r"m[áa]scaras?"}
+RISCOS_LAB = {"explosivos": r"explosiv|deton", "armadilhas": r"armadilha", "gás comprimido": r"cilindros?|g[áa]s comprimido|botij",
+              "produtos inflamáveis": r"inflam[áa]v|solvent", "resíduos/contaminação": r"res[íi]duo|contamina|t[óo]xic"}
+LOCAIS_LAB = [("Remessa", r"correios|encomenda|remessa|transportadora"), ("Embarcação", r"barco|embarca[çc]|lancha"),
+              ("Hotel/motel", r"\bhotel|\bmotel|pousada"), ("Imóvel rural", r"s[íi]tio|ch[áa]cara|fazenda|zona rural|[áa]rea rural|assentamento"),
+              ("Galpão/indústria", r"galp[ãa]o|ind[úu]stria|empresa|dep[óo]sito"), ("Comércio", r"\bloja|com[ée]rcio|oficina|farm[áa]cia|bar\b"),
+              ("Veículo", r"\btrailer|motor-?home|laborat[óo]rio m[óo]vel|dentro (?:de|do) (?:um )?(?:carro|caminh[ãa]o|ve[íi]culo)"),
+              ("Residência", r"\bcasa\b|resid[êe]ncia|apartamento|kitnet|quitinete|im[óo]vel|cozinha|quarto")]
+RE_ESC_IND = re.compile(r"industrial|super ?laborat|reatores? industri|toneladas?|capacidade (?:de produ[çz][ãa]o )?de [\d.,]+ ?(?:mil )?(?:kg|quilos|toneladas)|maior laborat", re.I)
+RE_ESC_MED = re.compile(r"galp[ãa]o|s[íi]tio|ch[áa]cara|fazenda|estrutura (?:completa|profissional)|grande porte|v[áa]rias? (?:etapas|rea[çc]|prensas)", re.I)
+RE_ESC_PEQ = re.compile(r"cozinha|resid[êe]ncia|apartamento|kitnet|quitinete|quarto|pequeno|caseir|improvisad", re.I)
+
+
+def candidata_lab(texto: str) -> bool:
+    """Notícia de laboratório, local de descarte ou equipamento de produção de drogas, com ação policial/judicial."""
+    if not texto or RE_DESCARTE.search(texto):
+        return False
+    if not RE_LAB.search(texto) or RE_LAB_NAO.search(texto):
+        return False
+    equip = re.search(r"prensas? (?:de|para) (?:comprimid|pastilh)|m[áa]quinas? (?:de |para )?(?:fazer |prensar )?comprimidos"
+                      r"|pastilhadeira|encapsuladora|pun[çc][õo]es", texto, re.I)          # equipamento de produção já é o indício
+    droga = equip or RE_LAB_DROGA.search(texto) or RE_SUBST.search(texto)
+    return bool(droga and RE_LAB_ACAO.search(texto) and RE_POLICIA.search(texto))
+
+
+def classificar_lab(texto: str) -> dict:
+    """Sugestão automática de tipo, grupo da droga-alvo, escala, local, equipamentos, riscos, situação e esfera."""
+    t = texto or ""
+    achados = [n for n, rx in TIPOS_LAB if re.search(rx, t, re.I)]
+    nucleo = [n for n in achados if n in NUCLEO_LAB]
+    tem_lab = re.search(r"laborat[óo]rio|refinaria|f[áa]brica|cozinha", t, re.I)
+    if "Descarte de resíduos" in achados and not re.search(r"em funcionamento|produzi|em plena", t, re.I):
+        tipo = "Descarte de resíduos"
+    elif "Inalantes" in achados and not nucleo:
+        tipo = "Inalantes"
+    elif "Refino de cocaína" in achados and not nucleo:
+        tipo = "Refino de cocaína"
+    elif len(nucleo) >= 2 or (nucleo and len([a for a in achados if a not in ("Processamento, corte e embalagem", "Descarte de resíduos")]) >= 2):
+        tipo = "Misto"
+    elif nucleo:
+        tipo = nucleo[0]
+    elif "Processamento, corte e embalagem" in achados:
+        tipo = "Processamento, corte e embalagem"
+    else:
+        tipo = "Não classificado"
+    if not tem_lab and re.search(EQUIP_LAB["prensa"] + "|" + EQUIP_LAB["punções/matrizes"] + "|" + EQUIP_LAB["máquina de comprimidos"], t, re.I):
+        tipo = "Equipamento apreendido"
+    sint = [k for k, (cl, rx) in SUBSTANCIAS.items() if cl == "Droga sintética" and re.search(rx, t, re.I)]
+    grupos = (["Sintética"] if sint else []) + (["Cocaína/crack"] if re.search(r"coca[íi]na|crack|pasta[- ]base", t, re.I) else []) \
+        + (["Inalantes"] if re.search(TIPOS_LAB[1][1], t, re.I) else [])
+    escala = ("Industrial" if RE_ESC_IND.search(t) else "Médio" if RE_ESC_MED.search(t)
+              else "Pequeno" if RE_ESC_PEQ.search(t) else "Não informado")
+    local = next((n for n, rx in LOCAIS_LAB if re.search(rx, t, re.I)), "Outro/não informado")
+    situacao = ("Em montagem" if re.search(r"em montagem|sendo montad|ainda (?:em|sendo) instal", t, re.I)
+                else "Inativo/abandonado" if re.search(r"abandonad|desativad|inativ", t, re.I)
+                else "Em funcionamento" if re.search(r"em funcionamento|em plena (?:produ|atividade)|produzindo|em opera[çc][ãa]o|ativo", t, re.I)
+                else "Não informado")
+    fed, est = bool(RE_ORGAO.search(t)), bool(re.search(r"pol[íi]cia (?:civil|militar)|(?-i:\b(?:PM|PC|BPM)\b)|denarc|draco|deic|bope|for[çc]a t[áa]tica|rotam|batalh|choque|garras|gefron|dof\b", t, re.I))
+    jud = bool(re.search(r"minist[ée]rio p[úu]blico|gaeco|(?-i:\bMP\b)|justi[çc]a|judici", t, re.I))
+    mun = bool(re.search(r"guarda municipal|(?-i:\bGCM\b)", t, re.I))
+    esfera = " + ".join([x for x, ok in (("Federal", fed), ("Estadual", est), ("Municipal", mun), ("Judiciário/MP", jud)) if ok]) or "Não informado"
+    return {"tipo_lab": tipo, "tipos_citados": achados, "grupo_droga": grupos or ["Não identificada"], "drogas_alvo": sint,
+            "escala": escala, "tipo_local": local, "situacao": situacao, "esfera": esfera,
+            "equipamentos": [n for n, rx in EQUIP_LAB.items() if re.search(rx, t, re.I)],
+            "riscos": [n for n, rx in RISCOS_LAB.items() if re.search(rx, t, re.I)]}
+
+
+def carregar_labs() -> list:
+    return json.loads(ARQ_LABS.read_text("utf-8")) if ARQ_LABS.exists() else []
+
+
+def _lab_na_base(texto: str, data_pub, labs: list):
+    """Laboratório já registrado: mesmo município citado no texto e data a até 7 dias."""
+    dp = para_data(data_pub)
+    if not dp:
+        return None
+    t = sem_acento(texto).lower()
+    for r in labs:
+        dr = para_data(r.get("data"))
+        if dr and abs((dp - dr).days) <= 7 and r.get("municipio") and sem_acento(r["municipio"]).lower() in t:
+            return r["id"]
+    return None
+
+
+def fonte_labs(http: Http, desde: date):
+    """Laboratórios: Google Notícias e GDELT com os termos de laboratório, sem exigir órgão federal."""
+    fim = DATA_FIM or date.today()
+    ini = desde
+    while ini <= fim:
+        prox = min(ini + timedelta(days=31), fim + timedelta(days=1))
+        for termo in LAB_TERMOS:
+            for it in _gn_busca(http, f'"{termo}"', ini, prox):
+                yield candidato(it["link"], it["titulo"], "", it.get("data"), it["fonte"] or "news.google.com", "Imprensa")
+            url = ("https://api.gdeltproject.org/api/v2/doc/doc?mode=artlist&format=json&maxrecords=100"
+                   "&sourcelang=portuguese&sourcecountry=BR"
+                   f"&startdatetime={ini:%Y%m%d}000000&enddatetime={prox:%Y%m%d}000000&query={quote_plus(chr(34) + termo + chr(34))}")
+            r = http.get(url, timeout=40)
+            try:
+                arts = r.json().get("articles", []) if r else []
+            except ValueError:
+                arts = []
+            for a in arts:
+                sd = a.get("seendate") or ""
+                dt = para_data(f"{sd[:4]}-{sd[4:6]}-{sd[6:8]}") if len(sd) >= 8 else None
+                yield candidato(a.get("url"), a.get("title"), "", dt, (a.get("domain") or "").replace("www.", "") or "gdelt", "Imprensa")
+        ini = prox
+
+
+def modo_labs(http, fila_labs, est, seco):
+    """Lê as notícias de laboratório, sugere a classificação e acumula em links/laboratorios_pendentes.(json|md)."""
+    labs = carregar_labs()
+    pend = json.loads(PEND_LABS_JSON.read_text("utf-8")) if PEND_LABS_JSON.exists() else []
+    ja = {p["url"] for p in pend} | {p.get("url_original") for p in pend} | set(est.get("urls_labs", []))
+    for r in labs:
+        ja.add(r.get("fonte_url"))
+        ja.update(f["url"] for f in r.get("fontes_extra", []))
+    novos = 0
+    for c in fila_labs:
+        url = _resolver_gnews(c["url"], http)
+        if url in ja or c["url"] in ja:
+            continue
+        ja.update({url, c["url"]})
+        txt = ""
+        if "news.google.com" not in url:
+            r = http.get(url)
+            if r:
+                txt = extrair_texto(r.text)[:8000]
+        texto = f"{c['titulo']} {c['resumo']} {txt}"
+        if txt and not candidata_lab(texto):            # o texto completo não confirma laboratório/equipamento
+            continue
+        m = RE_LAB.search(txt) if txt else None
+        fato, alerta_dt = data_do_fato(texto, c.get("data_pub"))
+        pend.append({"url": url, "url_original": c["url"], "titulo": c["titulo"], "fonte": c["fonte"], "tipo": c["tipo"],
+                     "data_pub": c["data_pub"].isoformat() if c.get("data_pub") else None,
+                     "data_fato": fato.isoformat() if fato else "", "alerta_data": alerta_dt or "",
+                     "trecho": txt[max(0, m.start() - 300): m.start() + 500] if m else txt[:600],
+                     "so_titulo": not txt, "ja_registrado": _lab_na_base(texto, c.get("data_pub"), labs),
+                     "substancias": [], **classificar_lab(texto)})
+        novos += 1
+    est["urls_labs"] = sorted(ja - {None})[-20000:]
+    log.info("Laboratórios: %d notícias novas; %d pendentes no total.", novos, len(pend))
+    md = _labs_md(pend)
+    if seco:
+        print(md)
+        return
+    DIR_LINKS.mkdir(exist_ok=True)
+    PEND_LABS_JSON.write_text(json.dumps(pend, ensure_ascii=False, indent=1), "utf-8")
+    PEND_LABS_MD.write_text(md, "utf-8")
+
+
+def _labs_md(pend: list) -> str:
+    grupos = agrupar(pend)
+    grupos.sort(key=lambda g: max(x["data_pub"] or "" for x in g), reverse=True)
+    L = [f"# Laboratórios candidatos — {len(grupos)} casos, {len(pend)} links (atualizado em {datetime.now():%d/%m/%Y %H:%M})", "",
+         "Anexe laboratorios_pendentes.json no chat do Claude e peça: “atualize os laboratórios do painel”.", ""]
+    for i, g in enumerate(grupos, 1):
+        h = g[0]
+        dt = para_data(h["data_pub"])
+        L.append(f"## {i}. {dt:%d/%m/%Y} · {h['titulo']}" if dt else f"## {i}. s/d · {h['titulo']}")
+        L.append(f"LAB · tipo sugerido: **{h['tipo_lab']}** · escala: {h['escala']} · local: {h['tipo_local']} · "
+                 f"droga-alvo: {', '.join(h['grupo_droga'])} · esfera: {h['esfera']}")
+        if h.get("equipamentos"):
+            L.append("Equipamentos citados: " + ", ".join(h["equipamentos"]))
+        if h.get("ja_registrado"):
+            L.append(f"_Provável caso já registrado: {h['ja_registrado']} (conferir e usar como fonte extra)._")
+        for a in sorted({p["alerta_data"] for p in g if p.get("alerta_data")}):
+            L.append(f"**⚠️ {a}**")
+        if h.get("trecho"):
+            L.append(f"> {h['trecho'][:700]}")
+        for p in g:
+            L.append(f"- [{p['tipo']}{' · só título' if p.get('so_titulo') else ''}] {p['fonte']}: {p['url']}")
+        L.append("")
+    return "\n".join(L)
 
 
 # ----------------------------------------------------------------------------- deduplicação
@@ -852,7 +1074,7 @@ def _periodo(args, est) -> date:
 
 def descobrir(http: Http, fontes: str, desde: date, vistas: set, cont: dict) -> list:
     """Roda as fontes e devolve só as candidatas inéditas (oficiais primeiro)."""
-    fila, na_fila = [], set()
+    fila, na_fila, na_lab = [], set(), set()
     for nome in fontes.split(","):
         fn = FONTES.get(nome.strip())
         if not fn:
@@ -868,6 +1090,11 @@ def descobrir(http: Http, fontes: str, desde: date, vistas: set, cont: dict) -> 
                 if DATA_FIM and c.get("data_pub") and c["data_pub"] > DATA_FIM + timedelta(days=3):
                     continue
                 txt_c = f"{c['titulo']} {c['resumo']}"
+                if c["url"] not in na_lab and candidata_lab(txt_c):      # laboratórios: espaço à parte, qualquer força policial
+                    na_lab.add(c["url"])
+                    cont.setdefault("fila_labs", []).append(dict(c))
+                if nome.strip() == "labs":
+                    continue
                 exige = c["fonte"] not in FONTES_FEDERAIS          # fora dos sites de PF/PRF/Receita, o órgão precisa aparecer
                 if candidata(txt_c, exige_orgao=exige):
                     na_fila.add(c["url"])
@@ -879,7 +1106,7 @@ def descobrir(http: Http, fontes: str, desde: date, vistas: set, cont: dict) -> 
                     fila.append(c)
         except Exception as e:  # uma fonte com problema não derruba as demais
             log.warning("%s: interrompida (%s)", nome, e)
-        log.info("%-12s %d candidatas", nome, len(fila) - n0)
+        log.info("%-12s %d candidatas · %d laboratórios até aqui", nome, len(fila) - n0, len(cont.get("fila_labs", [])))
     cont["candidatas"] = len(fila)
     fila.sort(key=lambda c: {"Oficial": 0, "Oficial-outro": 1}.get(c["tipo"], 2))
     return fila
@@ -893,6 +1120,8 @@ def executar(args):
     http = Http()
     cont = {"descobertas": 0, "candidatas": 0, "lidas": 0, "novas": 0, "fundidas": 0, "irrelevantes": 0}
     fila = descobrir(http, args.fontes, desde, vistas, cont)
+    if "labs" in args.fontes.split(","):
+        modo_labs(http, cont.get("fila_labs", []), est, args.seco)   # grava junto com o estado no fim
     if args.so_links:
         return modo_links(http, fila, est, desde, cont, args.seco, base)
 
@@ -1304,6 +1533,9 @@ def limpar_pendentes():
         EXTRA_JSON.rename(arq / f"fontes_extras_{carimbo}.json")
     if PEND_MD.exists():
         PEND_MD.rename(arq / f"pendentes_{carimbo}.md")
+    for f in (PEND_LABS_JSON, PEND_LABS_MD):          # laboratórios também começam lista nova
+        if f.exists():
+            f.rename(arq / f"{f.stem}_{carimbo}{f.suffix}")
     log.info("Pendentes arquivados em %s", arq)
 
 

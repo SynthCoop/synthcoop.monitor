@@ -67,3 +67,12 @@ O script não publica no painel. Na segunda-feira, envie `dados/apreensoes.json`
 - **PF**: a listagem do site só volta cerca de três meses; meses anteriores vêm da busca interna por termo.
 - **Imprensa**: quando o texto completo não abre, usa título e resumo e marca para revisão.
 - Os totais refletem o que os órgãos e a imprensa divulgam: são indicadores, não estatística oficial.
+
+
+## Laboratórios clandestinos (espaço à parte)
+
+- **Base:** `dados/laboratorios.json` (uma linha por laboratório, local de descarte ou equipamento apreendido) e aba “Laboratórios clandestinos” no painel e na página pública.
+- **Tipos** (UNODC, *Guidelines for the Dismantling of Clandestine Laboratories*, 2024, cap. 3–4, + categorias do projeto): Síntese, Precursores, Processamento/corte/embalagem, Comprimidos, Misto, Refino de cocaína, Inalantes, Descarte de resíduos, Equipamento apreendido. Escala: pequeno, médio, industrial.
+- **Regra de inclusão:** qualquer força policial ou órgão de justiça (federal, estadual, municipal); não exige quantidade divulgada.
+- **Coleta:** fonte `labs` (Google Notícias + GDELT com termos de laboratório). Toda notícia de qualquer fonte que cite laboratório/prensa/descarte com ação policial vai para `links/laboratorios_pendentes.json` e `.md`, com tipo, escala, local, equipamentos, riscos e esfera sugeridos e aviso de caso provavelmente já registrado.
+- **Uso:** anexe `links/laboratorios_pendentes.json` no chat e peça “atualize os laboratórios do painel”. A limpeza de pendentes também arquiva a lista de laboratórios.
