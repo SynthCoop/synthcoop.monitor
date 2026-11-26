@@ -226,5 +226,499 @@
   "alerta_data": "",
   "titulo_generico": true,
   "descoberto_em": "2026-11-25"
+ },
+ {
+  "url": "https://www.gov.br/prf/pt-br/noticias/estaduais/pernambuco/prf-apreende-798-comprimidos-de-rebite-apos-motorista-tentar-fugir-de-fiscalizacao-na-br-232-em-salgueiro",
+  "url_original": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOZjNaSjZtV05oTG10NlFrZGpEb2lBdXZscTUxOTRMTFNoWkFLREN4Q3V5VVd5OXdydFdTLUNFRVNrRUpIYkdmZ0VJdmI0bGpIYVRZR2hGdU5WeDRYcjIxUVRkWDVuanpZc1BIM0FobVBCSDQwZmcwOGJsMGlMLVdCc0hBZURjNV9BMkFacWtIRl9KV0FBUk9FMUNXOFFiVDRzQW1UdmVVVF8wT00zTDJtbURNeVktZDFvZHdiSk14NUM3Qk54T0NUd0pNR0swcUFjT21yT0lWc1NXR0o3cVA3cU1aM1pRNkE4VHFLcVlqSDlDMi00cmRB?oc=5",
+  "titulo": "PRF apreende 798 comprimidos de rebite após motorista tentar fugir de fiscalização na BR-232 em Salgueiro",
+  "data_pub": "2026-11-23",
+  "fonte": "gov.br",
+  "tipo": "Oficial",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/outubro/receita-federal-e-policia-federal-apreendem-aproximadamente-17-toneladas-de-insumo-quimico-utilizado-na-producao-de-cocaina-em-corumba",
+  "url_original": "https://news.google.com/rss/articles/CBMirgJBVV95cUxQTHR6d2doRjlUVWxQV1d0NWZjLWtIWUJPNHN0VDVCbF8xUk9mbjdUb1cwelBxal9sd25wOTIzYjh0a3lGSldkaE1HbEZsWEc3TEFGdnJqeXBXZ0VRNEhWUW5aVHRoQVNDNjE3UDl0ZGRmbl9hMi1lNE9KNmNwVTlwOTVtTUY3UXg5TUlVQ1BHYXBFdmFfNVg0ZWxtekJhemg4cmpnd3NnTVJpV3plU0JISmhjSnp3d3lOZ1R5bTVyWXFVZm50aHgxbDdtc1lxZjN6b3p1NHI4end4bDVKWDJEZVh6d0d5YVNMM2dSaHNyRFBaUGJiMlozZzdqX1B0Qm5oRTR3ZDhZYWgtMmZyb0dXclIyV3V0VlVGclpubGdjVGw5Vy1uRHV6THJSNnBWdw?oc=5",
+  "titulo": "Receita Federal e Polícia Federal apreendem aproximadamente 17 toneladas de insumo químico utilizado na produção de cocaína em Corumbá",
+  "data_pub": "2026-10-10",
+  "fonte": "gov.br",
+  "tipo": "Oficial",
+  "substancias": [
+   "Outro precursor"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://diarionline.com.br/?s=noticia&id=158520",
+  "url_original": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1GVlk4aktkSnNLOVNXd3BPZ015NUlnTEp4bVBIdW40ZXNTd192RUVjWTV5a2MyMjhWWDBCUy1DdmUxQ09HV1U1cEI0Q1RwYVhXV29OR1JTTEl3N28?oc=5",
+  "titulo": "Drogas sintéticas apreendidas em Corumbá iriam abastecer mercado boliviano, diz PF",
+  "data_pub": "2026-08-13",
+  "fonte": "https://diarionline.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "Rosana Nunes em 13 de Agosto de 2026 Divulgação Segundo a PF, investigações prosseguem para apurar a dinâmica do tráfico internacional de drogas sintéticas entre o Brasil e a Bolívia Segundo a PF, as apreensões ocorreram em duas ocorrências distintas. Em uma delas, foram encontrados aproximadamente 3,9 kg de substâncias com características compatíveis com drogas sintéticas do tipo ecstasy, como MDA, MDMA e MDEA. Na segunda ação, foram apreendidos cerca de 1 kg das mesmas substâncias, encontradas em pó, cristais ou outras formas sólidas. As informações reforçam que os entorpecentes teriam como ",
+  "alerta_ice": false,
+  "data_fato": "2026-08-13",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://castilhosp.com.br/prf-apreende-63-kg-de-skunk-e-drogas-sinteticas-em-carro-de-aplicativo-na-br-262/",
+  "url_original": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPSV9uem5HNFBWQmdncnozcEhiamFaUnRZSzZsTXVfaW9uODhodnM5X3VTZWUtM3ZwV09PMVh2cU1tdTBrbjMtVVprS1d2VnVMZzJHclVCM2NpSWlVcmU5djVFdjA0aVNfWnZsMzlsZll6Q0FPWW92d0hKVzRaNG9haGFNR1ROam1jSkZ5Qi11TEdEdHpnaEdiM2ZUMjdkZlNURXlaOU45NEdscWM?oc=5",
+  "titulo": "PRF apreende 6,3 kg de skunk e drogas sintéticas em carro de aplicativo na BR-262",
+  "data_pub": "2026-10-02",
+  "fonte": "https://castilhosp.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "A Polícia Rodoviária Federal (PRF) apreendeu, na manhã desta sexta-feira (2), drogas sintéticas e 6,3 quilos de skunk durante uma fiscalização no km 23 da BR-262, em Três Lagoas, no leste de Mato Grosso do Sul. Os agentes abordaram um veículo elétrico utilizado para transporte por aplicativo. Durante a checagem dos ocupantes, um dos passageiros demonstrou nervosismo e apresentou informações contraditórias sobre o motivo e o destino da viagem. Na vistoria do automóvel, os policiais encontraram uma mochila que pertencia ao passageiro. No interior da bagagem havia 7 tabletes de skunk, totalizando",
+  "alerta_ice": false,
+  "data_fato": "2026-10-02",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://diariodecaratinga.com.br/policia/prf-prende-tres-homens-e-apreende-grande-quantidade-de-drogas-na-br-116-em-caratinga/",
+  "url_original": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPZ002dmhIUldnWjBXQ28yVEdBSTN6MFlubXl0cHhPUzNpRTUtWGFWZTY0NDdQTDdRMmUwTHRQb2lCVmpaYWRVRUI4ejFHeWN3ZHQ4ejE5MmVyVjZBTFQ0b1c0SDk5bkFCZVB5b3B0Vm9ZcUhncmtoc09NSG5FVmItb3ZxcXdLQUpZWnFrRUk2WHI4VmlJMkxodTIzSjZRWC1vUUEwNDNlVmFYeHlLdmtHVHFXdFJfLTIzRVYxR1RKOTlMdjBz?oc=5",
+  "titulo": "PRF prende três homens e apreende grande quantidade de drogas na BR-116, em Caratinga",
+  "data_pub": "2026-11-14",
+  "fonte": "https://diariodecaratinga.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Ecstasy/MDMA",
+   "Metanfetamina",
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "o de Janeiro (RJ) e estavam retornando pra cidade de origem. Durante as buscas no porta-malas do veículo, os agentes localizaram uma caixa de isopor ocultada sob roupas sujas, contendo 110 frascos de lança-perfume, 02 barras de skank e uma porção de metanfetamina/MDMA, droga conhecida como “molly”. Nenhum dos envolvidos assumiu a propriedade dos entorpecentes. Eles receberam voz de prisão e foram encaminhados ilesos à Delegacia de Polícia Civil de Caratinga, juntamente com o veículo, as drogas e três aparelhos celulares apreendidos.",
+  "alerta_ice": false,
+  "data_fato": "2026-11-13",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://www.michelteixeira.com.br/receita-federal-retem-entorpecentes-avaliados-em-r-800-mil-durante-operacoes-em-santa-catarina/",
+  "url_original": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNNmdwLV9aN1E0d01RS181WVZaLTh1cDJaaWs2WV9YS05RMDQ3b3VYaldUMkI5QlNtQ0JsU3RWT0E3QVFaTUw0aU96RnFCdXNWbU5sTWp3NXdCcTZEZGhrX2FGSmhGSU8yN1Vjai1GdENEdEtWMkZGMFl3eXRkTVF1U3JZVmhibC13LXBaQmRVVXNpZnNBOGViUnplbWJObDFqcXVmcHZNMlNyV3hDdUJmV1ViaFJFbGhobUkwOEkweFJEUF96Zm5IUQ?oc=5",
+  "titulo": "Receita Federal retém entorpecentes avaliados em R$ 800 mil durante operações em Santa Catarina",
+  "data_pub": "2026-11-13",
+  "fonte": "https://www.michelteixeira.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Ecstasy/MDMA"
+  ],
+  "trecho": "de mercadorias sem documentação regular e produtos contrafeitos. Na tarde de quarta-feira as equipes realizaram a apreensão, em uma transportadora em Itajaí/SC, de aproximadamente 2,5 kg de uma substância sintética com características semelhantes ao MDMA . A encomenda tinha como destino o município de Balneário Camboriú/SC. A droga estava acondicionada em sacos plásticos, embalados a vácuo e envoltos em papel carbono, em uma tentativa de dificultar a identificação por meio de equipamentos de raio-X. Além disso, a parte interna da caixa estava impregnada com uma substância de composição ainda i",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://www.estadao.com.br/politica/blog-do-fausto-macedo/pf-apreende-18-quilos-de-drogas-em-media-com-cada-passageiro-preso-no-aeroporto-de-guarulhos/",
+  "url_original": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPNVNwenBkcTZLLVVDcjBoQ0IwVVlEY0hQcFJXZ0E3RDJFSmU3OFB1XzNCcTh5alp3RVBpdElxV19BWWdpeV9HUjVQSXo2QmRib3B5QXF0c0JFVV9UNzN3aGJaTTg2eHVEdHNiVkp4RFZBS092SUJaSG9zVWpnRUdvV2pRUXI3aFo1cVBHclNnTGdGNEtJS2ktVGQwa1YxQk1XOGtROU81NmJqZVZrMjZZOUpvSXpNdS1QQ1NVOWw1b3NfOENfR3lhUmtieEN5VWpJUmFiTEpSclFMLUdYZXdpc2Y1MmJlZ9IB6wFBVV95cUxOWFVvdFVrVjhHWGhQclQ4T1EwcDNTQXUtUDFNTkRjeFJUSVJvYzRBc09GazVWRVo5QXdGY1cxRXBwZjFsN3gwTHlpa09POVhIb2V6bXIza0lEUjFjamM4dE5lU0V2cjdZRzJnSFhyMHJGcVZBXzRRWnRKZVpCWDV4VXRHdmtkYk5XWERrdHlrUFpZS1dSZ21ZWDdGU2JEX0hQV1J2bTlfM0Rkd0k0WkRqTUFhZHd5bnFQdDhGUkpfanA4RGFPQmtReXRmbkNGLXJVWXpibTN0aGV1dndhZWlPZWQ1V0h0cXkxYnJR?oc=5",
+  "titulo": "PF apreende 18 quilos de drogas em média com cada passageiro preso no aeroporto de Guarulhos",
+  "data_pub": "2026-11-09",
+  "fonte": "https://www.estadao.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Metanfetamina",
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "dos. Segundo registros oficiais da PF em Guarulhos, divulgados nesta segunda, 9, ao longo de 2026 a cocaína representou a maior parte das apreensões, totalizando 2.664,8 quilos, seguida do haxixe (1.798,7 kg), depois o skunk (455,1), maconha (75,4), metanfetamina (69,6) e a anfetamina (15,1). Do total apreendido, 2.785,9 quilos foram localizados em cargas e encomendas e 2.292,9 quilos com passageiros, o que resultou em uma média 17,9 quilos com cada preso por tráfico. O delegado Júlio César Baida Filho, chefe da PF no aeroporto, aponta que o tráfico adotou uma nova estratégia: a cocaína vai pa",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://emtemponoticias.com.br/noticias/policia/receita-federal-apreende-r-240-mil-em-mercadorias-e-drogas-em-alagoas-na-primeira-semana-de-operacao/",
+  "url_original": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQVEFXbWczbXpMS01kcWpkU05vbFJ6SkZMQ3dELWNKUVh1QmZpYlJQQjBCaGlweE5qTWQ5ZC1wb0R1ZVRhUnJ5YkVWZ1g4RFJRS1dUU1FMb0U4Y0RGS01HMnlQc1luRkowY0NhTUpTQnBKWUdYM29JRTItR1B3UG8wUVJINTlSR2dkVDFtSUtXbVlwTW1fT0lYYW95YnpQSEd4eTVwT3dEQzM2SS1FYUVNTFB2RVVKcUZhYmtxdC1zWXlPV0M3WUFTQVRkVmN6dTZmUGo1M0luSVNGcjZCdWpySXBHdw?oc=5",
+  "titulo": "Receita Federal apreende R$ 240 mil em mercadorias e drogas em Alagoas na primeira semana de operação",
+  "data_pub": "2026-11-09",
+  "fonte": "https://emtemponoticias.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Metanfetamina",
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "ação regular de entrada no território nacional. Em Arapiraca, uma ação conjunta da Receita Federal com o Departamento Estadual de Repressão ao Narcotráfico (Denarc), da Polícia Civil, resultou na apreensão de 60 gramas de uma substância semelhante à metanfetamina. O resultado em Alagoas integra o balanço da 4ª Região Fiscal, que reúne também Pernambuco, Paraíba e Rio Grande do Norte. Somadas, as apreensões nesses estados alcançaram aproximadamente R$ 1,9 milhão na primeira semana da operação. Pernambuco concentrou a maior parte do valor recolhido, com cerca de R$ 1,27 milhão em mercadorias, in",
+  "alerta_ice": false,
+  "data_fato": "2026-11-03",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://www.jaenoticia.com.br/noticias/2026/11/09/153146-operacao-da-receita-federal-apreende-cerca-de-r-240-mil-em-mercadorias-ilegais-e-drogas-em-maceio-e-arapiraca",
+  "url_original": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNbl9xdi1penJRQlkwMm42Z0dxbk1Hb0lTMGQyekV0aVMycjFqUEx0TTQxdlpMZGxMc0pRRWJIYmpVOTgtZnppblVpZ3prX3lVUWl2V2ozLXFTWVBRbkh6U0NnVnhHQkxNa1E5cll5U21Sc29KNXJidTFxdlJJNFVvT2Fpck95T0JIYnlxbGotN25tY2NBSmZzUFpqLTNJajBWc1lhZVY3WU15MmVGYUxpZ0VuU0V3LWxudUlEYm1LeEJtTWJLd0tQMWNvaTMwSk13TE5pNFQxQVd0SDhrbFdwd1M0QmNVZjVVenY2d28ybURaX256ckpaRFZB?oc=5",
+  "titulo": "Operação da Receita Federal apreende cerca de R$ 240 mil em mercadorias ilegais e drogas em Maceió e Arapiraca",
+  "data_pub": "2026-11-09",
+  "fonte": "https://www.jaenoticia.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Metanfetamina",
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "outros eletrônicos, além de 71 garrafas de vinhos importados sem documentação e registro de entrada no país. Em Arapiraca, a Receita Federal atuou em conjunto com o Departamento Estadual de Repressão ao Narcotráfico (Denarc) e apreendeu 60 gramas de metanfetamina. \"Ao longo da primeira semana, a Operação Fronteira mobilizou equipes de vigilância e repressão, fiscalização de cargas, análise de risco, inteligência e cães de faro K9. As ações também contaram com a integração entre a Receita Federal e órgãos de segurança pública em diferentes ocorrências\", destacou a Receita Federal.",
+  "alerta_ice": false,
+  "data_fato": "2026-11-09",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://ncnews.com.br/2026/08/27/prf-apreende-37-comprimidos-de-rebite-com-dois-caminhoneiros-na-br-251-em-mg/",
+  "url_original": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNMjBPNDZxM1RGd1FZaFR5a1BtbXRZVGtNR1RzS3ZUczRuSUl0cnJ1R2Nubkd0UzJId3MtNG5jVVdqOC1tYjBYSzB0ckprSElBVjFBcV83SkNDRmJtOWltenhIb29LcjhISGYtOXJzUjJrM2dYZS1GUmtYUmtqWWVGUkFGSnRUcDRaZHFGZnJlZ2RZZWtWR1BkRkt5QXAtcmlLVXJXMzdqOHpTbnNiZkk4?oc=5",
+  "titulo": "PRF apreende 37 comprimidos de ‘rebite’ com dois caminhoneiros na BR-251, em MG",
+  "data_pub": "2026-08-27",
+  "fonte": "https://ncnews.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "A Polícia Rodoviária Federal (PRF) apreendeu 37 comprimidos com características de anfetamina, conhecida popularmente como “rebite”, com dois caminhoneiros durante fiscalizações realizadas na BR-251, em Salinas, no Norte de Minas Gerais. As abordagens aconteceram na manhã desta quarta-feira (26). Nos dois casos, os motoristas transportavam a substância para consumo próprio e também foram autuados por irregularidades relacionadas ao cumprimento do período obrigatório de descanso. Primeira abordagem Durante a primeira fiscalização, os agentes abordaram um caminhão e encontraram irregularidades n",
+  "alerta_ice": false,
+  "data_fato": "2026-08-26",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://diregional.com.br/diario-do-iguacu/2026-11-03-prf-intercepta-carregamento-de-drogas-sinteticas-e-derivados-de-maconha-na-br-282-em-chapeco",
+  "url_original": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNanFyV05ZbTVkN2pjdVE2UXlxVzQwVXd2NGZyRU5aUDlnOXBkX1Q2WnY4akNlelhyV2lqVUFiMFYyMlc5SklybGtlSlgtaDBMSEVHd0pIT3d0anp6cjlaYW1KbGZCNTNxajBSVGd4bTFXTEhNdTdqZUd1cGFmdFVLR1VuejhRd1BmczFPT1pIV0tsWVVOY3pWa1FzRHVGQkFKSXRnV1BlTmxFUDY4WEgxaU1GREEzZDRXN3JDWGd0UWYyQkhEWUJjcTFCTkthcWlZOF9UWjFXWURXZzBIcmJR?oc=5",
+  "titulo": "PRF intercepta carregamento de drogas sintéticas e derivados de maconha na BR-282, em Chapecó",
+  "data_pub": "2026-11-03",
+  "fonte": "https://diregional.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "DI REGIONAL DI PREMIUM DI REGIONAL DI PREMIUM DI Regional Entrar Quero ser Premium! Esqueceu a senha? MENU DI Regional",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://cidade997.com.br/apreensoes-de-drogas-crescem-360-durante-operacao-da-receita-federal/",
+  "url_original": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQdWZzMjJhR0VKOXJlNmdiM2N2bVZrX24tdkRQbDJVcm1mVHRoTTZXckN6Y3RKYVhsT2FtYzh3ZUR4OHdUcFlWQ2RPc09UNkVmSjBLcmd5b2tGZmRiVkVpWFlLSVVBNVN1UHY5NjM5NERTYUdwN1pZNUdrUHlZODVrYy1ISnpsdkR0RTgtd1BPNGliZkY5c2ozYnBR?oc=5",
+  "titulo": "Apreensões de drogas crescem 360% durante operação da Receita Federal",
+  "data_pub": "2026-11-17",
+  "fonte": "https://cidade997.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": " irregulares e outros produtos comercializados ou introduzidos no país em desacordo com a legislação. Durante as fiscalizações, os agentes apreenderam ainda mais de 70 toneladas de cannabis e derivados, além de aproximadamente 240 quilos de cocaína, drogas sintéticas e armas de fogo. De acordo com os números divulgados pela Receita Federal, o resultado da Operação Fronteira 2026 representa um recorde desde a criação da iniciativa e reforça o volume de ações de fiscalização realizadas nas regiões de fronteira do país. Por Jorge Brandão [instagram-feed feed=1]",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://www.dm.com.br/brasil/receita-federal-apreende-r-581-milhoes-em-mercadorias-ilegais-e-drogas-em-operacao-nas-fronteiras/",
+  "url_original": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOMkxMdTc3VmZMM3BTdFlSY2Rpb3llZkVBalEzNTJ3VXY5MEpDaXpMZXlrekUyckFEWXUyUmVJMWdNa283LUZsQU9paFpDbzlnUmR2NVdrM2NydXlBbWl1NnEwWDJfZl9QdENqa2EtbTlEM2RPOTlqOXBhOTVhS3ZlcGp0R0Y2MzRnbFRRR0trNGZvX1dxbW5CdG9kUGFRNUxGX3FuZ3J2dDM5VndnUGlJcl9NbEtDVUo3dEFhNGhjaVVCd1pDLVE?oc=5",
+  "titulo": "Receita Federal apreende R$ 581 milhões em mercadorias ilegais e drogas em operação nas fronteiras",
+  "data_pub": "2026-11-16",
+  "fonte": "https://www.dm.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": " de combate ao contrabando, ao descaminho e ao tráfico internacional de drogas. Drogas e produtos eletrônicos estão entre as apreensões Entre os entorpecentes recolhidos estão aproximadamente 70 toneladas de cannabis e 240 quilos de cocaína, além de drogas sintéticas. O volume de apreensões também incluiu produtos com comercialização proibida ou irregular no Brasil. Na categoria de mercadorias, os eletrônicos representaram R$ 55 milhões do total. Perfumes e cosméticos somaram R$ 49 milhões, enquanto vapes e cigarros eletrônicos corresponderam a R$ 42 milhões. Os materiais apreendidos recebem d",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://www.bemparana.com.br/noticias/brasil/receita-federal-divulga-apreensao-de-r-581-milhoes-em-mercadorias-e-drogas-na-fronteira/",
+  "url_original": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNcllGYkE2akZHaXBzTGlfeUgzNkxuanFLMHdUblAwR2g2NUVRZTM5ZklhXzA1amwzR0czOWNuUml5bUI3QWF2X1NDZGZMaUV6SmtVX0lZN3lSWGNLN1kyREp0b0otbHhFVlNLZ0xvWGlTdmMzTVRtbE43aWpPaWhaNTdoM0tQUXhIUnhieGVadFJ6TXBtTFFpcDhZbUF4NVdpWFJMdldtVHJKV1YySWYwSUdGNnhJVDQtdy1COC1UTHA0VXlvOEo0ck00dm9PUdIB0wFBVV95cUxOWTJnblkxQ2tVMk55dTk1NDEtVFF1UlNBWlQ1Tzl2T1Vaa2gzTlpqU21OWDNiNUs0LWs5RGxwaXBCeFE2T0NvU0FvVjVXRU9lVFVHTUZ2VnNHT3pGb05qaFJObG1fbVhJV1E2Q2ZDcVBfOXlQb0V5bEFZQ2FBR0twMTdhbDBFMVhuS0dJUjRjQW5PVS1zVl92b1I5WWFLZElBM0FBWTFhenZ1anNZb09FVUcwS0NJbEcxU0puODNpd0hrcDdyS2E4NUVKcTBpNzROejhz?oc=5",
+  "titulo": "Receita Federal divulga apreensão de R$ 581 milhões em mercadorias e drogas na fronteira",
+  "data_pub": "2026-11-16",
+  "fonte": "https://www.bemparana.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "escaminho e tráfico internacional foi criada em 2021, durante o governo Jair Bolsonaro (PL), e prosseguiu durante o governo Luiz Inácio Lula da Silva (PT). Dentre as drogas apreendidas, havia 70 toneladas de cannabis e 240 quilos de cocaína, além de drogas sintéticas. As mercadorias incluem R$ 55 milhões em eletrônicos, R$ 49 milhões em perfumes e cosméticos e R$ 42 milhões de vapes e cigarros eletrônicos. As mercadorias e entorpecentes têm diferentes destinos após a apreensão. Drogas são analisadas e depois destruídas, assim como cigarros eletrônicos e vapes. A Receita pode doar veículos, emb",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://g1.globo.com/mg/zona-da-mata/noticia/2026/10/28/operacao-da-pf-prende-4-suspeitos-de-integrar-faccao-e-distribuir-drogas-em-juiz-de-fora.ghtml",
+  "url_original": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQMW1BX1JsY0RRQ2VBNmZVa0NWdHR5eG8yRGFNVktWZGx4NzNnbmNKSlN5U09EWS03cHlkdlp2MlpwQVFVcGNjb0UtbEppNWRhOUVPUW5DM2NwMDRnNGFCN0NvaXJWMTZjYXhSWjB2QUdZWFRGYzJzMEFTbUV2a2c0eVpiZ2s4ZXprS0JRYlo0ZFhjb1B6cUN4Sk5RWmJlRVE0QnlBZmMxelk3eGpDRERGdnJXTkhmWGNfVVdjaXEyQnV4c0d3QndRUXNzUHZRSmp0MlUwMlJUVVk2WWZ5SmlIZmc1Um0?oc=5",
+  "titulo": "Operação da PF prende 4 suspeitos de integrar facção e distribuir drogas em Juiz de Fora",
+  "data_pub": "2026-10-28",
+  "fonte": "https://g1.globo.com",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Acetato de etila"
+  ],
+  "trecho": "ro imóveis ligados aos investigados. Foram apreendidos dinheiro, veículos supostamente utilizados no tráfico, insumos para o preparo e o refino de drogas e diferentes tipos de entorpecentes. Entre os materiais apreendidos estavam ácido bórico, éter, acetato de etila, sulfato de magnésio e cloridrato de lidocaína, além de cocaína em barras e em pó, crack em barras e maconha premium. A ação resultou na prisão em flagrante do principal suspeito e de outras três pessoas apontadas como envolvidas na estrutura investigada. Segundo a PF, entre elas estão suspeitos de atuar no armazenamento, no prepar",
+  "alerta_ice": false,
+  "data_fato": "2026-10-28",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://g1.globo.com/es/espirito-santo/noticia/2026/07/03/dono-de-farmacia-e-preso-em-operacao-da-policia-federal-que-investiga-venda-ilegal-de-fentanil-para-traficantes.ghtml",
+  "url_original": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPU0IyZEVIN25LUFdzaXFRcXgxWHE2aGxkRlNlSXgweXAxaU8zUno0X3NlOHo3c29QQkVCckVza3dNdkduMnhGbVE5SlVtNmFBUFBpZjQ5UTFrZ0NtV2x6VjNycXZYRWYyOXhjVFU2anc3ZnRUd0ptZm9UOHBvSUFselEwTHhCcm9YOU9XQ08ybnJkZzJzc2J5TWs3RlFhM3NwNXBHcHN3eVhvejJwSnFVTmlUOS1Ea24xVW5wcXByV3BWcnE0TUJMbVVkUWlFZkdkNVEtai1fcFRIREx5STU4aXpQM0pzRlJQNGlxUEczMkJrTHNiU0k3aTdIZVlqVHdYS0JQSnpn0gGUAkFVX3lxTE13NHB1RFd6Nk11dXVXUTFDdExvS2VZY0h0WW1BLUs1RVFJM0VwVjItZElMYmNKYTdjZ3puVFlUbGZJRXFzU2J5b25OVWU3eUpWQ2xMVlZuMHAwWmdBMWYtSUktZ2lqY2RFQU1ZeEVNSmptMERqVk4xLUNJcHl3Q21jVUl6WDVhaTNleElXNEY2MEhFbGd5dmV0WVdVQll3R2pxTmhkSXZJRWMwMTBXNFpISTd3V0JnblYxSmRvYTkzbVBhMXZKS01PRlg4MU5DYTVlY19JSWJsTU5xa0ZGZEFKeHcwY2VZdkpCV0hWMV9ZdE5EcTVhbW5Ydm45S2NoOHZXdkpwZTBid1otd3Q4cG1hakpsZw?oc=5",
+  "titulo": "Dono de farmácia é preso pela Polícia Federal por venda ilegal de Fentanil para traficantes no ES",
+  "data_pub": "2026-07-03",
+  "fonte": "https://g1.globo.com",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Opioides sintéticos"
+  ],
+  "trecho": "O dono de uma farmácia de Vitória foi preso em flagrante, na manhã desta sexta-feira (3), durante uma operação da Polícia Federal (PF) que investiga venda ilegal de Fentanil. Os nomes dos envolvidos não foram divulgados. Segundo a corporação, o estabelecimento é investigado por desviar e vender ilegalmente medicamentos de controle especial, como fentanil e misoprostol (conhecido como Cytotec), que seriam destinados a organizações criminosas da Grande Vitória e do interior do Espírito Santo. A Operação Fentanil II contou com o apoio da Vigilância Sanitária de Vitória e cumpriu dois mandados de ",
+  "alerta_ice": false,
+  "data_fato": "2026-07-03",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26"
+ },
+ {
+  "url": "https://www.diariodigital.com.br/policia-2/receita-federal-e-pf-apreendem-17-toneladas-de-insumo-usado-na-producao-de-cocaina",
+  "url_original": "https://www.diariodigital.com.br/policia-2/receita-federal-e-pf-apreendem-17-toneladas-de-insumo-usado-na-producao-de-cocaina",
+  "titulo": "Receita Federal e PF apreendem 17 toneladas de insumo usado na produção de cocaína",
+  "data_pub": "2026-10-10",
+  "fonte": "diariodigital.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outro precursor"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://edenevaldoalves.com.br/prf-apreende-798-comprimidos-de-rebite-apos-motorista-tentar-fugir-de-fiscalizacao-em-salgueiro-pe/",
+  "url_original": "https://edenevaldoalves.com.br/prf-apreende-798-comprimidos-de-rebite-apos-motorista-tentar-fugir-de-fiscalizacao-em-salgueiro-pe/",
+  "titulo": "PRF apreende 798 comprimidos de rebite após motorista tentar fugir de fiscalização em Salgueiro (PE)",
+  "data_pub": "2026-11-23",
+  "fonte": "edenevaldoalves.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://www.agazeta.com.br/es/policia/dono-de-farmacia-e-preso-em-operacao-contra-desvio-de-fentanil-no-es-0726",
+  "url_original": "https://www.agazeta.com.br/es/policia/dono-de-farmacia-e-preso-em-operacao-contra-desvio-de-fentanil-no-es-0726",
+  "titulo": "Dono de farmácia é preso em operação contra desvio de fentanil no ES",
+  "data_pub": "2026-07-03",
+  "fonte": "agazeta.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Opioides sintéticos"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-07-03",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://www.em.com.br/gerais/2026/08/7488223-caminhoneiros-sao-flagrados-com-37-comprimidos-de-rebite-na-br-251.html",
+  "url_original": "https://www.em.com.br/gerais/2026/08/7488223-caminhoneiros-sao-flagrados-com-37-comprimidos-de-rebite-na-br-251.html",
+  "titulo": "Caminhoneiros são flagrados com 37 comprimidos de ‘rebite’ na BR-251",
+  "data_pub": "2026-08-27",
+  "fonte": "em.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-08-26",
+  "alerta_data": "",
+  "titulo_generico": false,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://guarulhosweb.com.br/pf-prende-seis-pessoas-e-apreende-mais-de-390-quilos-de-drogas-no-aeroporto-de-guarulhos/",
+  "url_original": "https://guarulhosweb.com.br/pf-prende-seis-pessoas-e-apreende-mais-de-390-quilos-de-drogas-no-aeroporto-de-guarulhos/",
+  "titulo": "PF prende seis pessoas e apreende mais de 390 quilos de drogas no Aeroporto de Guarulhos",
+  "data_pub": "2026-11-09",
+  "fonte": "guarulhosweb.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Metanfetamina",
+   "Anfetamina (rebite)"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2026-11/operacao-fronteira-apreende-r-581-mi-em-produtos-ilegais-e-drogas",
+  "url_original": "https://agenciabrasil.ebc.com.br/geral/noticia/2026-11/operacao-fronteira-apreende-r-581-mi-em-produtos-ilegais-e-drogas",
+  "titulo": "Operação Fronteira apreende R$ 581 mi em produtos ilegais e drogas",
+  "data_pub": "2026-11-16",
+  "fonte": "agenciabrasil.ebc.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://www.estadao.com.br/economia/operacao-fronteira-2026-mercadorias-entorpecentes/",
+  "url_original": "https://www.estadao.com.br/economia/operacao-fronteira-2026-mercadorias-entorpecentes/",
+  "titulo": "Operação Fronteira, da Receita, apreende R$ 581 milhões em mercadorias e entorpecentes em 2026",
+  "data_pub": "2026-11-16",
+  "fonte": "estadao.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://sbtnews.sbt.com.br/noticia/economia/receita-apreende-r-581-milhoes-em-operacao-nas-fronteiras",
+  "url_original": "https://sbtnews.sbt.com.br/noticia/economia/receita-apreende-r-581-milhoes-em-operacao-nas-fronteiras",
+  "titulo": "Receita apreende R$ 581 milhões em operação nas fronteiras",
+  "data_pub": "2026-11-16",
+  "fonte": "sbtnews.sbt.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/novembro/operacao-fronteira-receita-federal-2026-retira-de-circulacao-r-581-milhoes-em-mercadorias-ilicitas-e-drogas",
+  "url_original": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/novembro/operacao-fronteira-receita-federal-2026-retira-de-circulacao-r-581-milhoes-em-mercadorias-ilicitas-e-drogas",
+  "titulo": "Operação Fronteira Receita Federal 2026 retira de circulação R$ 581 milhões em mercadorias ilícitas e drogas",
+  "data_pub": "2026-11-16",
+  "fonte": "gov.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://www1.folha.uol.com.br/mercado/2026/11/receita-relata-apreensao-de-r-581-milhoes-em-mercadorias-e-drogas-na-fronteira.shtml",
+  "url_original": "https://www1.folha.uol.com.br/mercado/2026/11/receita-relata-apreensao-de-r-581-milhoes-em-mercadorias-e-drogas-na-fronteira.shtml",
+  "titulo": "Receita relata apreensão de R$ 581 mi em mercadorias e drogas na fronteira - 16/11/2026 - Economia",
+  "data_pub": "2026-11-16",
+  "fonte": "www1.folha.uol.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://www.cnnbrasil.com.br/nacional/brasil/operacao-fronteira-2026-apreende-r-581-milhoes-em-contrabando-e-drogas/",
+  "url_original": "https://www.cnnbrasil.com.br/nacional/brasil/operacao-fronteira-2026-apreende-r-581-milhoes-em-contrabando-e-drogas/",
+  "titulo": "Operação Fronteira 2026 apreende R$ 581 milhões em contrabando e drogas",
+  "data_pub": "2026-11-16",
+  "fonte": "cnnbrasil.com.br",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
+ },
+ {
+  "url": "https://valor.globo.com/brasil/noticia/2026/11/16/operacao-da-receita-federal-apreende-r-581-mi-em-mercadorias-e-drogas.ghtml",
+  "url_original": "https://valor.globo.com/brasil/noticia/2026/11/16/operacao-da-receita-federal-apreende-r-581-mi-em-mercadorias-e-drogas.ghtml",
+  "titulo": "Operação da Receita Federal apreende R$ 581 mi em mercadorias e drogas",
+  "data_pub": "2026-11-17",
+  "fonte": "valor.globo.com",
+  "tipo": "Imprensa",
+  "substancias": [
+   "Outras sintéticas"
+  ],
+  "trecho": "",
+  "alerta_ice": false,
+  "data_fato": "2026-11-16",
+  "alerta_data": "",
+  "titulo_generico": true,
+  "descoberto_em": "2026-11-26",
+  "complementar": true
  }
 ]
