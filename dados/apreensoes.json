@@ -35,11 +35,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5107602
  },
  {
   "id": "BR26-059-1",
@@ -77,11 +77,11 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 4206900
  },
  {
   "id": "BR26-055-1",
@@ -119,11 +119,11 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 2313401
  },
  {
   "id": "BR26-056-1",
@@ -161,7 +161,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "g1.globo.com",
@@ -170,13 +170,13 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2504009
  },
  {
   "id": "BR26-002-1",
   "evento_id": "BR26-002",
-  "data": "2026-02-13",
-  "data_br": "13/02/2026",
+  "data": "2026-02-11",
+  "data_br": "11/02/2026",
   "ano": 2026,
   "mes": 2,
   "instituicao": "Polícia Rodoviária Federal",
@@ -198,7 +198,7 @@
   "tipo_fonte": "Imprensa",
   "fonte_nome": "noticiaexata.com.br",
   "fonte_url": "https://noticiaexata.com.br/policia/prf-apreende-1-000-comprimidos-de-ecstasy-em-onibus-na-br-163-em-sorriso-droga-viria-para-alta-floresta/",
-  "observacoes": "BR-163, km 733. Quantidade aproximada. Data estimada pela publicação (fev/2026). Passageira encaminhada à Polícia Civil.",
+  "observacoes": "BR-163, km 733. Quantidade aproximada. Data estimada pela publicação (fev/2026). Passageira encaminhada à Polícia Civil. Data corrigida em 25/11 para 11/02 (Só Notícias: fato na véspera da publicação de 12/02).",
   "arma_detalhe": null,
   "dinheiro_valor": null,
   "presos_qtd": "Não informado",
@@ -208,11 +208,20 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
-  "fontes_extra": [],
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "fontes_extra": [
+   {
+    "nome": "sonoticias.com.br",
+    "url": "https://www.sonoticias.com.br/policia/sorriso-passageira-de-onibus-e-presa-com-comprimidos-de-ecstasy/"
+   },
+   {
+    "nome": "midiajur.com.br",
+    "url": "https://www.midiajur.com.br/geral/prf-apreende-1-mil-comprimidos-de-ecstasy-em-onibus-na-br-163/78601"
+   }
+  ],
   "sintetica": "Sim",
-  "confianca": "Média",
-  "cod_ibge": null
+  "confianca": "Alta",
+  "cod_ibge": 5107925
  },
  {
   "id": "BR26-003-1",
@@ -250,11 +259,146 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 3518800
+ },
+ {
+  "qtd_kg": null,
+  "unidade": "comprimidos",
+  "classe": "Droga sintética",
+  "instituicao": "Polícia Rodoviária Federal",
+  "fontes_extra": [],
+  "qtd_unidades": 5000,
+  "quantidade": "≈ 5.000 comprimidos",
+  "uf": "SP",
+  "lote": 16,
+  "observacoes": "BR-381 (Fernão Dias), km 7, por volta das 21h. Presos um catarinense de 34 anos e um esloveno de 32. Também 303 g de haxixe, skunk e cocaína (fora do painel).",
+  "municipio": "Vargem",
+  "tipo_ocorrencia": "Tráfico",
+  "modal": "Rodovia",
+  "arma": "Não informado",
+  "dinheiro_txt": "Não informado",
+  "armas": "Não informado",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "ano": 2026,
+  "orgaos_envolvidos": "PRF",
+  "dinheiro_valor": null,
+  "n_presos": 2,
+  "id": "BR26-085-1",
+  "presos_qtd": "2",
+  "local": "Vargem/SP",
+  "data": "2026-02-19",
+  "tipo_fonte": "Imprensa",
+  "arma_detalhe": null,
+  "descricao": "Comprimidos de ecstasy em carro",
+  "fonte_url": "https://jornalestanciadeatibaia.com.br/prf-apreende-cerca-de-5-mil-comprimidos-de-ecstasy-e-prende-dois-homens-na-fernao-dias/",
+  "sintetica": "Sim",
+  "fonte_nome": "jornalestanciadeatibaia.com.br",
+  "cod_ibge": null,
+  "substancia": "Ecstasy/MDMA",
+  "presos": "Sim",
+  "dinheiro": "Não informado",
+  "confianca": "Média",
+  "novo": "Novo",
+  "evento_id": "BR26-085",
+  "mes": 2,
+  "data_br": "19/02/2026"
+ },
+ {
+  "qtd_kg": null,
+  "unidade": "unidades",
+  "classe": "Droga sintética",
+  "instituicao": "Polícia Rodoviária Federal",
+  "fontes_extra": [],
+  "qtd_unidades": 10,
+  "quantidade": "10 unidades",
+  "uf": "SP",
+  "lote": 16,
+  "observacoes": "BR-381 (Fernão Dias), km 7, por volta das 21h. Presos um catarinense de 34 anos e um esloveno de 32. Também 303 g de haxixe, skunk e cocaína (fora do painel).",
+  "municipio": "Vargem",
+  "tipo_ocorrencia": "Tráfico",
+  "modal": "Rodovia",
+  "arma": "Não informado",
+  "dinheiro_txt": "Não informado",
+  "armas": "Não informado",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "ano": 2026,
+  "orgaos_envolvidos": "PRF",
+  "dinheiro_valor": null,
+  "n_presos": 2,
+  "id": "BR26-085-2",
+  "presos_qtd": "2",
+  "local": "Vargem/SP",
+  "data": "2026-02-19",
+  "tipo_fonte": "Imprensa",
+  "arma_detalhe": null,
+  "descricao": "Unidades de LSD",
+  "fonte_url": "https://jornalestanciadeatibaia.com.br/prf-apreende-cerca-de-5-mil-comprimidos-de-ecstasy-e-prende-dois-homens-na-fernao-dias/",
+  "sintetica": "Sim",
+  "fonte_nome": "jornalestanciadeatibaia.com.br",
+  "cod_ibge": null,
+  "substancia": "LSD",
+  "presos": "Sim",
+  "dinheiro": "Não informado",
+  "confianca": "Média",
+  "novo": "Novo",
+  "evento_id": "BR26-085",
+  "mes": 2,
+  "data_br": "19/02/2026"
+ },
+ {
+  "qtd_kg": null,
+  "confianca": "Alta",
+  "fonte_url": "https://g1.globo.com/to/tocantins/noticia/2026/02/25/prf-apreende-mais-de-700-kg-de-drogas-transportadas-em-cabine-de-caminhao-na-br-153-no-tocantins.ghtml",
+  "tipo_ocorrencia": "Tráfico",
+  "substancia": "Anfetamina (rebite)",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "fontes_extra": [
+   {
+    "nome": "atitudeto.com.br",
+    "url": "https://atitudeto.com.br/noticias/policia/prf-apreende-quase-700-kg-de-drogas-escondidas-em-caminhao-e-prende-em-araguaina-motorista-na-br-153/"
+   },
+   {
+    "nome": "jornalprimeirapaginato.com",
+    "url": "https://jornalprimeirapaginato.com/prf-apreende-quase-700-kg-de-drogas-escondidas-em-cabine-de-caminhao-na-br-153/"
+   }
+  ],
+  "qtd_unidades": 136,
+  "dinheiro_txt": "Não informado",
+  "evento_id": "BR26-078",
+  "unidade": "comprimidos",
+  "id": "BR26-078-1",
+  "lote": 15,
+  "fonte_nome": "g1.globo.com",
+  "modal": "Rodovia",
+  "dinheiro_valor": null,
+  "tipo_fonte": "Imprensa",
+  "presos": "Sim",
+  "municipio": "Araguaína",
+  "uf": "TO",
+  "orgaos_envolvidos": "PRF",
+  "n_presos": 1,
+  "arma": "Não informado",
+  "data": "2026-02-24",
+  "data_br": "24/02/2026",
+  "ano": 2026,
+  "mes": 2,
+  "arma_detalhe": null,
+  "armas": "Não informado",
+  "observacoes": "BR-153, km 160. Também 610 kg de maconha e 88 kg de pasta base de cocaína (fora do painel). Caminhão saiu de Goiânia rumo ao Norte; motorista preso por tráfico.",
+  "presos_qtd": "1",
+  "local": "Araguaína/TO",
+  "quantidade": "136 comprimidos",
+  "descricao": "10 cartelas de anfetamina em cabine de caminhão",
+  "instituicao": "Polícia Rodoviária Federal",
+  "cod_ibge": null,
+  "novo": "",
+  "classe": "Droga sintética",
+  "sintetica": "Sim",
+  "dinheiro": "Não informado"
  },
  {
   "id": "BR26-053-1",
@@ -292,7 +436,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "novonoticias.com.br",
@@ -305,7 +449,91 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2408102
+ },
+ {
+  "qtd_kg": null,
+  "unidade": "comprimidos",
+  "classe": "Droga sintética",
+  "instituicao": "Receita Federal",
+  "fontes_extra": [],
+  "qtd_unidades": 3300,
+  "quantidade": "3.300 comprimidos",
+  "uf": "CE",
+  "lote": 16,
+  "observacoes": "Encomenda enviada do Rio de Janeiro, identificada por cães da Receita numa transportadora; ~R$ 250 mil. Material entregue à polícia; prisão não informada. Distinto do caso de Fortaleza de outubro (BR26-068).",
+  "municipio": "Fortaleza",
+  "tipo_ocorrencia": "Tráfico",
+  "modal": "Remessa postal",
+  "arma": "Não informado",
+  "dinheiro_txt": "Não informado",
+  "armas": "Não informado",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "ano": 2026,
+  "orgaos_envolvidos": "Receita Federal (cães de faro)",
+  "dinheiro_valor": null,
+  "n_presos": null,
+  "id": "BR26-084-1",
+  "presos_qtd": "Não informado",
+  "local": "Fortaleza/CE",
+  "data": "2026-03-10",
+  "tipo_fonte": "Imprensa",
+  "arma_detalhe": null,
+  "descricao": "Comprimidos de ecstasy em encomenda",
+  "fonte_url": "https://diariodonordeste.verdesmares.com.br/seguranca/caes-da-receita-federal-identificam-ecstasy-e-mdma-avaliados-em-r-250-mil-em-fortaleza-1.3749104",
+  "sintetica": "Sim",
+  "fonte_nome": "diariodonordeste.verdesmares.com.br",
+  "cod_ibge": 2304400,
+  "substancia": "Ecstasy/MDMA",
+  "presos": "Não informado",
+  "dinheiro": "Não informado",
+  "confianca": "Média",
+  "novo": "Novo",
+  "evento_id": "BR26-084",
+  "mes": 3,
+  "data_br": "10/03/2026"
+ },
+ {
+  "qtd_kg": 0.5,
+  "unidade": null,
+  "classe": "Droga sintética",
+  "instituicao": "Receita Federal",
+  "fontes_extra": [],
+  "qtd_unidades": null,
+  "quantidade": "0,5 kg",
+  "uf": "CE",
+  "lote": 16,
+  "observacoes": "Encomenda enviada do Rio de Janeiro, identificada por cães da Receita numa transportadora; ~R$ 250 mil. Material entregue à polícia; prisão não informada. Distinto do caso de Fortaleza de outubro (BR26-068).",
+  "municipio": "Fortaleza",
+  "tipo_ocorrencia": "Tráfico",
+  "modal": "Remessa postal",
+  "arma": "Não informado",
+  "dinheiro_txt": "Não informado",
+  "armas": "Não informado",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "ano": 2026,
+  "orgaos_envolvidos": "Receita Federal (cães de faro)",
+  "dinheiro_valor": null,
+  "n_presos": null,
+  "id": "BR26-084-2",
+  "presos_qtd": "Não informado",
+  "local": "Fortaleza/CE",
+  "data": "2026-03-10",
+  "tipo_fonte": "Imprensa",
+  "arma_detalhe": null,
+  "descricao": "MDMA em pó/cristal na mesma encomenda",
+  "fonte_url": "https://diariodonordeste.verdesmares.com.br/seguranca/caes-da-receita-federal-identificam-ecstasy-e-mdma-avaliados-em-r-250-mil-em-fortaleza-1.3749104",
+  "sintetica": "Sim",
+  "fonte_nome": "diariodonordeste.verdesmares.com.br",
+  "cod_ibge": 2304400,
+  "substancia": "Ecstasy/MDMA",
+  "presos": "Não informado",
+  "dinheiro": "Não informado",
+  "confianca": "Média",
+  "novo": "Novo",
+  "evento_id": "BR26-084",
+  "mes": 3,
+  "data_br": "10/03/2026"
  },
  {
   "id": "BR26-004-1",
@@ -343,7 +571,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "g1.globo.com",
@@ -356,7 +584,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5300108
  },
  {
   "id": "BR26-057-1",
@@ -394,11 +622,11 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Baixa",
-  "cod_ibge": null
+  "cod_ibge": 4320107
  },
  {
   "id": "BR26-028-1",
@@ -436,11 +664,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 2,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 4301602
  },
  {
   "id": "BR26-034-1",
@@ -478,7 +706,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 3,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "acritica.net",
@@ -487,7 +715,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-077-1",
@@ -524,12 +752,12 @@
   "classe": "Droga sintética",
   "tipo_ocorrencia": "Não informado",
   "lote": 14,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "novo": "",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5211909
  },
  {
   "id": "BR26-005-1",
@@ -567,11 +795,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3505401
  },
  {
   "id": "BR26-005-2",
@@ -609,11 +837,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3505401
  },
  {
   "id": "BR26-060-1",
@@ -651,7 +879,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Baixa",
@@ -693,11 +921,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 7,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 4321501
  },
  {
   "id": "BR26-041-1",
@@ -735,11 +963,11 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 2105302
  },
  {
   "id": "BR26-006-1",
@@ -777,7 +1005,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "oglobo.globo.com",
@@ -786,7 +1014,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3304557
  },
  {
   "id": "BR26-006-2",
@@ -824,7 +1052,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "oglobo.globo.com",
@@ -833,7 +1061,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3304557
  },
  {
   "id": "BR26-029-1",
@@ -871,11 +1099,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 2,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 4305108
  },
  {
   "id": "BR26-029-2",
@@ -913,11 +1141,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 2,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 4305108
  },
  {
   "id": "BR26-007-1",
@@ -955,11 +1183,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 4123501
  },
  {
   "id": "BR26-054-1",
@@ -997,11 +1225,53 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 1600303
+ },
+ {
+  "qtd_kg": null,
+  "unidade": "comprimidos",
+  "classe": "Droga sintética",
+  "instituicao": "Polícia Rodoviária Federal",
+  "fontes_extra": [],
+  "qtd_unidades": 88,
+  "quantidade": "88 comprimidos",
+  "uf": "MT",
+  "lote": 16,
+  "observacoes": "BR-174. Registrado TCO; condutor liberado com compromisso de comparecer à Justiça.",
+  "municipio": "Pontes e Lacerda",
+  "tipo_ocorrencia": "Porte para consumo",
+  "modal": "Rodovia",
+  "arma": "Não informado",
+  "dinheiro_txt": "Não informado",
+  "armas": "Não informado",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "ano": 2026,
+  "orgaos_envolvidos": "PRF",
+  "dinheiro_valor": null,
+  "n_presos": 0,
+  "id": "BR26-086-1",
+  "presos_qtd": "0",
+  "local": "Pontes e Lacerda/MT",
+  "data": "2026-05-28",
+  "tipo_fonte": "Imprensa",
+  "arma_detalhe": null,
+  "descricao": "Seis cartelas de anfetamina em caminhão",
+  "fonte_url": "https://www.muvucapopular.com.br/2026/05/29/prf-apreende-anfetaminas-em-caminhao-durante-operacao-em-mt/",
+  "sintetica": "Sim",
+  "fonte_nome": "muvucapopular.com.br",
+  "cod_ibge": null,
+  "substancia": "Anfetamina (rebite)",
+  "presos": "Não",
+  "dinheiro": "Não informado",
+  "confianca": "Média",
+  "novo": "Novo",
+  "evento_id": "BR26-086",
+  "mes": 5,
+  "data_br": "28/05/2026"
  },
  {
   "id": "BR26-008-1",
@@ -1039,7 +1309,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "aredacao.com.br",
@@ -1048,7 +1318,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5218003
  },
  {
   "id": "BR26-009-1",
@@ -1086,7 +1356,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "diariodaamazonia.com.br",
@@ -1099,7 +1369,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 1100205
  },
  {
   "id": "BR26-010-1",
@@ -1137,11 +1407,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3518800
  },
  {
   "id": "BR26-030-1",
@@ -1179,11 +1449,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 2,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 2404853
  },
  {
   "id": "BR26-035-1",
@@ -1221,11 +1491,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 3,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-049-1",
@@ -1263,11 +1533,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 1714203
  },
  {
   "id": "BR26-064-1",
@@ -1305,11 +1575,11 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 7,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 2109007
  },
  {
   "id": "BR26-065-1",
@@ -1347,11 +1617,11 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 7,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 2105302
  },
  {
   "id": "BR26-011-1",
@@ -1389,7 +1659,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "sindireceita.org.br",
@@ -1398,7 +1668,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5300108
  },
  {
   "id": "BR26-058-1",
@@ -1436,11 +1706,11 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Baixa",
-  "cod_ibge": null
+  "cod_ibge": 3304110
  },
  {
   "id": "BR26-012-1",
@@ -1478,11 +1748,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3518800
  },
  {
   "id": "BR26-036-1",
@@ -1520,7 +1790,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 3,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "folhams.com.br",
@@ -1533,7 +1803,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-031-1",
@@ -1571,11 +1841,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 2,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5300108
  },
  {
   "id": "BR26-031-2",
@@ -1613,11 +1883,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 2,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5300108
  },
  {
   "id": "BR26-037-1",
@@ -1655,11 +1925,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 3,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-013-1",
@@ -1697,7 +1967,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "aredacao.com.br",
@@ -1706,7 +1976,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5218003
  },
  {
   "id": "BR26-042-1",
@@ -1744,7 +2014,7 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "itatiaia.com.br",
@@ -1753,7 +2023,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3157005
  },
  {
   "id": "BR26-051-1",
@@ -1791,11 +2061,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 3148004
  },
  {
   "id": "BR26-043-1",
@@ -1833,11 +2103,11 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 3157005
  },
  {
   "id": "BR26-050-1",
@@ -1875,11 +2145,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 1100205
  },
  {
   "id": "BR26-014-1",
@@ -1917,7 +2187,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "metropoles.com",
@@ -1934,7 +2204,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 1703867
  },
  {
   "id": "BR26-015-1",
@@ -1972,7 +2242,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "g1.globo.com",
@@ -1985,7 +2255,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5300108
  },
  {
   "id": "BR26-016-1",
@@ -2023,11 +2293,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5300108
  },
  {
   "id": "BR26-033-1",
@@ -2065,11 +2335,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 3,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 2704302
  },
  {
   "id": "BR26-017-1",
@@ -2107,7 +2377,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "correiodecorumbapantanal.com.br",
@@ -2120,11 +2390,15 @@
    {
     "nome": "jornaldanova.com.br",
     "url": "https://jornaldanova.com.br/noticia/474266/pf-e-receita-apreendem-quase-5-kg-de-drogas-sinteticas-e-prendem-quatro-bolivianos"
+   },
+   {
+    "nome": "diarionline.com.br",
+    "url": "https://diarionline.com.br/?s=noticia&id=158520"
    }
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-017-2",
@@ -2162,7 +2436,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "correiodecorumbapantanal.com.br",
@@ -2175,11 +2449,15 @@
    {
     "nome": "jornaldanova.com.br",
     "url": "https://jornaldanova.com.br/noticia/474266/pf-e-receita-apreendem-quase-5-kg-de-drogas-sinteticas-e-prendem-quatro-bolivianos"
+   },
+   {
+    "nome": "diarionline.com.br",
+    "url": "https://diarionline.com.br/?s=noticia&id=158520"
    }
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-018-1",
@@ -2217,7 +2495,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "pontaporainforma.com.br",
@@ -2226,7 +2504,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-032-1",
@@ -2264,11 +2542,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 2,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 4212205
  },
  {
   "id": "BR26-048-1",
@@ -2306,7 +2584,7 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "diariodorn.com.br",
@@ -2319,7 +2597,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2400208
  },
  {
   "id": "BR26-044-1",
@@ -2357,7 +2635,7 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "itatiaia.com.br",
@@ -2366,7 +2644,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3143302
  },
  {
   "id": "BR26-045-1",
@@ -2404,7 +2682,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "g1.globo.com",
@@ -2413,7 +2691,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3300407
  },
  {
   "id": "BR26-052-1",
@@ -2451,7 +2729,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 5,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "clubenoticia.com.br",
@@ -2460,7 +2738,54 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3148004
+ },
+ {
+  "qtd_kg": null,
+  "confianca": "Alta",
+  "fonte_url": "https://ncnews.com.br/2026/08/27/prf-apreende-37-comprimidos-de-rebite-com-dois-caminhoneiros-na-br-251-em-mg/",
+  "tipo_ocorrencia": "Porte para consumo",
+  "substancia": "Anfetamina (rebite)",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "fontes_extra": [
+   {
+    "nome": "em.com.br",
+    "url": "https://www.em.com.br/gerais/2026/08/7488223-caminhoneiros-sao-flagrados-com-37-comprimidos-de-rebite-na-br-251.html"
+   }
+  ],
+  "qtd_unidades": 37,
+  "dinheiro_txt": "Não informado",
+  "evento_id": "BR26-079",
+  "unidade": "comprimidos",
+  "id": "BR26-079-1",
+  "lote": 15,
+  "fonte_nome": "ncnews.com.br",
+  "modal": "Rodovia",
+  "dinheiro_valor": null,
+  "tipo_fonte": "Imprensa",
+  "presos": "Não",
+  "municipio": "Salinas",
+  "uf": "MG",
+  "orgaos_envolvidos": "PRF",
+  "n_presos": 0,
+  "arma": "Não informado",
+  "data": "2026-08-26",
+  "data_br": "26/08/2026",
+  "ano": 2026,
+  "mes": 8,
+  "arma_detalhe": null,
+  "armas": "Não informado",
+  "observacoes": "BR-251. Duas abordagens na mesma manhã; consumo próprio, motoristas autuados também por descumprir o tempo de descanso. Distinto dos casos de Salinas de 21/07, 27/07 e 17/09.",
+  "presos_qtd": "0",
+  "local": "Salinas/MG",
+  "quantidade": "37 comprimidos",
+  "descricao": "Comprimidos de rebite com dois caminhoneiros (duas abordagens)",
+  "instituicao": "Polícia Rodoviária Federal",
+  "cod_ibge": 3157005,
+  "novo": "",
+  "classe": "Droga sintética",
+  "sintetica": "Sim",
+  "dinheiro": "Não informado"
  },
  {
   "id": "BR26-019-1",
@@ -2498,7 +2823,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "correio24horas.com.br",
@@ -2511,7 +2836,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2927408
  },
  {
   "id": "BR26-047-1",
@@ -2549,7 +2874,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "gazetadigital.com.br",
@@ -2558,7 +2883,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5101803
  },
  {
   "id": "BR26-020-1",
@@ -2596,7 +2921,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "diarionline.com.br",
@@ -2609,7 +2934,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-021-1",
@@ -2647,7 +2972,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "otempobetim.com.br",
@@ -2660,7 +2985,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3106705
  },
  {
   "id": "BR26-021-2",
@@ -2698,7 +3023,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "otempobetim.com.br",
@@ -2711,7 +3036,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3106705
  },
  {
   "id": "BR26-022-1",
@@ -2749,7 +3074,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "diarionline.com.br",
@@ -2758,7 +3083,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-061-1",
@@ -2796,11 +3121,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 6,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3304557
  },
  {
   "id": "BR26-046-1",
@@ -2838,7 +3163,7 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "itatiaia.com.br",
@@ -2847,7 +3172,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3157005
  },
  {
   "id": "BR26-023-1",
@@ -2885,7 +3210,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "barbacenamais.com.br",
@@ -2898,7 +3223,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3105608
  },
  {
   "id": "BR26-038-1",
@@ -2936,7 +3261,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 3,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "sindireceita.org.br",
@@ -2949,7 +3274,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-024-1",
@@ -2987,7 +3312,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "portalsalvadorfm.com.br",
@@ -2996,7 +3321,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2929909
  },
  {
   "id": "BR26-025-1",
@@ -3034,7 +3359,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "portalsalvadorfm.com.br",
@@ -3043,7 +3368,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2929909
  },
  {
   "id": "BR26-026-1",
@@ -3081,16 +3406,20 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "radiocacula.com.br",
     "url": "https://www.radiocacula.com.br/prf-apreende-mais-de-6kg-de-drogas-em-carro-de-aplicativo-em-tres-lagoas/"
+   },
+   {
+    "nome": "castilhosp.com.br",
+    "url": "https://castilhosp.com.br/prf-apreende-63-kg-de-skunk-e-drogas-sinteticas-em-carro-de-aplicativo-na-br-262/"
    }
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5008305
  },
  {
   "id": "BR26-026-2",
@@ -3128,16 +3457,20 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "radiocacula.com.br",
     "url": "https://www.radiocacula.com.br/prf-apreende-mais-de-6kg-de-drogas-em-carro-de-aplicativo-em-tres-lagoas/"
+   },
+   {
+    "nome": "castilhosp.com.br",
+    "url": "https://castilhosp.com.br/prf-apreende-63-kg-de-skunk-e-drogas-sinteticas-em-carro-de-aplicativo-na-br-262/"
    }
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5008305
  },
  {
   "id": "BR26-026-3",
@@ -3175,16 +3508,20 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "radiocacula.com.br",
     "url": "https://www.radiocacula.com.br/prf-apreende-mais-de-6kg-de-drogas-em-carro-de-aplicativo-em-tres-lagoas/"
+   },
+   {
+    "nome": "castilhosp.com.br",
+    "url": "https://castilhosp.com.br/prf-apreende-63-kg-de-skunk-e-drogas-sinteticas-em-carro-de-aplicativo-na-br-262/"
    }
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5008305
  },
  {
   "id": "BR26-040-1",
@@ -3222,11 +3559,11 @@
   "tipo_ocorrencia": "Porte para consumo",
   "lote": 4,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 2105302
  },
  {
   "id": "BR26-027-1",
@@ -3264,11 +3601,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 1,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 4108304
  },
  {
   "id": "BR26-066-1",
@@ -3306,7 +3643,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 8,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "maismaranhao.com.br",
@@ -3315,7 +3652,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2109007
  },
  {
   "id": "BR26-067-1",
@@ -3353,7 +3690,7 @@
   "tipo_ocorrencia": "Não informado",
   "lote": 8,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "maismaranhao.com.br",
@@ -3362,7 +3699,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2105302
  },
  {
   "id": "BR26-039-1",
@@ -3387,9 +3724,9 @@
   "n_presos": null,
   "arma": "Não informado",
   "dinheiro": "Não informado",
-  "tipo_fonte": "Imprensa",
-  "fonte_nome": "midiamax.com.br",
-  "fonte_url": "https://midiamax.com.br/policia/2026/carga-17-toneladas-insumos-usados-producao-cocaina-apreendida-corumba/",
+  "tipo_fonte": "Oficial",
+  "fonte_nome": "gov.br/receitafederal",
+  "fonte_url": "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/outubro/receita-federal-e-policia-federal-apreendem-aproximadamente-17-toneladas-de-insumo-quimico-utilizado-na-producao-de-cocaina-em-corumba",
   "observacoes": "~17 t. Carreta e motorista encaminhados à PF. Fontes secundárias: acritica.net, campograndenews.com.br, douradosnews.com.br.",
   "arma_detalhe": null,
   "dinheiro_valor": null,
@@ -3400,8 +3737,12 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 3,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
+   {
+    "nome": "midiamax.com.br",
+    "url": "https://midiamax.com.br/policia/2026/carga-17-toneladas-insumos-usados-producao-cocaina-apreendida-corumba/"
+   },
    {
     "nome": "jd1noticias.com",
     "url": "https://www.jd1noticias.com/policia/2026/10/10/pf-e-receita-apreendem-17-toneladas-de-insumo-usado-na-fabricacao-de-cocaina-em-corumba.html"
@@ -3409,11 +3750,15 @@
    {
     "nome": "issoenoticia.com.br",
     "url": "https://www.issoenoticia.com.br/policia/pf-e-receita-federal-apreendem-17-mil-litros-de-produto-quimico-controlado/931849"
+   },
+   {
+    "nome": "diariodigital.com.br",
+    "url": "https://www.diariodigital.com.br/policia-2/receita-federal-e-pf-apreendem-17-toneladas-de-insumo-usado-na-producao-de-cocaina"
    }
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "id": "BR26-063-1",
@@ -3451,11 +3796,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 7,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 3301306
  },
  {
   "id": "BR26-068-1",
@@ -3493,7 +3838,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 8,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "diariodonordeste.verdesmares.com.br",
@@ -3506,7 +3851,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2304400
  },
  {
   "id": "BR26-068-2",
@@ -3544,7 +3889,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 8,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "diariodonordeste.verdesmares.com.br",
@@ -3557,7 +3902,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2304400
  },
  {
   "id": "BR26-069-1",
@@ -3595,11 +3940,11 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 9,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [],
   "sintetica": "Sim",
   "confianca": "Média",
-  "cod_ibge": null
+  "cod_ibge": 5003207
  },
  {
   "evento_id": "BR26-070",
@@ -3632,6 +3977,18 @@
    {
     "nome": "folhadooeste.com.br",
     "url": "https://folhadooeste.com.br/noticias/prf-intercepta-carregamento-de-drogas-na-br-282.15488324"
+   },
+   {
+    "nome": "diregional.com.br",
+    "url": "https://diregional.com.br/diario-do-iguacu/2026-11-03-prf-intercepta-carregamento-de-drogas-sinteticas-e-derivados-de-maconha-na-br-282-em-chapeco"
+   },
+   {
+    "nome": "michelteixeira.com.br",
+    "url": "https://www.michelteixeira.com.br/prf-encontra-ecstasy-lsd-e-mais-de-12-kg-de-drogas-em-carro-na-br-282-no-oeste/"
+   },
+   {
+    "nome": "clicrdc.com.br",
+    "url": "https://clicrdc.com.br/seguranca-publica/prf-apreende-ecstasy-lsd-skunk-e-haxixe-em-carro-na-br-282-em-chapeco/"
    }
   ],
   "tipo_ocorrencia": "Tráfico",
@@ -3642,11 +3999,11 @@
   "unidade": "comprimidos",
   "quantidade": "453 comprimidos",
   "observacoes": "BR-282. Motorista de 24 anos (PR) desviou para um posto ao ver a viatura; disse estar perto do destino da entrega. Também 10 kg de skunk e 2,24 kg de haxixe (fora do painel). Encaminhado à PF, onde responderá por tráfico; a nota não usa o termo prisão.",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "novo": "",
   "lote": 10,
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 4204202
  },
  {
   "evento_id": "BR26-070",
@@ -3679,6 +4036,18 @@
    {
     "nome": "folhadooeste.com.br",
     "url": "https://folhadooeste.com.br/noticias/prf-intercepta-carregamento-de-drogas-na-br-282.15488324"
+   },
+   {
+    "nome": "diregional.com.br",
+    "url": "https://diregional.com.br/diario-do-iguacu/2026-11-03-prf-intercepta-carregamento-de-drogas-sinteticas-e-derivados-de-maconha-na-br-282-em-chapeco"
+   },
+   {
+    "nome": "michelteixeira.com.br",
+    "url": "https://www.michelteixeira.com.br/prf-encontra-ecstasy-lsd-e-mais-de-12-kg-de-drogas-em-carro-na-br-282-no-oeste/"
+   },
+   {
+    "nome": "clicrdc.com.br",
+    "url": "https://clicrdc.com.br/seguranca-publica/prf-apreende-ecstasy-lsd-skunk-e-haxixe-em-carro-na-br-282-em-chapeco/"
    }
   ],
   "tipo_ocorrencia": "Tráfico",
@@ -3689,11 +4058,11 @@
   "unidade": "micropontos",
   "quantidade": "77 micropontos",
   "observacoes": "Mesmo evento da linha anterior.",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "novo": "",
   "lote": 10,
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 4204202
  },
  {
   "id": "BR26-071-1",
@@ -3731,7 +4100,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 11,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "g1.globo.com",
@@ -3780,7 +4149,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2801702
  },
  {
   "id": "BR26-072-1",
@@ -3818,7 +4187,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 11,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "bra1.com.br",
@@ -3827,7 +4196,7 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3304557
  },
  {
   "id": "BR26-072-2",
@@ -3865,7 +4234,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 11,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "bra1.com.br",
@@ -3874,7 +4243,54 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3304557
+ },
+ {
+  "qtd_kg": 0.06,
+  "confianca": "Baixa",
+  "fonte_url": "https://emtemponoticias.com.br/noticias/policia/receita-federal-apreende-r-240-mil-em-mercadorias-e-drogas-em-alagoas-na-primeira-semana-de-operacao/",
+  "tipo_ocorrencia": "Não informado",
+  "substancia": "Metanfetamina",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "fontes_extra": [
+   {
+    "nome": "jaenoticia.com.br",
+    "url": "https://www.jaenoticia.com.br/noticias/2026/11/09/153146-operacao-da-receita-federal-apreende-cerca-de-r-240-mil-em-mercadorias-ilegais-e-drogas-em-maceio-e-arapiraca"
+   }
+  ],
+  "qtd_unidades": null,
+  "dinheiro_txt": "Não informado",
+  "evento_id": "BR26-080",
+  "unidade": null,
+  "id": "BR26-080-1",
+  "lote": 15,
+  "fonte_nome": "emtemponoticias.com.br",
+  "modal": "Outro",
+  "dinheiro_valor": null,
+  "tipo_fonte": "Imprensa",
+  "presos": "Não informado",
+  "municipio": "Arapiraca",
+  "uf": "AL",
+  "orgaos_envolvidos": "Receita Federal (Operação Fronteira) + Denarc/PC-AL",
+  "n_presos": null,
+  "arma": "Não informado",
+  "data": "2026-11-09",
+  "data_br": "09/11/2026",
+  "ano": 2026,
+  "mes": 11,
+  "arma_detalhe": null,
+  "armas": "Não informado",
+  "observacoes": "Conferir data: o balanço só diz que foi na primeira semana da Operação Fronteira (até 09/11); usada a data de divulgação. 60 g; prisão não informada.",
+  "presos_qtd": "Não informado",
+  "local": "Arapiraca/AL",
+  "quantidade": "0,06 kg",
+  "descricao": "Substância semelhante à metanfetamina",
+  "instituicao": "Receita Federal",
+  "cod_ibge": null,
+  "novo": "",
+  "classe": "Droga sintética",
+  "sintetica": "Sim",
+  "dinheiro": "Não informado"
  },
  {
   "id": "BR26-073-1",
@@ -3912,7 +4328,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 12,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "gov.br/pf",
@@ -3937,7 +4353,49 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 5003207
+ },
+ {
+  "qtd_kg": 2.5,
+  "confianca": "Média",
+  "fonte_url": "https://www.michelteixeira.com.br/receita-federal-retem-entorpecentes-avaliados-em-r-800-mil-durante-operacoes-em-santa-catarina/",
+  "tipo_ocorrencia": "Tráfico",
+  "substancia": "Ecstasy/MDMA",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "fontes_extra": [],
+  "qtd_unidades": null,
+  "dinheiro_txt": "Não informado",
+  "evento_id": "BR26-081",
+  "unidade": null,
+  "id": "BR26-081-1",
+  "lote": 15,
+  "fonte_nome": "michelteixeira.com.br",
+  "modal": "Remessa postal",
+  "dinheiro_valor": null,
+  "tipo_fonte": "Imprensa",
+  "presos": "Não informado",
+  "municipio": "Itajaí",
+  "uf": "SC",
+  "orgaos_envolvidos": "Receita Federal",
+  "n_presos": null,
+  "arma": "Não informado",
+  "data": "2026-11-11",
+  "data_br": "11/11/2026",
+  "ano": 2026,
+  "mes": 11,
+  "arma_detalhe": null,
+  "armas": "Não informado",
+  "observacoes": "Apreensão na 'quarta-feira' anterior à divulgação de 13/11 (11/11). Encomenda com destino a Balneário Camboriú, embalada a vácuo e envolta em papel carbono contra o raio-X. Faz parte de balanço de R$ 800 mil em SC.",
+  "presos_qtd": "Não informado",
+  "local": "Itajaí/SC",
+  "quantidade": "2,5 kg",
+  "descricao": "Substância sintética semelhante ao MDMA em encomenda numa transportadora",
+  "instituicao": "Receita Federal",
+  "cod_ibge": null,
+  "novo": "",
+  "classe": "Droga sintética",
+  "sintetica": "Sim",
+  "dinheiro": "Não informado"
  },
  {
   "id": "BR26-075-1",
@@ -3975,7 +4433,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 12,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "noticias.r7.com",
@@ -3984,7 +4442,49 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 3301702
+ },
+ {
+  "qtd_kg": null,
+  "confianca": "Média",
+  "fonte_url": "https://diariodecaratinga.com.br/policia/prf-prende-tres-homens-e-apreende-grande-quantidade-de-drogas-na-br-116-em-caratinga/",
+  "tipo_ocorrencia": "Tráfico",
+  "substancia": "Ecstasy/MDMA",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "fontes_extra": [],
+  "qtd_unidades": 1,
+  "dinheiro_txt": "Não informado",
+  "evento_id": "BR26-082",
+  "unidade": "porção",
+  "id": "BR26-082-1",
+  "lote": 15,
+  "fonte_nome": "diariodecaratinga.com.br",
+  "modal": "Rodovia",
+  "dinheiro_valor": null,
+  "tipo_fonte": "Imprensa",
+  "presos": "Sim",
+  "municipio": "Caratinga",
+  "uf": "MG",
+  "orgaos_envolvidos": "PRF",
+  "n_presos": 3,
+  "arma": "Não informado",
+  "data": "2026-11-13",
+  "data_br": "13/11/2026",
+  "ano": 2026,
+  "mes": 11,
+  "arma_detalhe": null,
+  "armas": "Não informado",
+  "observacoes": "BR-116. Peso não divulgado. Também 110 frascos de lança-perfume e 2 barras de skunk (fora do painel). Grupo voltava ao Rio de Janeiro.",
+  "presos_qtd": "3",
+  "local": "Caratinga/MG",
+  "quantidade": "1 porção",
+  "descricao": "Porção de MDMA ('molly') em caixa de isopor no porta-malas",
+  "instituicao": "Polícia Rodoviária Federal",
+  "cod_ibge": null,
+  "novo": "",
+  "classe": "Droga sintética",
+  "sintetica": "Sim",
+  "dinheiro": "Não informado"
  },
  {
   "id": "BR26-076-1",
@@ -4022,7 +4522,7 @@
   "tipo_ocorrencia": "Tráfico",
   "lote": 13,
   "novo": "",
-  "atualizado_em": "2026-11-25T15:59:00-03:00",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
   "fontes_extra": [
    {
     "nome": "tvguararapes.com.br",
@@ -4035,6 +4535,61 @@
   ],
   "sintetica": "Sim",
   "confianca": "Alta",
-  "cod_ibge": null
+  "cod_ibge": 2612604
+ },
+ {
+  "qtd_kg": null,
+  "confianca": "Alta",
+  "fonte_url": "https://www.gov.br/prf/pt-br/noticias/estaduais/pernambuco/prf-apreende-798-comprimidos-de-rebite-apos-motorista-tentar-fugir-de-fiscalizacao-na-br-232-em-salgueiro",
+  "tipo_ocorrencia": "Tráfico",
+  "substancia": "Anfetamina (rebite)",
+  "atualizado_em": "2026-11-25T21:44:00-03:00",
+  "fontes_extra": [
+   {
+    "nome": "g1.globo.com",
+    "url": "https://g1.globo.com/pe/petrolina-regiao/noticia/2026/11/23/motorista-e-preso-pela-prf-apos-tentar-fugir-de-fiscalizacao-com-mais-de-700-comprimidos-de-rebite-em-salgueiro.ghtml"
+   },
+   {
+    "nome": "tvguararapes.com.br",
+    "url": "https://www.tvguararapes.com.br/pernambuco/2026/11/23/prf-apreende-798-comprimidos-de-rebite-apos-motorista-tentar-fugir-de-fiscalizacao-em-salgueiro.html"
+   },
+   {
+    "nome": "cbnrecife.com",
+    "url": "https://www.cbnrecife.com/2026/11/23/prf-prende-motorista-e-apreende-quase-800-comprimidos-de-rebite-na-br-232-em-salgueiro/"
+   }
+  ],
+  "qtd_unidades": 798,
+  "dinheiro_txt": "Não informado",
+  "evento_id": "BR26-083",
+  "unidade": "comprimidos",
+  "id": "BR26-083-1",
+  "lote": 15,
+  "fonte_nome": "gov.br/prf",
+  "modal": "Rodovia",
+  "dinheiro_valor": null,
+  "tipo_fonte": "Oficial",
+  "presos": "Sim",
+  "municipio": "Salgueiro",
+  "uf": "PE",
+  "orgaos_envolvidos": "PRF",
+  "n_presos": 1,
+  "arma": "Não informado",
+  "data": "2026-11-23",
+  "data_br": "23/11/2026",
+  "ano": 2026,
+  "mes": 11,
+  "arma_detalhe": null,
+  "armas": "Não informado",
+  "observacoes": "BR-232, km 507, por volta das 10h40. Motorista tentou fugir da fiscalização e foi preso.",
+  "presos_qtd": "1",
+  "local": "Salgueiro/PE",
+  "quantidade": "798 comprimidos",
+  "descricao": "Comprimidos de rebite em carro após tentativa de fuga",
+  "instituicao": "Polícia Rodoviária Federal",
+  "cod_ibge": null,
+  "novo": "",
+  "classe": "Droga sintética",
+  "sintetica": "Sim",
+  "dinheiro": "Não informado"
  }
 ]
