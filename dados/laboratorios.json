@@ -42,8 +42,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Conferir data: a matéria (09/01) não informa o dia da ação. Fábrica de lança-perfume dentro de casa, bairro Cedro, também usada para tráfico.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-002",
@@ -87,13 +87,30 @@
   "tipo_fonte": "Imprensa",
   "fonte_nome": "correiobraziliense.com.br",
   "fonte_url": "https://www.correiobraziliense.com.br/cidades-df/2026/04/7400611-traficantes-refinam-manipulam-e-preparam-drogas-no-df-para-distribuicao.html",
-  "fontes_extra": [],
-  "confianca": "Média",
+  "fontes_extra": [
+   {
+    "nome": "soubrasilia.com",
+    "url": "https://soubrasilia.com/policia-federal-e-militar-fecham-laboratorio-clandestino-de-cocaina-no-df/"
+   },
+   {
+    "nome": "sbtnews.sbt.com.br",
+    "url": "https://sbtnews.sbt.com.br/noticia/policia/pf-e-policia-militar-do-df-fecham-laboratorio-de-cocaina-em-brasilia-e-prendem-suspeito-em-flagrante"
+   },
+   {
+    "nome": "entorno.jornalopcao.com.br",
+    "url": "https://entorno.jornalopcao.com.br/policia/pf-e-pmdf-fecham-laboratorio-de-cocaina-no-df-e-prendem-suspeito-30126/"
+   },
+   {
+    "nome": "correiobraziliense.com.br",
+    "url": "https://www.correiobraziliense.com.br/cidades-df/2026/02/7359348-abordagem-a-traficante-leva-policiais-a-laboratorio-de-cocaina-em-ceilandia.html"
+   }
+  ],
+  "confianca": "Alta",
   "apreensoes_ligadas": [],
   "observacoes": "Incra 9, Ceilândia. Reportagem de abril sobre quatro laboratórios desmontados pela PF no DF e Entorno entre fevereiro e abril; os de Taguatinga e Samambaia (preparo de 'dry', derivado de maconha) ficaram fora do escopo.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-003",
@@ -134,13 +151,18 @@
   "tipo_fonte": "Imprensa",
   "fonte_nome": "ipolitica.blog.br",
   "fonte_url": "https://ipolitica.blog.br/policia-militar-desarticula-laboratorio-de-refino-de-cocaina-em-itabuna/",
-  "fontes_extra": [],
-  "confianca": "Média",
+  "fontes_extra": [
+   {
+    "nome": "centraldascidades.com",
+    "url": "https://www.centraldascidades.com/2026/02/itabuna-policia-militar-desarticula.html"
+   }
+  ],
+  "confianca": "Alta",
   "apreensoes_ligadas": [],
   "observacoes": "Bairro Jorge Amado, após denúncia anônima; prensa industrial. Ninguém preso no local.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-004",
@@ -198,8 +220,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Bairro do Sapê; laboratório atribuído à 'Tropa do Urso'. Data = publicação (ação no mesmo dia ou véspera).",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-005",
@@ -246,8 +268,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Entorno do DF. Adulteração e embalagem com prensa hidráulica e fitas com logomarcas; droga não informada (provavelmente cocaína).",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-006",
@@ -288,16 +310,25 @@
   "armas_txt": "",
   "dinheiro": "Não informado",
   "dinheiro_txt": "",
-  "tipo_fonte": "Imprensa",
-  "fonte_nome": "sctd.com.br",
-  "fonte_url": "https://sctd.com.br/seguranca/laboratorio-de-drogas-sinteticas-e-desmontado-durante-acao-policial-na-regiao-de-bc/",
-  "fontes_extra": [],
-  "confianca": "Média",
+  "tipo_fonte": "Oficial",
+  "fonte_nome": "pc.sc.gov.br",
+  "fonte_url": "https://pc.sc.gov.br/?p=37354",
+  "fontes_extra": [
+   {
+    "nome": "sctd.com.br",
+    "url": "https://sctd.com.br/seguranca/laboratorio-de-drogas-sinteticas-e-desmontado-durante-acao-policial-na-regiao-de-bc/"
+   },
+   {
+    "nome": "oestadodesantacatarina.com.br",
+    "url": "https://oestadodesantacatarina.com.br/2026/policia-fecha-laboratorio-de-drogas-e-apreende-grande-quantidade-de-entorpecentes-em-balneario-camboriu/"
+   }
+  ],
+  "confianca": "Alta",
   "apreensoes_ligadas": [],
   "observacoes": "Laboratório de produção e embalagem de cigarros eletrônicos com THC; drogas sintéticas armazenadas no local. Buscas também em Camboriú; 2 foragidos.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-007",
@@ -328,26 +359,35 @@
   "produto_apreendido": "mais de 1 tonelada de cocaína (21 sacos de 50 kg, 27 barras, pasta-base); 4 sacos de maconha; >300 cartuchos de fuzil",
   "capacidade": "Não informado",
   "riscos": [],
-  "orgaos_envolvidos": "Polícia Militar da Bahia",
+  "orgaos_envolvidos": "Polícia Militar da Bahia (75ª e 76ª CIPMs)",
   "esfera": "Estadual",
   "operacao": "",
-  "presos": "Não informado",
-  "n_presos": null,
+  "presos": "Não",
+  "n_presos": 0,
   "adolescentes": 0,
   "arma": "Não informado",
   "armas_txt": "",
   "dinheiro": "Não informado",
   "dinheiro_txt": "",
-  "tipo_fonte": "Imprensa",
-  "fonte_nome": "correio24horas.com.br",
-  "fonte_url": "https://www.correio24horas.com.br/minha-bahia/laboratorio-de-drogas-e-desarticulado-e-mais-de-1-tonelada-de-cocaina-e-apreendida-na-bahia-0426",
-  "fontes_extra": [],
-  "confianca": "Média",
+  "tipo_fonte": "Oficial",
+  "fonte_nome": "ba.gov.br/ssp",
+  "fonte_url": "https://www.ba.gov.br/ssp/noticias/2026-04/88177/laboratorio-e-desarticulado-com-mais-de-uma-tonelada-de-drogas-em-juazeiro",
+  "fontes_extra": [
+   {
+    "nome": "correio24horas.com.br",
+    "url": "https://www.correio24horas.com.br/minha-bahia/laboratorio-de-drogas-e-desarticulado-e-mais-de-1-tonelada-de-cocaina-e-apreendida-na-bahia-0426"
+   },
+   {
+    "nome": "bahianoticias.com.br",
+    "url": "https://www.bahianoticias.com.br/municipios/noticia/50293-pm-desarticula-laboratorio-de-drogas-e-apreende-mais-de-1-tonelada-de-cocaina-em-juazeiro"
+   }
+  ],
+  "confianca": "Alta",
   "apreensoes_ligadas": [],
-  "observacoes": "Bairro Piranga II. Três prensas hidráulicas, nove balanças, liquidificador industrial. Presos não informados.",
+  "observacoes": "Bairro Piranga II. Três prensas hidráulicas, nove balanças, liquidificador industrial, soda cáustica; >300 cartuchos de fuzil. Nenhum preso, segundo a SSP-BA.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-008",
@@ -394,8 +434,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Itapuã. Laboratório do crime organizado em residência; veículo de transporte apreendido.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-009",
@@ -438,8 +478,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Laboratório de refino e armazenamento na Grande BH.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-010",
@@ -485,8 +525,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Vila de Abrantes. Refino, preparo e embalagem; suspeitos fugiram para a mata e tentaram subornar os policiais. Nº de presos não informado.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-011",
@@ -533,8 +573,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Povoado Grama 1, zona rural. Três prensas hidráulicas. Prejuízo estimado de R$ 3,5 milhões. Presos não informados.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-012",
@@ -583,8 +623,8 @@
   "apreensoes_ligadas": [],
   "observacoes": "Refino e corte de cocaína; três máscaras respiratórias.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-013",
@@ -634,14 +674,22 @@
    {
     "nome": "estacao419.com",
     "url": "https://estacao419.com/2026/07/pm-desarticula-laboratorio-de-drogas-sinteticas-e-prende-quadrilha-por-trafico-em-mt/"
+   },
+   {
+    "nome": "sonoticias.com.br",
+    "url": "https://www.sonoticias.com.br/policia/pm-encontra-laboratorio-de-drogas-sinteticas-em-mato-grosso-4-detidos/"
+   },
+   {
+    "nome": "cenariomt.com.br",
+    "url": "https://cenariomt.com.br/mato-grosso/barra-do-garcas/forca-tatica-fecha-laboratorio-de-drogas-sinteticas-no-bairro-cidade-universitaria-em-barra-do-garcas/"
    }
   ],
   "confianca": "Alta",
   "apreensoes_ligadas": [],
-  "observacoes": "Quitinete usada para preparar e fracionar drogas sintéticas e lança-perfume.",
+  "observacoes": "Quitinete usada para preparar e fracionar drogas sintéticas e lança-perfume. Bairro Cidade Universitária.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-014",
@@ -698,14 +746,22 @@
    {
     "nome": "diarioesp.com.br",
     "url": "https://diarioesp.com.br/sao-paulo/2026/09/28/operacao-em-barrinha-apreende-390-kg-de-drogas-e-1-050-ampolas-de-fentanil-em-laboratorio-clandestino.html"
+   },
+   {
+    "nome": "metropoles.com",
+    "url": "https://www.metropoles.com/sao-paulo/laboratorio-de-drogas-pm-prende-dois-em-refinaria-de-cocaina-e-crack"
+   },
+   {
+    "nome": "guarulhosemdestaque.com.br",
+    "url": "https://guarulhosemdestaque.com.br/2026/09/27/pm-apreende-quase-400-kg-de-cocaina-e-crack-em-refinaria-de-drogas-no-interior-de-sp/"
    }
   ],
   "confianca": "Alta",
   "apreensoes_ligadas": [],
   "observacoes": "Jardim Paulista. Ampolas de fentanil no laboratório de cocaína (possível uso como adulterante).",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-015",
@@ -749,13 +805,18 @@
   "tipo_fonte": "Imprensa",
   "fonte_nome": "sigivilares.com.br",
   "fonte_url": "https://sigivilares.com.br/operacao-da-rondesp-desmonta-laboratorio-de-cocaina-e-gera-prejuizo-de-r-350-mil-ao-trafico-em-irece/",
-  "fontes_extra": [],
-  "confianca": "Média",
+  "fontes_extra": [
+   {
+    "nome": "portaljaguarari.com.br",
+    "url": "https://www.portaljaguarari.com.br/2026/11/rondesp-desmantela-laboratorio-de.html"
+   }
+  ],
+  "confianca": "Alta",
   "apreensoes_ligadas": [],
   "observacoes": "Bairro Lagoa do Tió; três imóveis ligados ao grupo. Prejuízo estimado de R$ 350 mil.",
   "lote": 1,
-  "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  },
  {
   "id": "LAB26-016",
@@ -820,7 +881,105 @@
   "apreensoes_ligadas": [],
   "observacoes": "Conferir data: usada a data de publicação (25/11). Fábrica atrás de passagem secreta num armário (bairro Floresta) e galpão em Araquari.",
   "lote": 1,
+  "novo": "",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
+ },
+ {
+  "id": "LAB26-017",
+  "data": "2026-11-03",
+  "data_br": "03/11/2026",
+  "ano": 2026,
+  "mes": 11,
+  "uf": "BA",
+  "municipio": "Irecê",
+  "local": "Irecê/BA",
+  "cod_ibge": null,
+  "tipo_lab": "Refino de cocaína",
+  "escala": "Pequeno",
+  "tipo_local": "Outro/não informado",
+  "situacao": "Não informado",
+  "grupo_droga": [
+   "Cocaína/crack"
+  ],
+  "drogas_alvo": [],
+  "equipamentos": [
+   "prensa",
+   "balança de precisão",
+   "liquidificador",
+   "materiais de manipulação e embalagem"
+  ],
+  "insumos": [],
+  "produto_apreendido": "≈ 40 kg de cocaína (8,8 kg no veículo e 31,27 kg no imóvel); maconha (pouca)",
+  "capacidade": "Não informado",
+  "riscos": [],
+  "orgaos_envolvidos": "PM da Bahia (Rondesp Centro-Norte) + Delegacia Territorial de Irecê",
+  "esfera": "Estadual",
+  "operacao": "",
+  "presos": "Sim",
+  "n_presos": 2,
+  "adolescentes": 0,
+  "arma": "Não informado",
+  "armas_txt": "",
+  "dinheiro": "Não informado",
+  "dinheiro_txt": "",
+  "tipo_fonte": "Imprensa",
+  "fonte_nome": "falagenefax.com",
+  "fonte_url": "https://falagenefax.com/2026/11/04/pm-descobre-laboratorio-cocaina-irece-bahia/",
+  "fontes_extra": [],
+  "confianca": "Média",
+  "apreensoes_ligadas": [],
+  "observacoes": "Laboratório indicado por motorista abordado com 8,8 kg; prensa industrial. Distinto do laboratório de Irecê de 20/11 (LAB26-015).",
+  "lote": 2,
   "novo": "Novo",
-  "atualizado_em": "2026-11-26T16:16:00-03:00"
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
+ },
+ {
+  "id": "LAB26-018",
+  "data": "2026-03-13",
+  "data_br": "13/03/2026",
+  "ano": 2026,
+  "mes": 3,
+  "uf": "PA",
+  "municipio": "Belém",
+  "local": "Belém/PA",
+  "cod_ibge": null,
+  "tipo_lab": "Refino de cocaína",
+  "escala": "Pequeno",
+  "tipo_local": "Outro/não informado",
+  "situacao": "Não informado",
+  "grupo_droga": [
+   "Cocaína/crack"
+  ],
+  "drogas_alvo": [],
+  "equipamentos": [
+   "balança de precisão",
+   "sacos plásticos para embalagem"
+  ],
+  "insumos": [
+   "4 sacos de 'barrilha' (agente de corte)"
+  ],
+  "produto_apreendido": "934 trouxinhas de substância análoga à pasta de cocaína",
+  "capacidade": "Não informado",
+  "riscos": [],
+  "orgaos_envolvidos": "Polícia Militar do Pará (DGO, Bope/CME, 10º BPM)",
+  "esfera": "Estadual",
+  "operacao": "Ocupação IX",
+  "presos": "Não",
+  "n_presos": 0,
+  "adolescentes": 0,
+  "arma": "Não informado",
+  "armas_txt": "",
+  "dinheiro": "Não informado",
+  "dinheiro_txt": "",
+  "tipo_fonte": "Imprensa",
+  "fonte_nome": "diariodopara.com.br",
+  "fonte_url": "https://diariodopara.com.br/policia/pm-desativa-laboratorio-de-drogas-durante-operacao-em-icoaraci/",
+  "fontes_extra": [],
+  "confianca": "Média",
+  "apreensoes_ligadas": [],
+  "observacoes": "Icoaraci; laboratório de preparo e embalagem de pasta de cocaína em área de mata de difícil acesso. Ninguém preso.",
+  "lote": 2,
+  "novo": "Novo",
+  "atualizado_em": "2026-11-26T16:31:00-03:00"
  }
 ]
